@@ -1,9 +1,9 @@
-import 'package:erp/client/base_client.dart';
-import 'package:erp/config/constant.dart';
-import 'package:erp/controller/set_data_controller.dart';
-import 'package:erp/main.dart';
-import 'package:erp/view/auth/login_page.dart';
-import 'package:erp/view/home/home_page.dart';
+import 'package:fiber/client/base_client.dart';
+import 'package:fiber/config/constant.dart';
+import 'package:fiber/controller/set_data_controller.dart';
+import 'package:fiber/main.dart';
+import 'package:fiber/view/auth/login_page.dart';
+import 'package:fiber/view/home/home_page.dart';
 import 'package:tuple/tuple.dart';
 
 class AuthController extends GetxController {
@@ -23,8 +23,7 @@ class AuthController extends GetxController {
       },
     );
     if (response.item1) {
-      Get.offAll(() => const HomePage(),
-          transition: Transition.fadeIn);
+      Get.offAll(() => const HomePage(), transition: Transition.fadeIn);
     }
     isLoading.value = false;
     return response;

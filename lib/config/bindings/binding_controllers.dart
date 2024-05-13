@@ -1,10 +1,10 @@
 // ignore_for_file: unused_local_variable
 
-import 'package:erp/config/interceptor/dio_interceptor.dart';
-import 'package:erp/controller/auth/auth_controller.dart';
-import 'package:erp/controller/file_controller.dart';
-import 'package:erp/controller/notification/notification_controller.dart';
-import 'package:erp/controller/set_data_controller.dart';
+import 'package:fiber/config/interceptor/dio_interceptor.dart';
+import 'package:fiber/controller/auth/auth_controller.dart';
+import 'package:fiber/controller/file_controller.dart';
+import 'package:fiber/controller/notification/notification_controller.dart';
+import 'package:fiber/controller/set_data_controller.dart';
 import 'package:get/get.dart';
 
 class BindingsController extends Bindings {

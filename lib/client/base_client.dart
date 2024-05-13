@@ -1,4 +1,4 @@
-import 'package:erp/config/interceptor/dio_interceptor.dart';
+import 'package:fiber/config/interceptor/dio_interceptor.dart';
 import 'package:dio/dio.dart';
 import 'package:get/instance_manager.dart';
 import 'package:logger/logger.dart';

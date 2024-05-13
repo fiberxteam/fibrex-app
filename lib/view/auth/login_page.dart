@@ -1,9 +1,10 @@
-import 'package:erp/config/const_wodget/custom_fill_button.dart';
-import 'package:erp/config/const_wodget/custom_text_form_field.dart';
-import 'package:erp/config/constant.dart';
-import 'package:erp/config/validator/validators.dart';
-import 'package:erp/controller/auth/auth_controller.dart';
-import 'package:erp/controller/set_data_controller.dart';
+import 'package:fiber/config/const_wodget/custom_fill_button.dart';
+import 'package:fiber/config/const_wodget/custom_text_form_field.dart';
+import 'package:fiber/config/constant.dart';
+import 'package:fiber/config/validator/validators.dart';
+import 'package:fiber/controller/auth/auth_controller.dart';
+import 'package:fiber/controller/set_data_controller.dart';
+import 'package:fiber/view/auth/components/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
@@ -22,39 +23,7 @@ class _LoginPageState extends State<LoginPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(
-              width: double.infinity,
-              child: Stack(
-                children: [
-                  Positioned(
-                    child: Image.asset(Assets.assetsImagesBackgroundLogin),
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Gap(Insets.exLarge * 1.5),
-                      Image.asset(
-                        Assets.assetsImagesLogo2,
-                        width: Insets.exLarge * 4,
-                      ),
-                      Gap(Insets.small),
-                      Padding(
-                        padding:
-                            EdgeInsets.symmetric(horizontal: Insets.medium),
-                        child: Text(
-                          'الشريك الرسمي لوزارة الاتصالات العراقية والمزود الأكبر للإنترنت الضوئي في واسط ',
-                          style:
-                              Theme.of(context).textTheme.labelMedium!.copyWith(
-                                    color: context.theme.colorScheme.surface,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                        ),
-                      )
-                    ],
-                  )
-                ],
-              ),
-            ),
+            const CustomAppBar(),
             Gap(Insets.exLarge * 2),
             Text(
               'Sign In'.tr,

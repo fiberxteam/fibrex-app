@@ -1,5 +1,5 @@
-import 'package:erp/client/base_client.dart';
-import 'package:erp/config/constant.dart';
+import 'package:fiber/client/base_client.dart';
+import 'package:fiber/config/constant.dart';
 
 class NotificationController extends GetxController {
   RxBool isLoading = false.obs;
@@ -8,8 +8,8 @@ class NotificationController extends GetxController {
   Future<void> getNotifications({String? title, int? page, int? limit}) async {
     isLoading.value = true;
     // var response =
-    
-     await BaseClient.get(
+
+    await BaseClient.get(
       api: '/notification',
       queryParameters: {
         'pageNumber': page,
@@ -19,5 +19,4 @@ class NotificationController extends GetxController {
     // notifications.value = NotificationModel.fromJson(response);
     isLoading.value = false;
   }
-
 }

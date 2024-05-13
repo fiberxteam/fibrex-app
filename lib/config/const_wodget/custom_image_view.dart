@@ -1,5 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:erp/config/constant.dart';
+import 'package:fiber/config/constant.dart';
 import 'package:flutter/material.dart';
 
 class Images extends StatefulWidget {

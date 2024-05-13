@@ -1,5 +1,5 @@
-import 'package:erp/config/constant.dart';
-import 'package:erp/config/sizing/size_config.dart';
+import 'package:fiber/config/constant.dart';
+import 'package:fiber/config/sizing/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart' as intl;

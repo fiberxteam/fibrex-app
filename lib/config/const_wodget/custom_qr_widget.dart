@@ -1,4 +1,4 @@
-import 'package:erp/config/constant.dart';
+import 'package:fiber/config/constant.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
 class CustomQrWidget extends StatelessWidget {

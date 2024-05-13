@@ -1,16 +1,17 @@
 // ignore_for_file: deprecated_member_use
 
 import 'dart:io';
-import 'package:erp/main.dart';
-import 'package:erp/view/splash/splash_page.dart';
+import 'package:fiber/main.dart';
+import 'package:fiber/view/splash/splash_page.dart';
 import 'package:awesome_dio_interceptor/awesome_dio_interceptor.dart';
 import 'package:dio/dio.dart';
-import 'package:erp/config/constant.dart';
+import 'package:fiber/config/constant.dart';
 import 'package:onesignal_flutter/onesignal_flutter.dart';
 
 class DioHttp extends GetxController {
   Dio dio = Dio();
-  static const String baseUrls = 'https://ticketsystem-api.digital-logic.tech/api';
+  static const String baseUrls =
+      'https://ticketsystem-api.digital-logic.tech/api';
 
   @override
   void onInit() {

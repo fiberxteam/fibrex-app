@@ -1,5 +1,5 @@
 import 'dart:math';
-import 'package:erp/main.dart';
+import 'package:fiber/main.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:tuple/tuple.dart';
@@ -27,6 +27,7 @@ String formatCurrency(double amount) {
   final NumberFormat formatter = NumberFormat.decimalPattern('ar_IQ');
   return formatter.format(amount) + " IQ".tr;
 }
+
 Tuple2<String, Color> getStatus(int? status) {
   switch (status) {
     case 0:

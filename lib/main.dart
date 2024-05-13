@@ -1,9 +1,9 @@
-import 'package:erp/config/bindings/binding_controllers.dart';
-import 'package:erp/config/constant.dart';
-import 'package:erp/config/themes/theme_generator.dart';
-import 'package:erp/controller/set_data_controller.dart';
-import 'package:erp/l10n/locals.g.dart';
-import 'package:erp/view/splash/splash_page.dart';
+import 'package:fiber/config/bindings/binding_controllers.dart';
+import 'package:fiber/config/constant.dart';
+import 'package:fiber/config/themes/theme_generator.dart';
+import 'package:fiber/controller/set_data_controller.dart';
+import 'package:fiber/l10n/locals.g.dart';
+import 'package:fiber/view/splash/splash_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';

@@ -1,7 +1,7 @@
 import 'dart:io';
 
-import 'package:erp/client/base_client.dart';
-import 'package:erp/config/constant.dart';
+import 'package:fiber/client/base_client.dart';
+import 'package:fiber/config/constant.dart';
 import 'package:dio/dio.dart' as dio;
 
 import 'package:tuple/tuple.dart';

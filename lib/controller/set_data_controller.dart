@@ -1,4 +1,4 @@
-import 'package:erp/config/constant.dart';
+import 'package:fiber/config/constant.dart';
 
 class SetDataController extends GetxController {
   RxInt left = 59.obs;
