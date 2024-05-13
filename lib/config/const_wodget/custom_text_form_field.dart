@@ -127,36 +127,36 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
             filled: true,
             fillColor: Get.isDarkMode
                 ? context.theme.colorScheme.secondary.withOpacity(0.1)
-                : Theme.of(context).colorScheme.outline.withOpacity(0),
+                : Colors.white,
             focusColor: context.theme.colorScheme.error,
             focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10),
+              borderRadius: BorderRadius.circular(20),
               borderSide: BorderSide(
-                width: 1,
+                width: 0,
                 color: context.theme.colorScheme.outline.withOpacity(0.5),
                 style: BorderStyle.solid,
               ),
             ),
             enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10),
+              borderRadius: BorderRadius.circular(20),
               borderSide: BorderSide(
-                width: 1,
+                width: 0,
                 color: context.theme.colorScheme.outline.withOpacity(0.5),
                 style: BorderStyle.solid,
               ),
             ),
             focusedErrorBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10),
+              borderRadius: BorderRadius.circular(20),
               borderSide: BorderSide(
-                width: 1,
+                width: 0,
                 color: Colors.red.shade200,
                 style: BorderStyle.solid,
               ),
             ),
             errorBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10),
+              borderRadius: BorderRadius.circular(20),
               borderSide: BorderSide(
-                width: 1,
+                width: 0,
                 color: Colors.red.shade200,
                 style: BorderStyle.solid,
               ),

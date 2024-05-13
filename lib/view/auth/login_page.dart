@@ -25,68 +25,95 @@ class _LoginPageState extends State<LoginPage> {
           children: [
             const CustomAppBar(),
             Gap(Insets.exLarge * 2),
-            Text(
-              'Sign In'.tr,
-              style: Theme.of(context).textTheme.headlineMedium!.copyWith(
-                  color: context.theme.colorScheme.onPrimaryContainer,
-                  fontWeight: FontWeight.bold),
-            ),
-            Gap(Insets.medium),
             GetX(
               init: authController,
               builder: (data) => Form(
-                child: Column(
-                  children: [
-                    CustomTextFormField(
-                      validators: [
-                        IsRequiredRule(),
-                      ],
-                      hint: 'aliJassib@gmail.com'.tr,
-                      controller: data.emailController,
-                      prefixIcon: SvgPicture.asset(
-                        Assets.assetsIconsPhone,
+                child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: Insets.small),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Sign In'.tr,
+                        style: Theme.of(context)
+                            .textTheme
+                            .headlineMedium!
+                            .copyWith(
+                                color: context
+                                    .theme.colorScheme.onPrimaryContainer,
+                                fontWeight: FontWeight.bold),
                       ),
-                      isLabelVisible: false,
-                      bottomSpace: Insets.small,
-                    ),
-                    CustomTextFormField(
-                      validators: [
-                        IsRequiredRule(),
-                      ],
-                      hint: '123@root'.tr,
-                      controller: data.passwordController,
-                      isLabelVisible: false,
-                      obscureText: !data.isShow.value,
-                      prefixIcon: InkMe(
-                        onTap: () {
-                          data.isShow.value = !data.isShow.value;
-                        },
-                        child: SvgPicture.asset(
-                          !data.isShow.value
-                              ? Assets.assetsIconsEyes
-                              : Assets.assetsIconsCloseEye,
+                      Gap(Insets.medium),
+                      CustomTextFormField(
+                        validators: [
+                          IsRequiredRule(),
+                        ],
+                        hint: 'Ali Jassib'.tr,
+                        controller: data.emailController,
+                        prefixIcon: SvgPicture.asset(
+                          Assets.assetsIconsPerson,
                           color: context.theme.colorScheme.outline,
                         ),
+                        isLabelVisible: false,
+                        bottomSpace: Insets.small,
                       ),
-                      bottomSpace: Insets.small,
-                    ),
-                    Gap(Insets.medium),
-                    CustomFillButton(
-                      title: 'Confirm'.tr,
-                      loading: data.isLoading.value
-                          ? CircularProgressIndicator(
-                              color: context.theme.colorScheme.surface,
-                            )
-                          : null,
-                      onTap: () {
-                        data.login(
-                            email: data.emailController.text,
-                            password: data.passwordController.text);
-                      },
-                      backgroundColor:
-                          context.theme.colorScheme.onPrimaryContainer,
-                    ),
-                  ],
+                      CustomTextFormField(
+                        validators: [
+                          IsRequiredRule(),
+                        ],
+                        hint: '123@root'.tr,
+                        controller: data.passwordController,
+                        isLabelVisible: false,
+                        obscureText: !data.isShow.value,
+                        prefixIcon: InkMe(
+                          onTap: () {
+                            data.isShow.value = !data.isShow.value;
+                          },
+                          child: SvgPicture.asset(
+                            !data.isShow.value
+                                ? Assets.assetsIconsEyes
+                                : Assets.assetsIconsCloseEye,
+                            color: context.theme.colorScheme.outline,
+                          ),
+                        ),
+                        bottomSpace: Insets.small,
+                      ),
+                      Gap(Insets.medium),
+                      CustomFillButton(
+                        title: 'Login'.tr,
+                        loading: data.isLoading.value
+                            ? CircularProgressIndicator(
+                                color: context.theme.colorScheme.surface,
+                              )
+                            : null,
+                        onTap: () {
+                          data.login(
+                              email: data.emailController.text,
+                              password: data.passwordController.text);
+                        },
+                        backgroundColor:
+                            context.theme.colorScheme.onPrimaryContainer,
+                      ),
+                      Gap(Insets.exLarge * 2),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: Divider(
+                              color: context.theme.colorScheme.outline,
+                            ),
+                          ),
+                          Gap(Insets.small),
+                          Text('or'.tr),
+                          Gap(Insets.small),
+                          Expanded(
+                            child: Divider(
+                              color: context.theme.colorScheme.outline,
+                            ),
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
                 ),
               ),
             ),

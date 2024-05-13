@@ -13,10 +13,16 @@ class Locales {
   static const ar = {
     'hello': 'مرحبا',
     " IQ": " دينار",
+    'Sign In': 'تسجيل الدخول',
+    'Login': 'تسجيل الدخول',
+    'or': 'أو',
   };
 
   static const en = {
     'hello': 'Hello',
+    'Sign In': 'Sign In',
     " IQ": " IQ",
+    'Login': 'Login',
+    'or': 'or',
   };
 }
