@@ -18,7 +18,7 @@ void main() async {
   // prefs.remove('token');
 
   Get.changeThemeMode(ThemeMode.light);
-  // Get.updateLocale(Locale('ar'));
+  Get.updateLocale(const Locale('ar'));
   OneSignal.shared.setLogLevel(OSLogLevel.debug, OSLogLevel.none);
   OneSignal.shared.setAppId('54c66e7d-707b-481f-b354-f46c3443b8df');
   OneSignal.shared.promptUserForPushNotificationPermission().then((accepted) {
@@ -41,16 +41,15 @@ void main() async {
     noti(
       event.notification.title ?? "",
       event.notification.body ?? "",
-      
     );
 
     event.complete(event.notification);
   });
 
-  var deviceLanguageCode = Get.deviceLocale!.languageCode;
-  var local = Locale(prefs.getString("languageCode") ?? deviceLanguageCode);
+  // var deviceLanguageCode = Get.deviceLocale!.languageCode;
+  // var local = Locale(prefs.getString("languageCode") ?? deviceLanguageCode);
 
-  Get.updateLocale(local);
+  // Get.updateLocale(local);
   SetDataController controller = Get.put(SetDataController());
   if (prefs.getBool('darkTheme') == null) {
     Get.changeThemeMode(ThemeMode.light);

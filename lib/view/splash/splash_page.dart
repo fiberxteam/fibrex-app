@@ -19,14 +19,19 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
       body: Container(
         width: double.infinity,
         height: double.infinity,
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage(Assets.assetsImagesBackgroundSplash),
+            fit: BoxFit.cover,
+          ),
+        ),
         child: Center(
           child: Image.asset(
-            Assets.assetsIconsLogo2,
+            Assets.assetsImagesLogo,
             width: Insets.exLarge * 6,
           ).animate(
             autoPlay: true,
             controller: controller,
-            // onPlay: (controller) => controller.repeat(), // loop
             onComplete: (controller) {
               if (prefs.getString('token') == null) {
                 Get.offAll(() => const LoginPage(),

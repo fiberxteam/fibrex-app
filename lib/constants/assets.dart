@@ -117,21 +117,13 @@ class Assets {
   /// assets/icons/translate.svg
   static const String assetsIconsTranslate = "assets/icons/translate.svg";
 
-  /// Assets for assetsImagesFireFighter
-  /// assets/images/FireFighter.png
-  static const String assetsImagesFireFighter = "assets/images/FireFighter.png";
+  /// Assets for assetsImagesBackgroundLogin
+  /// assets/images/background_login.png
+  static const String assetsImagesBackgroundLogin = "assets/images/background_login.png";
 
-  /// Assets for assetsImagesGazImage
-  /// assets/images/gazImage.png
-  static const String assetsImagesGazImage = "assets/images/gazImage.png";
-
-  /// Assets for assetsImagesGazImages
-  /// assets/images/gaz_images.png
-  static const String assetsImagesGazImages = "assets/images/gaz_images.png";
-
-  /// Assets for assetsImagesLPG
-  /// assets/images/LPG.png
-  static const String assetsImagesLPG = "assets/images/LPG.png";
+  /// Assets for assetsImagesBackgroundSplash
+  /// assets/images/background_splash.png
+  static const String assetsImagesBackgroundSplash = "assets/images/background_splash.png";
 
   /// Assets for assetsImagesLoginBackground
   /// assets/images/login_background.png
@@ -141,6 +133,10 @@ class Assets {
   /// assets/images/logo.png
   static const String assetsImagesLogo = "assets/images/logo.png";
 
+  /// Assets for assetsImagesLogo2
+  /// assets/images/logo2.png
+  static const String assetsImagesLogo2 = "assets/images/logo2.png";
+
   /// Assets for assetsImagesLogoApp
   /// assets/images/logo_app.png
   static const String assetsImagesLogoApp = "assets/images/logo_app.png";
@@ -148,30 +144,6 @@ class Assets {
   /// Assets for assetsImagesLogoBackground
   /// assets/images/logo_background.png
   static const String assetsImagesLogoBackground = "assets/images/logo_background.png";
-
-  /// Assets for assetsImagesMap
-  /// assets/images/map.png
-  static const String assetsImagesMap = "assets/images/map.png";
-
-  /// Assets for assetsImagesMapPage
-  /// assets/images/map_page.png
-  static const String assetsImagesMapPage = "assets/images/map_page.png";
-
-  /// Assets for assetsImagesMaps
-  /// assets/images/maps.svg
-  static const String assetsImagesMaps = "assets/images/maps.svg";
-
-  /// Assets for assetsImagesMoneys
-  /// assets/images/moneys.svg
-  static const String assetsImagesMoneys = "assets/images/moneys.svg";
-
-  /// Assets for assetsImagesReport
-  /// assets/images/report.png
-  static const String assetsImagesReport = "assets/images/report.png";
-
-  /// Assets for assetsImagesTools
-  /// assets/images/Tools.png
-  static const String assetsImagesTools = "assets/images/Tools.png";
 
   /// Assets for assetsJsonNoData
   /// assets/json/no_data.json
