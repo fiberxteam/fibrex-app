@@ -15,6 +15,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         SizedBox(height: Insets.exLarge * 1.2),
         const CustomAppBar(),
@@ -24,6 +25,17 @@ class _HomePageState extends State<HomePage> {
           child: const CustomSubScribeWidget(),
         ),
         SizedBox(height: Insets.medium),
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: Insets.small),
+          child: Text(
+            'الخدمات'.tr,
+            style: context.theme.textTheme.titleSmall!.copyWith(
+              color: context.theme.colorScheme.primary,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
+        SizedBox(height: Insets.small),
         Padding(
           padding: EdgeInsets.symmetric(horizontal: Insets.small),
           child: Row(

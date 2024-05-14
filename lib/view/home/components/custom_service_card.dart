@@ -22,7 +22,7 @@ class CustomServiceCard extends StatelessWidget {
             color: context.theme.colorScheme.surface,
             width: 1,
           ),
-          borderRadius: BorderRadius.circular(Insets.small),
+          borderRadius: BorderRadius.circular(Insets.medium - 4),
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
