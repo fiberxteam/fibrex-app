@@ -1,6 +1,5 @@
 import 'package:fiber/config/const_wodget/custom_fill_button.dart';
 import 'package:fiber/config/const_wodget/custom_text_form_field.dart';
-import 'package:fiber/config/const_wodget/ink_me.dart';
 import 'package:fiber/config/constant.dart';
 import 'package:fiber/config/validator/validators.dart';
 import 'package:fiber/controller/auth/auth_controller.dart';
