@@ -22,7 +22,7 @@ class CustomIconsButton extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           AnimatedContainer(
-            duration: const Duration(milliseconds: 300),
+            duration: const Duration(milliseconds: 400),
             width: Insets.large + 5,
             height: Insets.large + 5,
             decoration: BoxDecoration(
