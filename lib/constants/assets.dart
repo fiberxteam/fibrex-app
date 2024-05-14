@@ -181,6 +181,14 @@ class Assets {
   /// assets/images/Bg.png
   static const String assetsImagesBg = "assets/images/Bg.png";
 
+  /// Assets for assetsImagesImage1
+  /// assets/images/image1.png
+  static const String assetsImagesImage1 = "assets/images/image1.png";
+
+  /// Assets for assetsImagesImage2
+  /// assets/images/image2.png
+  static const String assetsImagesImage2 = "assets/images/image2.png";
+
   /// Assets for assetsImagesLoginBackground
   /// assets/images/login_background.png
   static const String assetsImagesLoginBackground = "assets/images/login_background.png";

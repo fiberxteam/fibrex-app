@@ -38,10 +38,12 @@ class Locales {
     'الباقات': 'الباقات',
     'الصيانة': 'الصيانة',
     'الدعم': 'الدعم',
+    'العروض': 'العروض',
   };
 
   static const en = {
     'hello': 'Hello',
+    'العروض': 'Offers',
     'الدعم': 'Support',
     'الصيانة': 'Maintenance',
     'الباقات': 'Packages',

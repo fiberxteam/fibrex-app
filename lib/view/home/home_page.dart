@@ -30,7 +30,7 @@ class _HomePageState extends State<HomePage> {
           child: Text(
             'الخدمات'.tr,
             style: context.theme.textTheme.titleSmall!.copyWith(
-              color: context.theme.colorScheme.primary,
+              color: context.theme.colorScheme.scrim,
               fontWeight: FontWeight.bold,
             ),
           ),
@@ -89,7 +89,23 @@ class _HomePageState extends State<HomePage> {
             ],
           ),
         ),
+        SizedBox(height: Insets.small),
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: Insets.small),
+          child: Text(
+            'العروض'.tr,
+            style: context.theme.textTheme.titleSmall!.copyWith(
+              color: context.theme.colorScheme.scrim,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
       ].animate(interval: 50.ms).fadeIn(),
     );
   }
+
+  List<String> images = [
+    Assets.assetsImagesImage1,
+    Assets.assetsImagesImage2,
+  ];
 }
