@@ -77,6 +77,10 @@ class Assets {
   /// assets/icons/moon.png
   static const String assetsIconsMoon = "assets/icons/moon.png";
 
+  /// Assets for assetsIconsNews
+  /// assets/icons/news.svg
+  static const String assetsIconsNews = "assets/icons/news.svg";
+
   /// Assets for assetsIconsNotMoon
   /// assets/icons/not_moon.png
   static const String assetsIconsNotMoon = "assets/icons/not_moon.png";
@@ -105,6 +109,10 @@ class Assets {
   /// assets/icons/search.svg
   static const String assetsIconsSearch = "assets/icons/search.svg";
 
+  /// Assets for assetsIconsService
+  /// assets/icons/service.svg
+  static const String assetsIconsService = "assets/icons/service.svg";
+
   /// Assets for assetsIconsTag
   /// assets/icons/tag.svg
   static const String assetsIconsTag = "assets/icons/tag.svg";
@@ -124,6 +132,10 @@ class Assets {
   /// Assets for assetsImagesBackgroundSplash
   /// assets/images/background_splash.png
   static const String assetsImagesBackgroundSplash = "assets/images/background_splash.png";
+
+  /// Assets for assetsImagesBg
+  /// assets/images/Bg.png
+  static const String assetsImagesBg = "assets/images/Bg.png";
 
   /// Assets for assetsImagesLoginBackground
   /// assets/images/login_background.png

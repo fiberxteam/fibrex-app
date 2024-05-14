@@ -1,10 +1,12 @@
 import 'package:fiber/config/const_wodget/custom_fill_button.dart';
 import 'package:fiber/config/const_wodget/custom_text_form_field.dart';
+import 'package:fiber/config/const_wodget/ink_me.dart';
 import 'package:fiber/config/constant.dart';
 import 'package:fiber/config/validator/validators.dart';
 import 'package:fiber/controller/auth/auth_controller.dart';
 import 'package:fiber/controller/set_data_controller.dart';
 import 'package:fiber/view/auth/components/custom_app_bar.dart';
+import 'package:fiber/view/navigation/navigation_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
@@ -122,7 +124,34 @@ class _LoginPageState extends State<LoginPage> {
                       Gap(Insets.exLarge),
                       CustomOutLineButton(
                         title: 'الدخول التلقائي'.tr,
+                        onTap: () {
+                          Get.offAll(() => const NavigationPage(),
+                              transition: Transition.fade);
+                        },
+                      ),
+                      Gap(Insets.exLarge),
+                      InkMe(
                         onTap: () {},
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              'ليس لديك حساب '.tr,
+                              style: context.theme.textTheme.titleSmall!
+                                  .copyWith(
+                                      color: context.theme.colorScheme.outline),
+                            ),
+                            Text(
+                              'الدخول كزائر'.tr,
+                              style:
+                                  context.theme.textTheme.titleSmall!.copyWith(
+                                color: context
+                                    .theme.colorScheme.onPrimaryContainer,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ],
                   ),
