@@ -10,16 +10,10 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('HomePage'),
-        centerTitle: true,
-      ),
-      body: const Center(
-        child: Text(
-          'HomePage is working',
-          style: TextStyle(fontSize: 20),
-        ),
+    return const Center(
+      child: Text(
+        'HomePage is working',
+        style: TextStyle(fontSize: 20),
       ),
     );
   }
