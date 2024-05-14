@@ -16,10 +16,12 @@ class Locales {
     'Sign In': 'تسجيل الدخول',
     'Login': 'تسجيل الدخول',
     'or': 'أو',
+    'الدخول التلقائي': 'الدخول التلقائي',
   };
 
   static const en = {
     'hello': 'Hello',
+    'الدخول التلقائي': 'Auto Login',
     'Sign In': 'Sign In',
     " IQ": " IQ",
     'Login': 'Login',

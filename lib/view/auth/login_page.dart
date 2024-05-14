@@ -99,19 +99,31 @@ class _LoginPageState extends State<LoginPage> {
                         children: [
                           Expanded(
                             child: Divider(
-                              color: context.theme.colorScheme.outline,
+                              color: context.theme.colorScheme.outline
+                                  .withOpacity(0.2),
                             ),
                           ),
                           Gap(Insets.small),
-                          Text('or'.tr),
+                          Text(
+                            'or'.tr,
+                            style: context.theme.textTheme.labelMedium!
+                                .copyWith(
+                                    color: context.theme.colorScheme.outline),
+                          ),
                           Gap(Insets.small),
                           Expanded(
                             child: Divider(
-                              color: context.theme.colorScheme.outline,
+                              color: context.theme.colorScheme.outline
+                                  .withOpacity(0.2),
                             ),
                           ),
                         ],
-                      )
+                      ),
+                      Gap(Insets.exLarge),
+                      CustomOutLineButton(
+                        title: 'الدخول التلقائي'.tr,
+                        onTap: () {},
+                      ),
                     ],
                   ),
                 ),

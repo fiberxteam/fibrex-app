@@ -69,6 +69,7 @@ class CustomOutLineButton extends StatelessWidget {
   final Widget? icon;
   final double? padding;
   final Color? color;
+  final void Function()? onTap;
   const CustomOutLineButton({
     super.key,
     required this.title,
@@ -76,41 +77,46 @@ class CustomOutLineButton extends StatelessWidget {
     this.icon,
     this.padding,
     this.color,
+    this.onTap,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: context.width,
-      padding: EdgeInsets.symmetric(
-          horizontal: Insets.medium, vertical: padding ?? Insets.small),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(Insets.medium),
-        color: Colors.transparent,
-        border: Border.all(
-          color: color ?? context.theme.colorScheme.onPrimaryContainer,
+    return InkMe(
+      onTap: onTap,
+      child: Container(
+        width: context.width,
+        padding: EdgeInsets.symmetric(
+            horizontal: Insets.medium, vertical: padding ?? Insets.small),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(Insets.medium),
+          color: Colors.transparent,
+          border: Border.all(
+            color: color ?? context.theme.colorScheme.onPrimaryContainer,
+          ),
         ),
-      ),
-      child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-        loading ??
-            Row(
-              children: [
-                icon == null
-                    ? Container()
-                    : Padding(
-                        padding: EdgeInsets.symmetric(horizontal: Insets.small),
-                        child: icon ?? Container(),
-                      ),
-                Text(
-                  title,
-                  style: context.theme.textTheme.titleSmall!.copyWith(
-                    color:
-                        color ?? context.theme.colorScheme.onPrimaryContainer,
+        child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+          loading ??
+              Row(
+                children: [
+                  icon == null
+                      ? Container()
+                      : Padding(
+                          padding:
+                              EdgeInsets.symmetric(horizontal: Insets.small),
+                          child: icon ?? Container(),
+                        ),
+                  Text(
+                    title,
+                    style: context.theme.textTheme.titleSmall!.copyWith(
+                      color:
+                          color ?? context.theme.colorScheme.onPrimaryContainer,
+                    ),
                   ),
-                ),
-              ],
-            ),
-      ]),
+                ],
+              ),
+        ]),
+      ),
     );
   }
 }
