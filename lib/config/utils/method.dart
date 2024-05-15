@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:fiber/config/constant.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
 import 'package:intl/intl.dart';
 
@@ -10,8 +11,9 @@ Future<dynamic> customBottomSheet(BuildContext context,
   return Get.bottomSheet(
     Container(
       width: context.width,
+      height: height,
       constraints: BoxConstraints(
-        maxHeight: height ?? context.height * 0.8,
+        maxHeight: context.height * 0.8,
         minHeight: context.height * 0.2,
       ),
       decoration: BoxDecoration(
@@ -24,23 +26,32 @@ Future<dynamic> customBottomSheet(BuildContext context,
         ),
       ),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Gap(Insets.small),
-          Container(
-            width: context.width * 0.2,
-            height: Insets.exSmall,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(Insets.medium),
-              color: Theme.of(context).colorScheme.outline.withOpacity(0.2),
+          SizedBox(height: Insets.small),
+          Center(
+            child: Container(
+              width: context.width * 0.2,
+              height: Insets.exSmall,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(Insets.medium),
+                color: Theme.of(context).colorScheme.outline.withOpacity(0.2),
+              ),
             ),
           ),
-          child ?? Gap(Insets.small),
-        ],
+          SizedBox(height: Insets.medium),
+          child ?? SizedBox(height: Insets.exLarge),
+        ].animate(interval: 50.ms).fade(),
       ),
     ),
     enterBottomSheetDuration: const Duration(milliseconds: 400),
     exitBottomSheetDuration: const Duration(milliseconds: 400),
     isScrollControlled: true,
+    enableDrag: true,
+    useRootNavigator: true,
+    isDismissible: true,
+    persistent: true,
+    ignoreSafeArea: true,
   );
 }
 

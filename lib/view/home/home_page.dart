@@ -2,6 +2,7 @@ import 'package:fiber/config/constant.dart';
 import 'package:fiber/view/home/components/custom_app_bar.dart';
 import 'package:fiber/view/home/components/custom_news_card.dart';
 import 'package:fiber/view/home/components/custom_offers_card.dart';
+import 'package:fiber/view/home/components/custom_renew_subscription_card.dart';
 import 'package:fiber/view/home/components/custom_service_card.dart';
 import 'package:fiber/view/home/components/custom_sub_scribe_widget.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -46,7 +47,13 @@ class _HomePageState extends State<HomePage> {
                 CustomServiceCard(
                   icon: Assets.assetsIconsArrowsClockwise,
                   title: 'تجديد إشتراك'.tr,
-                  onTap: () {},
+                  onTap: () {
+                    customBottomSheet(
+                      context,
+                      height: context.height * 0.5,
+                      child: const CustomRenewSubscriptionCard(),
+                    );
+                  },
                 ),
                 SizedBox(width: Insets.small),
                 CustomServiceCard(
