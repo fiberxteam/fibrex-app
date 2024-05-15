@@ -2,7 +2,7 @@ import 'package:fiber/config/constant.dart';
 import 'package:fiber/view/home/components/custom_renew_subscription_card.dart';
 import 'package:fiber/view/home/components/custom_service_card.dart';
 import 'package:fiber/view/plans/plans_page.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 
 class ServicePage extends StatefulWidget {
   const ServicePage({super.key});
@@ -80,7 +80,7 @@ class _ServicePageState extends State<ServicePage> {
             icon: Assets.assetsIconsHeadset,
             title: 'الدعم'.tr,
           )
-        ],
+        ].animate(interval: 20.ms).fade(),
       ),
     );
   }
