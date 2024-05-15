@@ -46,6 +46,7 @@ class _HomePageState extends State<HomePage> {
                 CustomServiceCard(
                   icon: Assets.assetsIconsArrowsClockwise,
                   title: 'تجديد إشتراك'.tr,
+                  onTap: () {},
                 ),
                 SizedBox(width: Insets.small),
                 CustomServiceCard(
