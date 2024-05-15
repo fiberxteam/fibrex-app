@@ -12,7 +12,7 @@ class AppTranslation {
 class Locales {
   static const ar = {
     'hello': 'مرحبا',
-    " IQ": " دينار",
+    " IQ": " د.ع",
     'Sign In': 'تسجيل الدخول',
     'Login': 'تسجيل الدخول',
     'or': 'أو',
@@ -40,10 +40,18 @@ class Locales {
     'الدعم': 'الدعم',
     'العروض': 'العروض',
     'آخر الأخبار': 'آخر الأخبار',
+    'إعادة التعبئة': 'إعادة التعبئة',
+    ' IQD': ' د.ع',
+    'رمز التفعيل': 'رمز التفعيل',
+    'تعبئة': 'تعبئة',
   };
 
   static const en = {
     'hello': 'Hello',
+    'تعبئة': 'Recharge',
+    'رمز التفعيل': 'Activation Code',
+    ' IQD': ' IQD',
+    'إعادة التعبئة': 'Recharge',
     'آخر الأخبار': 'Latest News',
     'العروض': 'Offers',
     'الدعم': 'Support',
@@ -69,7 +77,7 @@ class Locales {
     'ليس لديك حساب ': 'Don\'t have an account ',
     'الدخول التلقائي': 'Auto Login',
     'Sign In': 'Sign In',
-    " IQ": " IQ",
+    " IQ": " IQD",
     'Login': 'Login',
     'or': 'or',
   };

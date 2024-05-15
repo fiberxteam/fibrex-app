@@ -2,6 +2,7 @@ import 'package:fiber/config/constant.dart';
 import 'package:fiber/view/home/components/custom_app_bar.dart';
 import 'package:fiber/view/home/components/custom_news_card.dart';
 import 'package:fiber/view/home/components/custom_offers_card.dart';
+import 'package:fiber/view/home/components/custom_renew_subscription_card.dart';
 import 'package:fiber/view/home/components/custom_service_card.dart';
 import 'package:fiber/view/home/components/custom_sub_scribe_widget.dart';
 import 'package:fiber/view/plans/plans_page.dart';
@@ -21,7 +22,7 @@ class _HomePageState extends State<HomePage> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(height: Insets.exLarge * 1.2),
+          SizedBox(height: Insets.exLarge),
           const CustomAppBar(),
           SizedBox(height: Insets.small),
           Padding(
@@ -47,7 +48,15 @@ class _HomePageState extends State<HomePage> {
                 CustomServiceCard(
                   icon: Assets.assetsIconsArrowsClockwise,
                   title: 'تجديد إشتراك'.tr,
-                  onTap: () {},
+                  onTap: () {
+                    customBottomSheet(
+                      context,
+                      height: context.height * 0.6,
+                      child: const SingleChildScrollView(
+                        child: CustomRenewSubscriptionCard(),
+                      ),
+                    );
+                  },
                 ),
                 SizedBox(width: Insets.small),
                 CustomServiceCard(

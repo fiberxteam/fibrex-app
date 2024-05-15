@@ -1,8 +1,11 @@
+import 'dart:io';
+
 import 'package:fiber/config/constant.dart';
 import 'package:fiber/controller/set_data_controller.dart';
 import 'package:fiber/view/home/home_page.dart';
 import 'package:fiber/view/navigation/components/custom_icons_button.dart';
 import 'package:fiber/view/notification/notification_page.dart';
+import 'package:fiber/view/service/service_page.dart';
 import 'package:flutter/material.dart';
 
 class NavigationPage extends StatefulWidget {
@@ -31,7 +34,10 @@ class _NavigationPageState extends State<NavigationPage> {
         floatingActionButton: Container(
           width: context.width,
           height: 70,
-          margin: EdgeInsets.symmetric(horizontal: Insets.small),
+          margin: EdgeInsets.symmetric(
+            horizontal: Insets.small,
+            vertical: Platform.isIOS ? 0 : Insets.medium,
+          ),
           padding: EdgeInsets.symmetric(
               horizontal: Insets.medium, vertical: Insets.exSmall),
           decoration: BoxDecoration(
@@ -106,7 +112,7 @@ class _NavigationPageState extends State<NavigationPage> {
 
   List<Widget> pages = [
     const HomePage(),
-    const HomePage(),
+    const ServicePage(),
     const NotificationPage(),
     const NotificationPage(),
   ];
