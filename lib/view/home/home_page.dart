@@ -21,7 +21,7 @@ class _HomePageState extends State<HomePage> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(height: Insets.exLarge * 1.2),
+          SizedBox(height: Insets.exLarge),
           const CustomAppBar(),
           SizedBox(height: Insets.small),
           Padding(

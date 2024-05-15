@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:fiber/config/constant.dart';
 import 'package:fiber/controller/set_data_controller.dart';
 import 'package:fiber/view/home/home_page.dart';
@@ -31,7 +33,10 @@ class _NavigationPageState extends State<NavigationPage> {
         floatingActionButton: Container(
           width: context.width,
           height: 70,
-          margin: EdgeInsets.symmetric(horizontal: Insets.small),
+          margin: EdgeInsets.symmetric(
+            horizontal: Insets.small,
+            vertical: Platform.isIOS ? 0 : Insets.medium,
+          ),
           padding: EdgeInsets.symmetric(
               horizontal: Insets.medium, vertical: Insets.exSmall),
           decoration: BoxDecoration(

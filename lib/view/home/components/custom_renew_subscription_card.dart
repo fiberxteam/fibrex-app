@@ -13,11 +13,12 @@ class CustomRenewSubscriptionCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'إعادة التعبئة'.tr,
+            'اختار الباقة'.tr,
             style: context.theme.textTheme.titleSmall!.copyWith(
               fontWeight: FontWeight.bold,
             ),
           ),
+          Gap(Insets.small),
         ],
       ),
     );
