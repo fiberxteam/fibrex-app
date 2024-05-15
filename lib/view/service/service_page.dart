@@ -13,23 +13,47 @@ class ServicePage extends StatefulWidget {
 class _ServicePageState extends State<ServicePage> {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        SizedBox(height: Insets.exLarge + Insets.medium),
-        CustomServiceCard(
-          icon: Assets.assetsIconsArrowsClockwise,
-          title: 'تجديد إشتراك'.tr,
-          onTap: () {
-            customBottomSheet(
-              context,
-              height: context.height * 0.6,
-              child: const SingleChildScrollView(
-                child: CustomRenewSubscriptionCard(),
-              ),
-            );
-          },
-        ),
-      ],
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: Insets.small),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          SizedBox(height: Insets.exLarge + Insets.medium + 5),
+          CustomServiceCard(
+            icon: Assets.assetsIconsArrowsClockwise,
+            title: 'تجديد إشتراك'.tr,
+            servicePage: true,
+            onTap: () {
+              customBottomSheet(
+                context,
+                height: context.height * 0.6,
+                child: const SingleChildScrollView(
+                  child: CustomRenewSubscriptionCard(),
+                ),
+              );
+            },
+          ),
+          SizedBox(height: Insets.small),
+          CustomServiceCard(
+            servicePage: true,
+            icon: Assets.assetsIconsSpeedometer,
+            title: 'فحص السرعة'.tr,
+          ),
+          SizedBox(height: Insets.small),
+          CustomServiceCard(
+            servicePage: true,
+            icon: Assets.assetsIconsMapPin,
+            title: 'مواقعنا والتغطية'.tr,
+          ),
+          SizedBox(height: Insets.small),
+          CustomServiceCard(
+            servicePage: true,
+            icon: Assets.assetsIconsChartLine,
+            title: 'استخدام البيانات'.tr,
+          )
+        ],
+      ),
     );
   }
 }
