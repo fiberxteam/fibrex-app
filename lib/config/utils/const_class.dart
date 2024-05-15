@@ -30,6 +30,7 @@ class Insets {
   static double exLarge = 40;
   static double large = 30;
   static double medium = 20;
+  static double margin = 16;
   static double small = 10;
   static double exSmall = 5;
 }

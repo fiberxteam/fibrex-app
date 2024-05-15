@@ -4,6 +4,7 @@ import 'package:fiber/view/home/components/custom_news_card.dart';
 import 'package:fiber/view/home/components/custom_offers_card.dart';
 import 'package:fiber/view/home/components/custom_service_card.dart';
 import 'package:fiber/view/home/components/custom_sub_scribe_widget.dart';
+import 'package:fiber/view/plans/plans_page.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
 class HomePage extends StatefulWidget {
@@ -79,6 +80,9 @@ class _HomePageState extends State<HomePage> {
                 CustomServiceCard(
                   icon: Assets.assetsIconsHandCoins,
                   title: 'الباقات'.tr,
+                  onTap: (){
+                    Get.to(PlansPage());
+                  },
                 ),
                 SizedBox(width: Insets.small),
                 CustomServiceCard(

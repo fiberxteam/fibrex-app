@@ -189,11 +189,15 @@ class AppTheme {
   }
 
   TextTheme _buildTextTheme(TextTheme textTheme) {
-    return GoogleFonts.cairoTextTheme(textTheme);
+    // make color 7C758A
+
+    return textTheme.apply(fontFamily: "Expo");
   }
 
   ColorScheme _buildColorScheme(Brightness brightness) {
     final colorScheme = ColorScheme.fromSeed(
+      background: Color(0xFFFAECEA),
+      secondary: Color(0xFFEA6F45),
       seedColor: const Color(0xff592D96),
       brightness: brightness,
     );

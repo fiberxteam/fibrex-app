@@ -108,8 +108,8 @@ flutter:
     - family: Cairo
       fonts:
         - asset: assets/fonts/cairo_regular.ttf
-        
-    
-
+    - family: Expo
+      fonts:
+        - asset: assets/fonts/ExpoArabic-Book.ttf
 
 
