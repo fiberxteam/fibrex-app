@@ -1,5 +1,4 @@
 import 'package:fiber/config/constant.dart';
-import 'package:fiber/config/sizing/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart' as intl;
@@ -86,7 +85,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
                 ),
         if (widget.isLabelVisible)
           SizedBox(
-            height: 1 * SizeConfig.heightMultiplier!,
+            height: Insets.small,
           ),
         TextFormField(
           autocorrect: false,

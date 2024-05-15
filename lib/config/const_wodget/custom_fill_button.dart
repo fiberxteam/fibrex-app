@@ -33,7 +33,7 @@ class CustomFillButton extends StatelessWidget {
           padding: EdgeInsets.symmetric(
               horizontal: Insets.medium, vertical: padding ?? Insets.small + 4),
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(Insets.medium),
+            borderRadius: BorderRadius.circular(Insets.large),
             color: backgroundColor ??
                 color?.withOpacity(0.2) ??
                 context.theme.colorScheme.primaryContainer.withOpacity(0.9),

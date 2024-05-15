@@ -50,8 +50,10 @@ class _HomePageState extends State<HomePage> {
                   onTap: () {
                     customBottomSheet(
                       context,
-                      height: context.height * 0.5,
-                      child: const CustomRenewSubscriptionCard(),
+                      height: context.height * 0.6,
+                      child: const SingleChildScrollView(
+                        child: CustomRenewSubscriptionCard(),
+                      ),
                     );
                   },
                 ),
