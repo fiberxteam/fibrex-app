@@ -16,7 +16,7 @@ class CustomServiceCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      flex: 1,
+      flex: servicePage == null ? 1 : 0,
       child: InkMe(
         onTap: onTap,
         radius: BorderRadius.circular(Insets.medium - 4),
