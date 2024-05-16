@@ -1,4 +1,6 @@
-import 'package:flutter/material.dart';
+import 'package:fiber/config/constant.dart';
+import 'package:fiber/view/home/components/custom_news_card.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 
 class NewsPage extends StatefulWidget {
   const NewsPage({super.key});
@@ -10,15 +12,25 @@ class NewsPage extends StatefulWidget {
 class _NewsPageState extends State<NewsPage> {
   @override
   Widget build(BuildContext context) {
-    return const Column(
+    return Column(
       children: [
-        Center(
-          child: Text(
-            'NewsPage is working',
-            style: TextStyle(fontSize: 20),
-          ),
+        SizedBox(
+          height: Insets.exLarge + 24,
+        ),
+        CustomNewsCard(
+          images: images,
+          isNews: true,
         ),
       ],
     );
   }
+
+  List<String> images = [
+    Assets.assetsImagesImage1,
+    Assets.assetsImagesImage2,
+    Assets.assetsImagesImage1,
+    Assets.assetsImagesImage2,
+    Assets.assetsImagesImage1,
+    Assets.assetsImagesImage2,
+  ];
 }
