@@ -1,5 +1,6 @@
 import 'package:fiber/config/constant.dart';
 import 'package:fiber/view/home/components/custom_news_card.dart';
+import 'package:flutter/material.dart';
 
 class NewsPage extends StatefulWidget {
   const NewsPage({super.key});
@@ -11,16 +12,27 @@ class NewsPage extends StatefulWidget {
 class _NewsPageState extends State<NewsPage> {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        SizedBox(
-          height: Insets.exLarge + 24,
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        toolbarHeight: 70,
+        leadingWidth: 65,
+        title: Text(
+          "اخر الاخبار",
+          style: Theme.of(context)
+              .textTheme
+              .titleMedium!
+              .copyWith(fontWeight: FontWeight.bold),
         ),
-        CustomNewsCard(
-          images: images,
-          isNews: true,
-        ),
-      ],
+      ),
+      body: Column(
+        children: [
+          CustomNewsCard(
+            images: images,
+            isNews: true,
+          ),
+        ],
+      ),
     );
   }
 
