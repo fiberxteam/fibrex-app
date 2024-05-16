@@ -20,144 +20,161 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const CustomAppBar(),
-            Gap(Insets.exLarge * 2),
-            GetX(
-              init: authController,
-              builder: (data) => Form(
-                child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: Insets.small),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Sign In'.tr,
-                        style: Theme.of(context)
-                            .textTheme
-                            .headlineMedium!
-                            .copyWith(
-                                color: context
-                                    .theme.colorScheme.onPrimaryContainer,
-                                fontWeight: FontWeight.bold),
-                      ),
-                      Gap(Insets.medium),
-                      CustomTextFormField(
-                        validators: [
-                          IsRequiredRule(),
-                        ],
-                        hint: 'Ali Jassib'.tr,
-                        controller: data.emailController,
-                        prefixIcon: SvgPicture.asset(
-                          Assets.assetsIconsPerson,
-                          color: context.theme.colorScheme.outline,
-                        ),
-                        isLabelVisible: false,
-                        bottomSpace: Insets.small,
-                      ),
-                      CustomTextFormField(
-                        validators: [
-                          IsRequiredRule(),
-                        ],
-                        hint: '123@root'.tr,
-                        controller: data.passwordController,
-                        isLabelVisible: false,
-                        obscureText: !data.isShow.value,
-                        prefixIcon: InkMe(
-                          onTap: () {
-                            data.isShow.value = !data.isShow.value;
-                          },
-                          child: SvgPicture.asset(
-                            !data.isShow.value
-                                ? Assets.assetsIconsEyes
-                                : Assets.assetsIconsCloseEye,
-                            color: context.theme.colorScheme.outline,
-                          ),
-                        ),
-                        bottomSpace: Insets.small,
-                      ),
-                      Gap(Insets.medium),
-                      CustomFillButton(
-                        title: 'Login'.tr,
-                        loading: data.isLoading.value
-                            ? CircularProgressIndicator(
-                                color: context.theme.colorScheme.surface,
-                              )
-                            : null,
-                        onTap: () {
-                          data.login(
-                              email: data.emailController.text,
-                              password: data.passwordController.text);
-                        },
-                        backgroundColor:
-                            context.theme.colorScheme.onPrimaryContainer,
-                      ),
-                      Gap(Insets.exLarge * 2),
-                      Row(
+      body: Container(
+        height: MediaQuery.of(context).size.height,
+        decoration: BoxDecoration(
+            image: DecorationImage(
+                image: AssetImage("assets/images/Login_back.png"),
+                fit: BoxFit.cover)),
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const CustomAppBar(),
+              Gap(Insets.exLarge * 0.5),
+              GetX(
+                init: authController,
+                builder: (data) => Container(
+                  margin: EdgeInsets.symmetric(horizontal: Insets.margin),
+                  decoration: BoxDecoration(
+                      color: Colors.white.withOpacity(0.6),
+                      borderRadius: BorderRadius.circular(Insets.large)),
+                  child: Form(
+                    child: Padding(
+                      padding: EdgeInsets.all(Insets.medium),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Expanded(
-                            child: Divider(
-                              color: context.theme.colorScheme.outline
-                                  .withOpacity(0.2),
-                            ),
-                          ),
-                          Gap(Insets.small),
                           Text(
-                            'or'.tr,
-                            style: context.theme.textTheme.labelMedium!
+                            'Sign In'.tr,
+                            style: Theme.of(context)
+                                .textTheme
+                                .headlineSmall!
                                 .copyWith(
-                                    color: context.theme.colorScheme.outline),
+                                    color: context.theme.colorScheme.primary,
+                                    fontWeight: FontWeight.bold),
                           ),
-                          Gap(Insets.small),
-                          Expanded(
-                            child: Divider(
-                              color: context.theme.colorScheme.outline
-                                  .withOpacity(0.2),
-                            ),
+                          Gap(Insets.medium),
+                          CustomTextFormField(
+                            validators: [
+                              IsRequiredRule(),
+                            ],
+                            hint: ''.tr,
+                            controller: data.emailController,
+                            prefixIcon: Icon(CupertinoIcons.person),
+                            isLabelVisible: true,
+                            label: "اسم المستخدم",
+                            bottomSpace: Insets.margin,
                           ),
-                        ],
-                      ),
-                      Gap(Insets.exLarge),
-                      CustomOutLineButton(
-                        title: 'الدخول التلقائي'.tr,
-                        onTap: () {
-                          Get.offAll(() => const NavigationPage(),
-                              transition: Transition.fade);
-                        },
-                      ),
-                      Gap(Insets.exLarge),
-                      InkMe(
-                        onTap: () {},
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              'ليس لديك حساب '.tr,
-                              style: context.theme.textTheme.titleSmall!
-                                  .copyWith(
-                                      color: context.theme.colorScheme.outline),
-                            ),
-                            Text(
-                              'الدخول كزائر'.tr,
-                              style:
-                                  context.theme.textTheme.titleSmall!.copyWith(
-                                color: context
-                                    .theme.colorScheme.onPrimaryContainer,
-                                fontWeight: FontWeight.bold,
+                          CustomTextFormField(
+                            validators: [
+                              IsRequiredRule(),
+                            ],
+                            hint: ''.tr,
+                            controller: data.passwordController,
+                            isLabelVisible: true,
+                            label: "كلمة السر",
+                            obscureText: !data.isShow.value,
+                            suffixIcon: InkMe(
+                              onTap: () {
+                                data.isShow.value = !data.isShow.value;
+                              },
+                              child: Container(
+                                margin: EdgeInsets.only(top: 10),
+                                child: Icon(
+                                  !data.isShow.value
+                                      ? CupertinoIcons.eye
+                                      : CupertinoIcons.eye_slash,
+                                  color: context.theme.colorScheme.outline,
+                                ),
                               ),
                             ),
-                          ],
-                        ),
+                            bottomSpace: Insets.small,
+                          ),
+                          Gap(Insets.medium),
+                          CustomFillButton(
+                            title: 'Login'.tr,
+                            loading: data.isLoading.value
+                                ? CircularProgressIndicator(
+                                    color: context.theme.colorScheme.primary,
+                                  )
+                                : null,
+                            onTap: () {
+                              data.login(
+                                  email: data.emailController.text,
+                                  password: data.passwordController.text);
+                            },
+                            backgroundColor: context.theme.colorScheme.primary,
+                          ),
+                        ],
                       ),
-                    ],
+                    ),
                   ),
                 ),
               ),
-            ),
-          ].animate(interval: 50.ms).fade(duration: 400.ms),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: Insets.margin),
+                child: Column(
+                  children: [
+                    Gap(Insets.medium),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: Divider(
+                            color: context.theme.colorScheme.outline
+                                .withOpacity(0.2),
+                          ),
+                        ),
+                        Gap(Insets.small),
+                        Text(
+                          'or'.tr,
+                          style: context.theme.textTheme.labelMedium!.copyWith(
+                              color: context.theme.colorScheme.outline),
+                        ),
+                        Gap(Insets.small),
+                        Expanded(
+                          child: Divider(
+                            color: context.theme.colorScheme.outline
+                                .withOpacity(0.2),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Gap(Insets.large),
+                    CustomOutLineButton(
+                      title: 'الدخول التلقائي'.tr,
+                      onTap: () {
+                        Get.offAll(() => const NavigationPage(),
+                            transition: Transition.fade);
+                      },
+                    ),
+                    Gap(Insets.large),
+                    InkMe(
+                      onTap: () {},
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            'ليس لديك حساب '.tr,
+                            style: context.theme.textTheme.titleSmall!.copyWith(
+                                color: context.theme.colorScheme.outline),
+                          ),
+                          Text(
+                            'الدخول كزائر'.tr,
+                            style: context.theme.textTheme.titleSmall!.copyWith(
+                              color:
+                                  context.theme.colorScheme.onPrimaryContainer,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              )
+            ].animate(interval: 50.ms).fade(duration: 400.ms),
+          ),
         ),
       ),
     );

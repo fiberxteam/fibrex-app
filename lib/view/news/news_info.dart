@@ -18,7 +18,7 @@ class _NewsInfoState extends State<NewsInfo> {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         toolbarHeight: 70,
-        leadingWidth: 70,
+        leadingWidth: 65,
         leading: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [

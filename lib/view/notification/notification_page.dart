@@ -38,7 +38,7 @@ class _NotificationPageState extends State<NotificationPage>
           appBar: AppBar(
             backgroundColor: Colors.transparent,
             toolbarHeight: 70,
-            leadingWidth: 70,
+            leadingWidth: 65,
             leading: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [

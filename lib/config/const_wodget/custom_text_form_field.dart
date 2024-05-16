@@ -129,7 +129,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
                 : Colors.white,
             focusColor: context.theme.colorScheme.error,
             focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(20),
+              borderRadius: BorderRadius.circular(200),
               borderSide: BorderSide(
                 width: 0,
                 color: context.theme.colorScheme.outline.withOpacity(0.5),
@@ -137,27 +137,27 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
               ),
             ),
             enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(20),
+              borderRadius: BorderRadius.circular(200),
               borderSide: BorderSide(
                 width: 0,
                 color: context.theme.colorScheme.outline.withOpacity(0.5),
-                style: BorderStyle.solid,
+                style: BorderStyle.none,
               ),
             ),
             focusedErrorBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(20),
+              borderRadius: BorderRadius.circular(200),
               borderSide: BorderSide(
                 width: 0,
                 color: Colors.red.shade200,
-                style: BorderStyle.solid,
+                style: BorderStyle.none,
               ),
             ),
             errorBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(20),
+              borderRadius: BorderRadius.circular(200),
               borderSide: BorderSide(
                 width: 0,
                 color: Colors.red.shade200,
-                style: BorderStyle.solid,
+                style: BorderStyle.none,
               ),
             ),
             suffixIcon: widget.suffixIcon,

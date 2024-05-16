@@ -8,30 +8,33 @@ class CustomAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return Container(
       width: double.infinity,
+      height: 230,
+      decoration: BoxDecoration(
+          image: DecorationImage(
+              image: AssetImage(Assets.assetsImagesBackgroundLogin),
+              fit: BoxFit.cover)),
       child: Stack(
         children: [
-          Positioned(
-            child: Image.asset(Assets.assetsImagesBackgroundLogin),
-          ),
+          // Positioned(
+          //   child: Image.asset(Assets.assetsImagesBackgroundLogin),
+          // ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Gap(Insets.exLarge * 1.5),
+              Gap(Insets.exLarge * 1.2),
               Image.asset(
                 Assets.assetsImagesLogo2,
-                width: Insets.exLarge * 4,
+                width: Insets.exLarge * 4.2,
               ),
-              Gap(Insets.small),
+              Gap(Insets.medium),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: Insets.medium),
                 child: Text(
                   'الشريك الرسمي لوزارة الاتصالات العراقية والمزود الأكبر للإنترنت الضوئي في واسط ',
-                  style: Theme.of(context).textTheme.labelMedium!.copyWith(
-                        color: context.theme.colorScheme.surface,
-                        fontWeight: FontWeight.bold,
-                      ),
+                  style: Theme.of(context).textTheme.labelLarge!.copyWith(
+                      color: context.theme.colorScheme.surface, fontSize: 15),
                 ),
               )
             ],
