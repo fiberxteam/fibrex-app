@@ -96,6 +96,7 @@ class _NotificationPageState extends State<NotificationPage>
                   ],
                 ),
               ),
+              Gap(Insets.medium),
               Expanded(
                 child: TabBarView(controller: _tabController, children: [
                   Column(
@@ -103,7 +104,10 @@ class _NotificationPageState extends State<NotificationPage>
                       Expanded(
                         child: ListView.separated(
                           itemCount: 15,
-                          padding: EdgeInsets.all(Insets.medium),
+                          padding: EdgeInsets.only(
+                              left: Insets.margin,
+                              right: Insets.margin,
+                              bottom: Insets.margin),
                           separatorBuilder: (context, index) =>
                               Gap(Insets.small),
                           itemBuilder: (context, index) {
@@ -118,7 +122,10 @@ class _NotificationPageState extends State<NotificationPage>
                       Expanded(
                         child: ListView.separated(
                           itemCount: 15,
-                          padding: EdgeInsets.all(Insets.medium),
+                          padding: EdgeInsets.only(
+                              left: Insets.margin,
+                              right: Insets.margin,
+                              bottom: Insets.margin),
                           separatorBuilder: (context, index) =>
                               Gap(Insets.small),
                           itemBuilder: (context, index) {
