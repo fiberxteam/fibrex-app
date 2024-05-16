@@ -17,7 +17,7 @@ class _PlansPageState extends State<PlansPage> {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         toolbarHeight: 70,
-        leadingWidth: 70,
+        leadingWidth: 65,
         leading: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
@@ -35,7 +35,11 @@ class _PlansPageState extends State<PlansPage> {
       ),
       body: ListView(
         padding: EdgeInsets.all(Insets.margin),
-        children: [const PlanCardWidget(), const PlanCardWidget(), const PlanCardWidget()],
+        children: [
+          const PlanCardWidget(),
+          const PlanCardWidget(),
+          const PlanCardWidget()
+        ],
       ),
     );
   }
