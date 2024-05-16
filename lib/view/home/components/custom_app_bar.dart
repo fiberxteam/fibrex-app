@@ -1,6 +1,8 @@
 import 'package:fiber/config/constant.dart';
 import 'package:flutter/material.dart';
 
+import '../../notification/notification_page.dart';
+
 class CustomAppBar extends StatelessWidget {
   const CustomAppBar({
     super.key,
@@ -24,13 +26,18 @@ class CustomAppBar extends StatelessWidget {
         radius: Insets.medium,
         backgroundImage: const AssetImage(Assets.assetsImagesUserImg),
       ),
-      trailing: Container(
-        padding: EdgeInsets.all(Insets.small),
-        decoration: BoxDecoration(
-          color: context.theme.colorScheme.surface,
-          shape: BoxShape.circle,
+      trailing: InkWell(
+        onTap: () {
+          Get.to(() => NotificationPage());
+        },
+        child: Container(
+          padding: EdgeInsets.all(Insets.small),
+          decoration: BoxDecoration(
+            color: context.theme.colorScheme.surface,
+            shape: BoxShape.circle,
+          ),
+          child: SvgPicture.asset(Assets.assetsIconsNotification),
         ),
-        child: SvgPicture.asset(Assets.assetsIconsNotification),
       ),
     );
   }

@@ -60,6 +60,7 @@ dependencies:
   interactable_svg: ^0.0.7
   multi_dropdown: ^2.1.4
   geolocator: ^11.0.0
+
   # google_maps_flutter: ^2.5.0
   # geolocator: ^10.1.0
   # dropdown_selection: ^2.0.3

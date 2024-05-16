@@ -19,7 +19,10 @@ class CustomBackButton extends StatelessWidget {
           border: Border.all(color: Color(0xFFEBEBEB)),
           color: Colors.white,
         ),
-        child: Icon(CupertinoIcons.back),
+        child: Icon(
+          CupertinoIcons.back,
+          color: Theme.of(context).colorScheme.primary,
+        ),
       ),
     );
   }
