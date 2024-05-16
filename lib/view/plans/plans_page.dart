@@ -22,7 +22,7 @@ class _PlansPageState extends State<PlansPage> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Gap(Insets.margin),
-            CustomBackButton(),
+            const CustomBackButton(),
           ],
         ),
         title: Text(
@@ -35,7 +35,7 @@ class _PlansPageState extends State<PlansPage> {
       ),
       body: ListView(
         padding: EdgeInsets.all(Insets.margin),
-        children: [PlanCardWidget(), PlanCardWidget(), PlanCardWidget()],
+        children: [const PlanCardWidget(), const PlanCardWidget(), const PlanCardWidget()],
       ),
     );
   }
