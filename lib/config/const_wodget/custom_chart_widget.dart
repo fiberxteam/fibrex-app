@@ -9,12 +9,14 @@ class CustomChartWidget extends StatelessWidget {
   final Color color;
   final String value;
   final IconData icon;
+  final bool isRow;
   CustomChartWidget(
       {super.key,
       required this.title,
       required this.color,
       required this.value,
-      required this.icon});
+      required this.icon,
+      this.isRow = false});
   var data = [2.0, 2.0, 2.5, 2.0, 2.0, 3.0, 1.4, 1.8, 2.0, 1.0];
 
   @override
@@ -33,8 +35,8 @@ class CustomChartWidget extends StatelessWidget {
             child: Row(
               children: [
                 Container(
-                  width: 35,
-                  height: 35,
+                  width: isRow ? 20 : 35,
+                  height: isRow ? 20 : 35,
                   alignment: Alignment.center,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(100),
@@ -43,26 +45,35 @@ class CustomChartWidget extends StatelessWidget {
                   child: Icon(
                     Icons.download,
                     color: Colors.white,
-                    size: 16,
+                    size: isRow ? 12 : 16,
                   ),
                 ),
                 Gap(Insets.small),
                 Text(
                   title,
-                  style: Theme.of(context).textTheme.titleMedium,
+                  style: isRow
+                      ? Theme.of(context).textTheme.titleSmall
+                      : Theme.of(context).textTheme.titleMedium,
                 ),
                 Spacer(),
                 Text(
                   "Mbps",
-                  style: Theme.of(context).textTheme.titleMedium,
+                  style: isRow
+                      ? Theme.of(context).textTheme.titleSmall
+                      : Theme.of(context).textTheme.titleMedium,
                 ),
                 Gap(Insets.exSmall),
                 Text(
                   value,
-                  style: Theme.of(context)
-                      .textTheme
-                      .titleLarge!
-                      .copyWith(fontWeight: FontWeight.bold),
+                  style: isRow
+                      ? Theme.of(context)
+                          .textTheme
+                          .titleMedium!
+                          .copyWith(fontWeight: FontWeight.bold)
+                      : Theme.of(context)
+                          .textTheme
+                          .titleLarge!
+                          .copyWith(fontWeight: FontWeight.bold),
                 ),
               ],
             ),

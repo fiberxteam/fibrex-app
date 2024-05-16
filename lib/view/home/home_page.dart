@@ -8,6 +8,7 @@ import 'package:fiber/view/home/components/custom_sub_scribe_widget.dart';
 import 'package:fiber/view/plans/plans_page.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
+import '../internet_usage/internet_usage_page.dart';
 import '../speed_test/speed_test_page.dart';
 
 class HomePage extends StatefulWidget {
@@ -73,6 +74,9 @@ class _HomePageState extends State<HomePage> {
                 ),
                 SizedBox(width: Insets.small),
                 CustomServiceCard(
+                  onTap: () {
+                    Get.to(InternetUsagePage());
+                  },
                   icon: Assets.assetsIconsChartLine,
                   title: 'استخدام البيانات'.tr,
                 )
