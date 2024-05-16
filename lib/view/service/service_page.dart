@@ -1,6 +1,7 @@
 import 'package:fiber/config/constant.dart';
 import 'package:fiber/view/home/components/custom_renew_subscription_card.dart';
 import 'package:fiber/view/home/components/custom_service_card.dart';
+import 'package:fiber/view/internet_usage/internet_usage_page.dart';
 import 'package:fiber/view/plans/plans_page.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
@@ -49,6 +50,9 @@ class _ServicePageState extends State<ServicePage> {
           ),
           SizedBox(height: Insets.small),
           CustomServiceCard(
+            onTap: () {
+              Get.to(InternetUsagePage());
+            },
             servicePage: true,
             icon: Assets.assetsIconsChartLine,
             title: 'استخدام البيانات'.tr,

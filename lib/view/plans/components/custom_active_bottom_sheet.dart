@@ -77,6 +77,7 @@ class CustomActiveBottomSheet extends StatelessWidget {
                   hint: "**",
                   isLabelVisible: true,
                   label: "رمز التفعيل",
+                  hasBorder: true,
                 ),
                 Spacer(),
                 CustomFillButton(

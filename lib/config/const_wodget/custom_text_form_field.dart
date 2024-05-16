@@ -30,7 +30,8 @@ class CustomTextFormField extends StatefulWidget {
       this.isRtl,
       this.textAlign,
       this.readOnly,
-      this.onEditComplete});
+      this.onEditComplete,
+      this.hasBorder = false});
 
   final TextEditingController? controller;
   final bool? readOnly;
@@ -50,6 +51,7 @@ class CustomTextFormField extends StatefulWidget {
   final List<TextInputFormatter>? inputFormatters;
   final TextDirection? textDirection;
   final bool? isRtl;
+  final bool? hasBorder;
 
   @override
   State<CustomTextFormField> createState() => _CustomTextFormFieldState();
@@ -131,25 +133,31 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(200),
               borderSide: BorderSide(
-                width: 0,
-                color: context.theme.colorScheme.outline.withOpacity(0.5),
-                style: BorderStyle.solid,
+                width: 1,
+                color: Colors.black,
+                style: widget.hasBorder == true
+                    ? BorderStyle.solid
+                    : BorderStyle.none,
               ),
             ),
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(200),
               borderSide: BorderSide(
-                width: 0,
-                color: context.theme.colorScheme.outline.withOpacity(0.5),
-                style: BorderStyle.none,
+                width: 1,
+                color: Color(0xFFEBEBEB),
+                style: widget.hasBorder == true
+                    ? BorderStyle.solid
+                    : BorderStyle.none,
               ),
             ),
             focusedErrorBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(200),
               borderSide: BorderSide(
                 width: 0,
-                color: Colors.red.shade200,
-                style: BorderStyle.none,
+                color: Colors.black,
+                style: widget.hasBorder == true
+                    ? BorderStyle.solid
+                    : BorderStyle.none,
               ),
             ),
             errorBorder: OutlineInputBorder(
@@ -157,7 +165,9 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
               borderSide: BorderSide(
                 width: 0,
                 color: Colors.red.shade200,
-                style: BorderStyle.none,
+                style: widget.hasBorder == true
+                    ? BorderStyle.solid
+                    : BorderStyle.none,
               ),
             ),
             suffixIcon: widget.suffixIcon,
