@@ -1,0 +1,88 @@
+import 'package:chart_sparkline/chart_sparkline.dart';
+import 'package:fiber/config/constant.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+
+class CustomChartWidget extends StatelessWidget {
+  final String title;
+  final Color color;
+  final String value;
+  final IconData icon;
+  CustomChartWidget(
+      {super.key,
+      required this.title,
+      required this.color,
+      required this.value,
+      required this.icon});
+  var data = [2.0, 2.0, 2.5, 2.0, 2.0, 3.0, 1.4, 1.8, 2.0, 1.0];
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(Insets.large)),
+      width: MediaQuery.of(context).size.width,
+      height: 170,
+      child: Column(
+        children: [
+          Gap(Insets.medium),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: Insets.margin),
+            child: Row(
+              children: [
+                Container(
+                  width: 35,
+                  height: 35,
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(100),
+                    color: color,
+                  ),
+                  child: Icon(
+                    Icons.download,
+                    color: Colors.white,
+                    size: 16,
+                  ),
+                ),
+                Gap(Insets.small),
+                Text(
+                  title,
+                  style: Theme.of(context).textTheme.titleMedium,
+                ),
+                Spacer(),
+                Text(
+                  "Mbps",
+                  style: Theme.of(context).textTheme.titleMedium,
+                ),
+                Gap(Insets.exSmall),
+                Text(
+                  value,
+                  style: Theme.of(context)
+                      .textTheme
+                      .titleLarge!
+                      .copyWith(fontWeight: FontWeight.bold),
+                ),
+              ],
+            ),
+          ),
+          Spacer(),
+          ClipRRect(
+            borderRadius: BorderRadius.circular(Insets.large),
+            child: Sparkline(
+                lineColor: color,
+                fillGradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [color, color.withOpacity(0.1)],
+                ),
+                fillMode: FillMode.below,
+                data: data,
+                useCubicSmoothing: true),
+          ),
+        ],
+      ),
+    );
+  }
+}

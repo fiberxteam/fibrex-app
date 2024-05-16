@@ -8,6 +8,8 @@ import 'package:fiber/view/home/components/custom_sub_scribe_widget.dart';
 import 'package:fiber/view/plans/plans_page.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
+import '../speed_test/speed_test_page.dart';
+
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
@@ -60,6 +62,7 @@ class _HomePageState extends State<HomePage> {
                 ),
                 SizedBox(width: Insets.small),
                 CustomServiceCard(
+                  onTap: () => {Get.to(SpeedTestPage())},
                   icon: Assets.assetsIconsSpeedometer,
                   title: 'فحص السرعة'.tr,
                 ),
@@ -89,7 +92,7 @@ class _HomePageState extends State<HomePage> {
                 CustomServiceCard(
                   icon: Assets.assetsIconsHandCoins,
                   title: 'الباقات'.tr,
-                  onTap: (){
+                  onTap: () {
                     Get.to(PlansPage());
                   },
                 ),
