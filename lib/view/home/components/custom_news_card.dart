@@ -1,4 +1,5 @@
 import 'package:fiber/config/constant.dart';
+import 'package:fiber/view/news/news_info.dart';
 
 class CustomNewsCard extends StatelessWidget {
   final bool? isNews;
@@ -22,49 +23,61 @@ class CustomNewsCard extends StatelessWidget {
           itemCount: images.length,
           separatorBuilder: (context, index) => SizedBox(width: Insets.small),
           itemBuilder: (context, index) {
-            return Container(
-              width: context.width * 0.6,
-              padding: EdgeInsets.all(Insets.small),
-              decoration: BoxDecoration(
-                color: context.theme.colorScheme.surface,
-                borderRadius: BorderRadius.circular(Insets.medium),
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  AspectRatio(
-                    aspectRatio: 13 / 9,
-                    child: Container(
-                      clipBehavior: Clip.antiAlias,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(Insets.small),
+            return InkMe(
+              onTap: () {
+                Get.to(
+                    () => NewsInfo(
+                          id: images[index] + index.toString(),
+                        ),
+                    transition: Transition.fade);
+              },
+              child: Container(
+                width: context.width * 0.6,
+                padding: EdgeInsets.all(Insets.small),
+                decoration: BoxDecoration(
+                  color: context.theme.colorScheme.surface,
+                  borderRadius: BorderRadius.circular(Insets.medium),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Hero(
+                      tag: images[index] + index.toString(),
+                      child: AspectRatio(
+                        aspectRatio: 13 / 9,
+                        child: Container(
+                          clipBehavior: Clip.antiAlias,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(Insets.small),
+                          ),
+                          child: Image.asset(
+                            images[index],
+                            width: context.width * 0.6,
+                            height: context.height * 0.3,
+                            fit: BoxFit.fill,
+                          ),
+                        ),
                       ),
-                      child: Image.asset(
-                        images[index],
-                        width: context.width * 0.6,
-                        height: context.height * 0.3,
-                        fit: BoxFit.fill,
+                    ),
+                    SizedBox(height: Insets.small),
+                    Text(
+                      'آخر تحديثات الكيمنك!',
+                      style: context.theme.textTheme.titleSmall!.copyWith(
+                        color: context.theme.colorScheme.primary,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
-                  ),
-                  SizedBox(height: Insets.small),
-                  Text(
-                    'آخر تحديثات الكيمنك!',
-                    style: context.theme.textTheme.titleSmall!.copyWith(
-                      color: context.theme.colorScheme.primary,
-                      fontWeight: FontWeight.bold,
+                    SizedBox(height: Insets.exSmall),
+                    Text(
+                      'باقات فايبر أكس تقدم مجموعة خدمات متنوعة من الباقات المُصممة لتلبية احتياجات العملاء ، موفرة إنترنت عالي السرعة مع ميزات وفوائد مختلفة.',
+                      style: context.theme.textTheme.labelSmall!.copyWith(
+                        color: context.theme.colorScheme.outline,
+                      ),
+                      maxLines: 4,
+                      overflow: TextOverflow.ellipsis,
                     ),
-                  ),
-                  SizedBox(height: Insets.exSmall),
-                  Text(
-                    'باقات فايبر أكس تقدم مجموعة خدمات متنوعة من الباقات المُصممة لتلبية احتياجات العملاء ، موفرة إنترنت عالي السرعة مع ميزات وفوائد مختلفة.',
-                    style: context.theme.textTheme.labelSmall!.copyWith(
-                      color: context.theme.colorScheme.outline,
-                    ),
-                    maxLines: 4,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                ],
+                  ],
+                ),
               ),
             );
           },
@@ -80,48 +93,60 @@ class CustomNewsCard extends StatelessWidget {
           itemCount: images.length,
           separatorBuilder: (context, index) => SizedBox(height: Insets.small),
           itemBuilder: (context, index) {
-            return Container(
-              padding: EdgeInsets.all(Insets.small),
-              decoration: BoxDecoration(
-                color: context.theme.colorScheme.surface,
-                borderRadius: BorderRadius.circular(Insets.medium),
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  AspectRatio(
-                    aspectRatio: 15 / 9,
-                    child: Container(
-                      clipBehavior: Clip.antiAlias,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(Insets.medium),
+            return InkMe(
+              onTap: () {
+                Get.to(
+                    () => NewsInfo(
+                          id: images[index] + index.toString(),
+                        ),
+                    transition: Transition.fade);
+              },
+              child: Container(
+                padding: EdgeInsets.all(Insets.small),
+                decoration: BoxDecoration(
+                  color: context.theme.colorScheme.surface,
+                  borderRadius: BorderRadius.circular(Insets.medium),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Hero(
+                      tag: images[index] + index.toString(),
+                      child: AspectRatio(
+                        aspectRatio: 15 / 9,
+                        child: Container(
+                          clipBehavior: Clip.antiAlias,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(Insets.medium),
+                          ),
+                          child: Image.asset(
+                            images[index],
+                            width: context.width * 0.6,
+                            height: context.height * 0.3,
+                            fit: BoxFit.fill,
+                          ),
+                        ),
                       ),
-                      child: Image.asset(
-                        images[index],
-                        width: context.width * 0.6,
-                        height: context.height * 0.3,
-                        fit: BoxFit.fill,
+                    ),
+                    SizedBox(height: Insets.small),
+                    Text(
+                      'آخر تحديثات الكيمنك!',
+                      style: context.theme.textTheme.titleSmall!.copyWith(
+                        color: context.theme.colorScheme.primary,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
-                  ),
-                  SizedBox(height: Insets.small),
-                  Text(
-                    'آخر تحديثات الكيمنك!',
-                    style: context.theme.textTheme.titleSmall!.copyWith(
-                      color: context.theme.colorScheme.primary,
-                      fontWeight: FontWeight.bold,
+                    SizedBox(height: Insets.exSmall),
+                    Text(
+                      'باقات فايبر أكس تقدم مجموعة خدمات متنوعة من الباقات المُصممة لتلبية احتياجات العملاء ، موفرة إنترنت عالي السرعة مع ميزات وفوائد مختلفة.',
+                      style: context.theme.textTheme.labelSmall!.copyWith(
+                        color: context.theme.colorScheme.outline,
+                      ),
+                      maxLines: 4,
+                      overflow: TextOverflow.ellipsis,
                     ),
-                  ),
-                  SizedBox(height: Insets.exSmall),
-                  Text(
-                    'باقات فايبر أكس تقدم مجموعة خدمات متنوعة من الباقات المُصممة لتلبية احتياجات العملاء ، موفرة إنترنت عالي السرعة مع ميزات وفوائد مختلفة.',
-                    style: context.theme.textTheme.labelSmall!.copyWith(
-                      color: context.theme.colorScheme.outline,
-                    ),
-                    maxLines: 4,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                ],
+                  ],
+                ),
               ),
             );
           },

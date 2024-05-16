@@ -44,10 +44,12 @@ class Locales {
     ' IQD': ' د.ع',
     'رمز التفعيل': 'رمز التفعيل',
     'تعبئة': 'تعبئة',
+    "تفاصيل الخبر": "تفاصيل الخبر",
   };
 
   static const en = {
     'hello': 'Hello',
+    "تفاصيل الخبر": "News Details",
     'تعبئة': 'Recharge',
     'رمز التفعيل': 'Activation Code',
     ' IQD': ' IQD',

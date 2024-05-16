@@ -1,6 +1,5 @@
 import 'package:fiber/config/constant.dart';
 import 'package:fiber/view/home/components/custom_news_card.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 
 class NewsPage extends StatefulWidget {
   const NewsPage({super.key});
