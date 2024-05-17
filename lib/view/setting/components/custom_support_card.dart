@@ -1,4 +1,5 @@
 import 'package:fiber/config/constant.dart';
+import 'package:fiber/view/setting/pages/support.dart';
 import 'package:flutter/material.dart';
 
 class CustomSupportCard extends StatelessWidget {
@@ -36,6 +37,9 @@ class CustomSupportCard extends StatelessWidget {
           ),
         ),
         ListTile(
+          onTap: () {
+            Get.to(() => const SupportPage(), transition: Transition.fade);
+          },
           contentPadding: EdgeInsets.zero,
           dense: true,
           visualDensity: VisualDensity.comfortable,

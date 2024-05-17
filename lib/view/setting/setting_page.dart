@@ -70,6 +70,43 @@ class _SettingPageState extends State<SettingPage> {
               height: 24,
             ),
           ),
+          SizedBox(
+            height: Insets.medium,
+          ),
+          Text(
+            'الحساب'.tr,
+            style: Theme.of(context).textTheme.titleMedium,
+          ),
+          SizedBox(
+            height: Insets.small,
+          ),
+          ListTile(
+            contentPadding: EdgeInsets.zero,
+            dense: true,
+            visualDensity: VisualDensity.comfortable,
+            enableFeedback: false,
+            minVerticalPadding: 0,
+            titleAlignment: ListTileTitleAlignment.center,
+            style: ListTileStyle.list,
+            horizontalTitleGap: Insets.small,
+            title: Text(
+              'تسجيل الخروج'.tr,
+              style: Theme.of(context).textTheme.titleMedium!.copyWith(
+                    color: Theme.of(context).colorScheme.error,
+                  ),
+            ),
+            leading: SvgPicture.asset(
+              Assets.assetsIconsSignIn,
+              width: 24,
+              height: 24,
+            ),
+            trailing: SvgPicture.asset(
+              Assets.assetsIconsCaretRight,
+              width: 24,
+              height: 24,
+              color: context.theme.colorScheme.error,
+            ),
+          ),
         ].animate(interval: 50.ms).fade(),
       ),
     );

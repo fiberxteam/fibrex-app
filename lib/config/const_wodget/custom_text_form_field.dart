@@ -131,7 +131,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
                 : Colors.white,
             focusColor: context.theme.colorScheme.error,
             focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(200),
+              borderRadius: BorderRadius.circular(30),
               borderSide: BorderSide(
                 width: 1,
                 color: Colors.black,
@@ -141,7 +141,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
               ),
             ),
             enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(200),
+              borderRadius: BorderRadius.circular(30),
               borderSide: BorderSide(
                 width: 1,
                 color: Color(0xFFEBEBEB),
@@ -151,7 +151,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
               ),
             ),
             focusedErrorBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(200),
+              borderRadius: BorderRadius.circular(30),
               borderSide: BorderSide(
                 width: 0,
                 color: Colors.black,
@@ -161,7 +161,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
               ),
             ),
             errorBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(200),
+              borderRadius: BorderRadius.circular(30),
               borderSide: BorderSide(
                 width: 0,
                 color: Colors.red.shade200,

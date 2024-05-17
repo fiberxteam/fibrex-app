@@ -2,9 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:fiber/config/constant.dart';
 
-class CustomBackButton extends StatelessWidget {
-  const CustomBackButton({Key? key}) : super(key: key);
+class CustomBackButton extends StatefulWidget {
+  const CustomBackButton({super.key});
 
+  @override
+  State<CustomBackButton> createState() => _CustomBackButtonState();
+}
+
+class _CustomBackButtonState extends State<CustomBackButton> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
