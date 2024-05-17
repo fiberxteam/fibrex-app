@@ -41,12 +41,12 @@ class NotifyWidget extends StatelessWidget {
                   ),
                   SinceDate(
                     DateTime.now(),
-                    textStyle: TextStyle(color: Color(0xFF7C758A)),
+                    textStyle: const TextStyle(color: Color(0xFF7C758A)),
                   ),
                 ],
               ),
               Gap(Insets.exSmall),
-              Text(
+              const Text(
                 "سيتم انهاء اشتراك بعد ٣ ايام الرجاء قم باعادة الاشتراك لعدم حصول اي توقف في الانترنت",
                 style: TextStyle(color: Color(0xFF7C758A)),
               )

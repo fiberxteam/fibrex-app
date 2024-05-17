@@ -1,7 +1,6 @@
 import 'package:fiber/config/constant.dart';
 import 'package:fiber/view/notification/components/notify_widget.dart';
 import 'package:fiber/view/notification/components/offers_card_widget.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
@@ -35,110 +34,108 @@ class _NotificationPageState extends State<NotificationPage>
     return DefaultTabController(
       length: 2,
       child: Scaffold(
-          appBar: AppBar(
-            backgroundColor: Colors.transparent,
-            toolbarHeight: 70,
-            leadingWidth: 65,
-            leading: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Gap(Insets.margin),
-                CustomBackButton(),
-              ],
-            ),
-            title: Text(
-              "الاشعارات",
-              style: Theme.of(context)
-                  .textTheme
-                  .titleMedium!
-                  .copyWith(fontWeight: FontWeight.bold),
-            ),
-          ),
-          body: Column(
+        appBar: AppBar(
+          backgroundColor: Colors.transparent,
+          toolbarHeight: 70,
+          leadingWidth: 65,
+          leading: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Container(
-                margin: EdgeInsets.symmetric(horizontal: Insets.margin),
-                padding: EdgeInsets.all(Insets.exSmall),
-                height: 50,
-                decoration: BoxDecoration(
-                  color: Colors.white,
+              Gap(Insets.margin),
+              const CustomBackButton(),
+            ],
+          ),
+          title: Text(
+            "الاشعارات",
+            style: Theme.of(context)
+                .textTheme
+                .titleMedium!
+                .copyWith(fontWeight: FontWeight.bold),
+          ),
+        ),
+        body: Column(
+          children: [
+            Container(
+              margin: EdgeInsets.symmetric(horizontal: Insets.margin),
+              padding: EdgeInsets.all(Insets.exSmall),
+              height: 50,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(
+                  25.0,
+                ),
+              ),
+              child: TabBar(
+                controller: _tabController,
+                dividerColor: Colors.transparent,
+                indicator: BoxDecoration(
                   borderRadius: BorderRadius.circular(
                     25.0,
                   ),
+                  color: Theme.of(context).colorScheme.primary.withOpacity(0.4),
                 ),
-                child: TabBar(
-                  controller: _tabController,
-                  dividerColor: Colors.transparent,
-                  indicator: BoxDecoration(
-                    borderRadius: BorderRadius.circular(
-                      25.0,
+                labelColor: Theme.of(context).colorScheme.primary,
+                unselectedLabelColor: Colors.black,
+                tabs: [
+                  Tab(
+                    child: Container(
+                      alignment: Alignment.center,
+                      width: MediaQuery.of(context).size.width,
+                      child: const Text("العروض"),
                     ),
-                    color:
-                        Theme.of(context).colorScheme.primary.withOpacity(0.4),
                   ),
-                  labelColor: Theme.of(context).colorScheme.primary,
-                  unselectedLabelColor: Colors.black,
-                  tabs: [
-                    Tab(
-                      child: Container(
-                        alignment: Alignment.center,
-                        width: MediaQuery.of(context).size.width,
-                        child: Text("العروض"),
-                      ),
+                  Tab(
+                    child: Container(
+                      alignment: Alignment.center,
+                      width: MediaQuery.of(context).size.width,
+                      child: const Text("التنبيهات"),
                     ),
-                    Tab(
-                      child: Container(
-                        alignment: Alignment.center,
-                        width: MediaQuery.of(context).size.width,
-                        child: Text("التنبيهات"),
+                  ),
+                ],
+              ),
+            ),
+            Gap(Insets.medium),
+            Expanded(
+              child: TabBarView(controller: _tabController, children: [
+                Column(
+                  children: [
+                    Expanded(
+                      child: ListView.separated(
+                        itemCount: 15,
+                        padding: EdgeInsets.only(
+                            left: Insets.margin,
+                            right: Insets.margin,
+                            bottom: Insets.margin),
+                        separatorBuilder: (context, index) => Gap(Insets.small),
+                        itemBuilder: (context, index) {
+                          return const OffersCardWidget();
+                        },
                       ),
-                    ),
-                  ],
+                    )
+                  ].animate(interval: 50.ms).fadeIn(),
                 ),
-              ),
-              Gap(Insets.medium),
-              Expanded(
-                child: TabBarView(controller: _tabController, children: [
-                  Column(
-                    children: [
-                      Expanded(
-                        child: ListView.separated(
-                          itemCount: 15,
-                          padding: EdgeInsets.only(
-                              left: Insets.margin,
-                              right: Insets.margin,
-                              bottom: Insets.margin),
-                          separatorBuilder: (context, index) =>
-                              Gap(Insets.small),
-                          itemBuilder: (context, index) {
-                            return OffersCardWidget();
-                          },
-                        ),
-                      )
-                    ].animate(interval: 50.ms).fadeIn(),
-                  ),
-                  Column(
-                    children: [
-                      Expanded(
-                        child: ListView.separated(
-                          itemCount: 15,
-                          padding: EdgeInsets.only(
-                              left: Insets.margin,
-                              right: Insets.margin,
-                              bottom: Insets.margin),
-                          separatorBuilder: (context, index) =>
-                              Gap(Insets.small),
-                          itemBuilder: (context, index) {
-                            return NotifyWidget();
-                          },
-                        ),
-                      )
-                    ].animate(interval: 50.ms).fadeIn(),
-                  ),
-                ]),
-              ),
-            ],
-          )),
+                Column(
+                  children: [
+                    Expanded(
+                      child: ListView.separated(
+                        itemCount: 15,
+                        padding: EdgeInsets.only(
+                            left: Insets.margin,
+                            right: Insets.margin,
+                            bottom: Insets.margin),
+                        separatorBuilder: (context, index) => Gap(Insets.small),
+                        itemBuilder: (context, index) {
+                          return const NotifyWidget();
+                        },
+                      ),
+                    )
+                  ].animate(interval: 50.ms).fadeIn(),
+                ),
+              ]),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

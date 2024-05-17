@@ -6,6 +6,7 @@ import 'package:fiber/view/home/components/custom_renew_subscription_card.dart';
 import 'package:fiber/view/home/components/custom_service_card.dart';
 import 'package:fiber/view/home/components/custom_sub_scribe_widget.dart';
 import 'package:fiber/view/plans/plans_page.dart';
+import 'package:fiber/view/service/pages/receipts.dart';
 import 'package:fiber/view/setting/pages/support.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
@@ -64,7 +65,7 @@ class _HomePageState extends State<HomePage> {
                 ),
                 SizedBox(width: Insets.small),
                 CustomServiceCard(
-                  onTap: () => {Get.to(SpeedTestPage())},
+                  onTap: () => {Get.to(const SpeedTestPage())},
                   icon: Assets.assetsIconsSpeedometer,
                   title: 'فحص السرعة'.tr,
                 ),
@@ -76,7 +77,7 @@ class _HomePageState extends State<HomePage> {
                 SizedBox(width: Insets.small),
                 CustomServiceCard(
                   onTap: () {
-                    Get.to(InternetUsagePage());
+                    Get.to(const InternetUsagePage());
                   },
                   icon: Assets.assetsIconsChartLine,
                   title: 'استخدام البيانات'.tr,
@@ -90,6 +91,12 @@ class _HomePageState extends State<HomePage> {
             child: Row(
               children: [
                 CustomServiceCard(
+                  onTap: () {
+                    Get.to(
+                      () => const ReceiptsPage(),
+                      transition: Transition.fadeIn,
+                    );
+                  },
                   icon: Assets.assetsIconsReceipts,
                   title: 'الفواتير'.tr,
                 ),
@@ -98,7 +105,8 @@ class _HomePageState extends State<HomePage> {
                   icon: Assets.assetsIconsHandCoins,
                   title: 'الباقات'.tr,
                   onTap: () {
-                    Get.to(PlansPage());
+                    Get.to(() => const PlansPage(),
+                        transition: Transition.fadeIn);
                   },
                 ),
                 SizedBox(width: Insets.small),
