@@ -22,10 +22,11 @@ class _LoginPageState extends State<LoginPage> {
     return Scaffold(
       body: Container(
         height: MediaQuery.of(context).size.height,
-        decoration: BoxDecoration(
-            image: DecorationImage(
-                image: AssetImage("assets/images/Login_back.png"),
-                fit: BoxFit.cover)),
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+              image: AssetImage(Assets.assetsImagesLoginBack),
+              fit: BoxFit.cover),
+        ),
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -61,7 +62,7 @@ class _LoginPageState extends State<LoginPage> {
                             ],
                             hint: ''.tr,
                             controller: data.emailController,
-                            prefixIcon: Icon(CupertinoIcons.person),
+                            prefixIcon: const Icon(CupertinoIcons.person),
                             isLabelVisible: true,
                             label: "اسم المستخدم",
                             bottomSpace: Insets.margin,
@@ -80,7 +81,7 @@ class _LoginPageState extends State<LoginPage> {
                                 data.isShow.value = !data.isShow.value;
                               },
                               child: Container(
-                                margin: EdgeInsets.only(top: 10),
+                                margin: const EdgeInsets.only(top: 10),
                                 child: Icon(
                                   !data.isShow.value
                                       ? CupertinoIcons.eye

@@ -5,8 +5,8 @@ import 'package:fiber/controller/set_data_controller.dart';
 import 'package:fiber/view/home/home_page.dart';
 import 'package:fiber/view/navigation/components/custom_icons_button.dart';
 import 'package:fiber/view/news/news_page.dart';
-import 'package:fiber/view/notification/notification_page.dart';
 import 'package:fiber/view/service/service_page.dart';
+import 'package:fiber/view/setting/setting_page.dart';
 import 'package:flutter/material.dart';
 
 class NavigationPage extends StatefulWidget {
@@ -115,6 +115,6 @@ class _NavigationPageState extends State<NavigationPage> {
     const HomePage(),
     const ServicePage(),
     const NewsPage(),
-    const NotificationPage(),
+    const SettingPage(),
   ];
 }
