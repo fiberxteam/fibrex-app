@@ -6,6 +6,7 @@ import 'package:fiber/view/home/components/custom_renew_subscription_card.dart';
 import 'package:fiber/view/home/components/custom_service_card.dart';
 import 'package:fiber/view/home/components/custom_sub_scribe_widget.dart';
 import 'package:fiber/view/plans/plans_page.dart';
+import 'package:fiber/view/service/pages/map_page.dart';
 import 'package:fiber/view/service/pages/receipts.dart';
 import 'package:fiber/view/setting/pages/support.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -71,6 +72,10 @@ class _HomePageState extends State<HomePage> {
                 ),
                 SizedBox(width: Insets.small),
                 CustomServiceCard(
+                  onTap: () {
+                    Get.to(() => const MapPage(),
+                        transition: Transition.fadeIn);
+                  },
                   icon: Assets.assetsIconsMapPin,
                   title: 'مواقعنا والتغطية'.tr,
                 ),
