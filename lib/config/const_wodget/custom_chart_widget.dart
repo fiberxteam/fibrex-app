@@ -26,7 +26,7 @@ class CustomChartWidget extends StatelessWidget {
           color: Colors.white,
           borderRadius: BorderRadius.circular(Insets.large)),
       width: MediaQuery.of(context).size.width,
-      height: 170,
+      height: 160,
       child: Column(
         children: [
           Gap(Insets.medium),
@@ -43,7 +43,7 @@ class CustomChartWidget extends StatelessWidget {
                     color: color,
                   ),
                   child: Icon(
-                    Icons.download,
+                    icon,
                     color: Colors.white,
                     size: isRow ? 12 : 16,
                   ),
@@ -53,14 +53,14 @@ class CustomChartWidget extends StatelessWidget {
                   title,
                   style: isRow
                       ? Theme.of(context).textTheme.titleSmall
-                      : Theme.of(context).textTheme.titleMedium,
+                      : Theme.of(context).textTheme.titleSmall,
                 ),
                 Spacer(),
                 Text(
                   "Mbps",
                   style: isRow
                       ? Theme.of(context).textTheme.titleSmall
-                      : Theme.of(context).textTheme.titleMedium,
+                      : Theme.of(context).textTheme.titleSmall,
                 ),
                 Gap(Insets.exSmall),
                 Text(
