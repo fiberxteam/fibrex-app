@@ -20,7 +20,7 @@ class CustomQrWidget extends StatelessWidget {
         borderRadius: BorderRadius.circular(BorderSize.defaultSize),
       ),
       child: QrImageView(
-        data: data ?? 'Ali Jassib',
+        data: data ?? 'Omar Mudhaffar',
         version: QrVersions.auto,
         dataModuleStyle: const QrDataModuleStyle(
           dataModuleShape: QrDataModuleShape.square,

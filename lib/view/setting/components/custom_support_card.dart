@@ -1,4 +1,5 @@
 import 'package:fiber/config/constant.dart';
+import 'package:fiber/view/setting/pages/questions_page.dart';
 import 'package:fiber/view/setting/pages/support.dart';
 import 'package:flutter/material.dart';
 
@@ -16,6 +17,9 @@ class CustomSupportCard extends StatelessWidget {
           visualDensity: VisualDensity.comfortable,
           enableFeedback: false,
           minVerticalPadding: 0,
+          onTap: () {
+            Get.to(QuestionsPage());
+          },
           titleAlignment: ListTileTitleAlignment.center,
           style: ListTileStyle.list,
           horizontalTitleGap: Insets.small,

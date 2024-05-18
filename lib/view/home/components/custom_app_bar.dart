@@ -18,7 +18,7 @@ class CustomAppBar extends StatelessWidget {
             .copyWith(color: context.theme.colorScheme.outline),
       ),
       subtitle: Text(
-        'Ali Jassib Kadum',
+        'Omar Mudhaffar Kadum',
         style: context.theme.textTheme.titleMedium!
             .copyWith(color: context.theme.colorScheme.scrim),
       ),
