@@ -1,9 +1,11 @@
 import 'package:fiber/config/constant.dart';
+import 'package:fiber/models/plans_model.dart';
 import 'package:fiber/view/plans/components/custom_active_bottom_sheet.dart';
 import 'package:flutter/material.dart';
 
 class PlanCardWidget extends StatelessWidget {
-  const PlanCardWidget({super.key});
+  final PlansModel plansModel;
+  const PlanCardWidget({super.key, required this.plansModel});
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +46,7 @@ class PlanCardWidget extends StatelessWidget {
             ),
             Gap(Insets.medium),
             Text(
-              "فايبر اكس / 40Mps",
+              plansModel.name ?? "",
               style: Theme.of(context)
                   .textTheme
                   .titleMedium!
@@ -52,12 +54,12 @@ class PlanCardWidget extends StatelessWidget {
             ),
             Gap(Insets.exSmall),
             Text(
-              "سرعة تحميل وتنزيل 35 ميجابت في الثانية ربط أكثر من 10 أجهزة في وقت واحد سرعة جيدة في الألعاب عبر الإنترنت أقل زمن وصول (Ping) إنترنت آمن ومأمون خدمات الهاتف الثابت عبر بروتوكول الإنترنت (voIP).",
+              plansModel.description ?? "",
               style: TextStyle(color: Color(0xFF7C758A)),
             ),
             Gap(Insets.small),
             Text(
-              "35,000 د.ع",
+              plansModel.price.toString() + " د.ع",
               style: Theme.of(context).textTheme.titleMedium!.copyWith(
                   color: Theme.of(context).colorScheme.primary,
                   fontWeight: FontWeight.bold,

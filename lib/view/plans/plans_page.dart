@@ -1,7 +1,10 @@
+import 'package:fiber/config/const_wodget/no_data_widget.dart';
 import 'package:fiber/config/constant.dart';
 import 'package:fiber/view/plans/components/custom_back_button.dart';
 import 'package:fiber/view/plans/components/plan_card_widget.dart';
 import 'package:flutter/material.dart';
+
+import '../../controller/plans/plans_controller.dart';
 
 class PlansPage extends StatefulWidget {
   const PlansPage({super.key});
@@ -11,6 +14,8 @@ class PlansPage extends StatefulWidget {
 }
 
 class _PlansPageState extends State<PlansPage> {
+  PlansController plansController = Get.put(PlansController());
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,14 +38,21 @@ class _PlansPageState extends State<PlansPage> {
               .copyWith(fontWeight: FontWeight.bold),
         ),
       ),
-      body: ListView(
-        padding: EdgeInsets.all(Insets.margin),
-        children: [
-          const PlanCardWidget(),
-          const PlanCardWidget(),
-          const PlanCardWidget()
-        ],
-      ),
+      body: Obx(() => plansController.isLoading.value
+          ? Center(
+              child: CircularProgressIndicator(),
+            )
+          : !plansController.isLoading.value && plansController.plans.isEmpty
+              ? NoDataWidget(
+                  refresh: () => plansController.getData(),
+                  details: "سيتم نشر الباقات في اقرب وقت",
+                )
+              : ListView(
+                  padding: EdgeInsets.all(Insets.margin),
+                  children: plansController.plans.map((element) {
+                    return PlanCardWidget(plansModel: element);
+                  }).toList(),
+                )),
     );
   }
 }
