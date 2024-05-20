@@ -1,30 +1,12 @@
+import 'package:fiber/config/const_wodget/no_data_widget.dart';
 import 'package:fiber/config/constant.dart';
 import 'package:fiber/config/utils/const_class.dart';
+import 'package:fiber/controller/settings/questions_controller.dart';
+import 'package:fiber/models/questions_model.dart';
 import 'package:fiber/view/plans/components/custom_back_button.dart';
 import 'package:flutter/material.dart';
 
 import '../components/custom_expanded_panel.dart';
-
-class Item {
-  Item({
-    required this.expandedValue,
-    required this.headerValue,
-    this.isExpanded = false,
-  });
-
-  String expandedValue;
-  String headerValue;
-  bool isExpanded;
-}
-
-List<Item> generateItems(int numberOfItems) {
-  return List<Item>.generate(numberOfItems, (int index) {
-    return Item(
-      headerValue: 'Panel $index',
-      expandedValue: 'This is item number $index',
-    );
-  });
-}
 
 class QuestionsPage extends StatefulWidget {
   const QuestionsPage({super.key});
@@ -34,53 +16,64 @@ class QuestionsPage extends StatefulWidget {
 }
 
 class _QuestionsPageState extends State<QuestionsPage> {
-  final List<Item> _data = generateItems(8);
+  QuestionsController controller = Get.put(QuestionsController());
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        toolbarHeight: 70,
-        leadingWidth: 65,
-        leading: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Gap(Insets.margin),
-            const CustomBackButton(),
-          ],
-        ),
-        title: Text(
-          "الاسئلة الشائعة",
-          style: Theme.of(context)
-              .textTheme
-              .titleMedium!
-              .copyWith(fontWeight: FontWeight.bold),
-        ),
-      ),
-      body: SingleChildScrollView(
-        child: Container(
-          child: Padding(
-            padding: EdgeInsets.all(Insets.margin),
-            child: _buildPanel(),
+        appBar: AppBar(
+          backgroundColor: Colors.transparent,
+          toolbarHeight: 70,
+          leadingWidth: 65,
+          leading: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Gap(Insets.margin),
+              const CustomBackButton(),
+            ],
+          ),
+          title: Text(
+            "الاسئلة الشائعة",
+            style: Theme.of(context)
+                .textTheme
+                .titleMedium!
+                .copyWith(fontWeight: FontWeight.bold),
           ),
         ),
-      ),
-    );
+        body: Obx(
+          () => controller.isLoading.value
+              ? Center(
+                  child: CircularProgressIndicator(),
+                )
+              : !controller.isLoading.value && controller.questions.isEmpty
+                  ? NoDataWidget(
+                      details: "سيتم نشر الاسئلة الشائعة في اقرب وقت",
+                      refresh: () => controller.getData(),
+                    )
+                  : SingleChildScrollView(
+                      child: Container(
+                        child: Padding(
+                          padding: EdgeInsets.all(Insets.margin),
+                          child: _buildPanel(controller.questions),
+                        ),
+                      ),
+                    ),
+        ));
   }
 
-  Widget _buildPanel() {
+  Widget _buildPanel(List<QuestionsModel> data) {
     return CustomExpansionPanelList(
       expansionCallback: (int index, bool isExpanded) {
         print(index);
         print(isExpanded);
         setState(() {
-          _data[index].isExpanded = !isExpanded;
+          data[index].isExpanded = !isExpanded;
         });
       },
-      children: _data.map<ExpansionPanel>((Item item) {
+      children: data.map<ExpansionPanel>((QuestionsModel item) {
         return ExpansionPanel(
           headerBuilder: (BuildContext context, bool isExpanded) {
-            return Text("ما هي سرعة الإنترنت التي أستطيع الحصول عليها؟");
+            return Text(item.question ?? "");
           },
           body: Column(
             children: [
@@ -90,7 +83,7 @@ class _QuestionsPageState extends State<QuestionsPage> {
               Padding(
                 padding: EdgeInsets.all(Insets.margin),
                 child: Text(
-                  "تعتمد سرعة الإنترنت على خطة FTTH التي تختارها. يقدم تطبيق FTTH مجموعة متنوعة من الخطط بسرعات مختلفة لتناسب احتياجاتك. يمكنك استخدام أداة اختبار السرعة في التطبيق لمعرفة سرعة الإنترنت المتاحة في منطقتك.",
+                  item.answer ?? "",
                   style: context.theme.textTheme.bodyMedium!
                       .copyWith(color: Color(0xFF7C758A)),
                 ),
@@ -98,7 +91,7 @@ class _QuestionsPageState extends State<QuestionsPage> {
               Gap(Insets.small),
             ],
           ),
-          isExpanded: item.isExpanded,
+          isExpanded: item.isExpanded ?? false,
         );
       }).toList(),
     );
