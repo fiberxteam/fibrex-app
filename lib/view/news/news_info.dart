@@ -1,11 +1,13 @@
 import 'package:fiber/config/constant.dart';
+import 'package:fiber/models/news_model.dart';
 import 'package:fiber/view/plans/components/custom_back_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:since_date/since_date.dart';
 
 class NewsInfo extends StatefulWidget {
-  final String id;
-  const NewsInfo({super.key, required this.id});
+  final NewsModel news;
+  const NewsInfo({super.key, required this.news});
 
   @override
   State<NewsInfo> createState() => _NewsInfoState();
@@ -41,7 +43,7 @@ class _NewsInfoState extends State<NewsInfo> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Hero(
-                tag: widget.id,
+                tag: widget.news.id!,
                 child: AspectRatio(
                   aspectRatio: 12 / 9,
                   child: Container(
@@ -49,33 +51,36 @@ class _NewsInfoState extends State<NewsInfo> {
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(Insets.medium),
                     ),
-                    child: Image.asset(
-                      Assets.assetsImagesImage1,
+                    child: Images(
+                      img: widget.news.image ?? "",
                       width: context.width * 0.6,
                       height: context.height * 0.3,
-                      fit: BoxFit.fill,
+                      defaultImg: true,
+                      color: Theme.of(context).colorScheme.surface,
+                      radius: 0,
                     ),
                   ),
                 ),
               ),
               SizedBox(height: Insets.medium),
               Text(
-                'آخر تحديثات الكيمنك!',
+                widget.news.title ?? "",
                 style: Theme.of(context).textTheme.titleSmall!.copyWith(
                       color: Theme.of(context).colorScheme.primary,
                       fontWeight: FontWeight.bold,
                     ),
               ),
               SizedBox(height: Insets.exSmall),
-              Text(
-                '1-1-2024، الاحد',
-                style: Theme.of(context).textTheme.labelSmall!.copyWith(
+              SinceDate(
+                widget.news.creationDate!,
+                textStyle: Theme.of(context).textTheme.labelSmall!.copyWith(
                       color: Theme.of(context).colorScheme.outline,
                     ),
+                local: "ar",
               ),
               SizedBox(height: Insets.small),
               Text(
-                'باقات فايبر أكس تقدم مجموعة خدمات متنوعة من الباقات المُصممة لتلبية احتياجات العملاء ، موفرة إنترنت عالي السرعة مع ميزات وفوائد مختلفة.باقات فايبر أكس تقدم مجموعة خدمات متنوعة من الباقات المُصممة لتلبية احتياجات العملاء ، موفرة إنترنت عالي السرعة مع ميزات وفوائد مختلفة.باقات فايبر أكس تقدم مجموعة خدمات متنوعة من الباقات المُصممة لتلبية احتياجات العملاء ، موفرة إنترنت عالي السرعة مع ميزات وفوائد مختلفة.باقات فايبر أكس تقدم مجموعة خدمات متنوعة من الباقات المُصممة لتلبية احتياجات العملاء ، موفرة إنترنت عالي السرعة مع ميزات وفوائد مختلفة.باقات فايبر أكس تقدم مجموعة خدمات متنوعة من الباقات المُصممة لتلبية احتياجات العملاء ، موفرة إنترنت عالي السرعة مع ميزات وفوائد مختلفة.باقات فايبر أكس تقدم مجموعة خدمات متنوعة من الباقات المُصممة لتلبية احتياجات العملاء ، موفرة إنترنت عالي السرعة مع ميزات وفوائد مختلفة.باقات فايبر أكس تقدم مجموعة خدمات متنوعة من الباقات المُصممة لتلبية احتياجات العملاء ، موفرة إنترنت عالي السرعة مع ميزات وفوائد مختلفة.باقات فايبر أكس تقدم مجموعة خدمات متنوعة من الباقات المُصممة لتلبية احتياجات العملاء ، موفرة إنترنت عالي السرعة مع ميزات وفوائد مختلفة.باقات فايبر أكس تقدم مجموعة خدمات متنوعة من الباقات المُصممة لتلبية احتياجات العملاء ، موفرة إنترنت عالي السرعة مع ميزات وفوائد مختلفة.باقات فايبر أكس تقدم مجموعة خدمات متنوعة من الباقات المُصممة لتلبية احتياجات العملاء ، موفرة إنترنت عالي السرعة مع ميزات وفوائد مختلفة.',
+                widget.news.description ?? '',
                 style: Theme.of(context).textTheme.labelLarge!.copyWith(
                       color: Theme.of(context).colorScheme.outline,
                     ),

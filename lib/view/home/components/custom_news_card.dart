@@ -1,15 +1,16 @@
 import 'package:fiber/config/constant.dart';
+import 'package:fiber/models/news_model.dart';
 import 'package:fiber/view/news/news_info.dart';
 
 class CustomNewsCard extends StatelessWidget {
   final bool? isNews;
   const CustomNewsCard({
     super.key,
-    required this.images,
+    required this.news,
     this.isNews,
   });
 
-  final List<String> images;
+  final List<NewsModel> news;
 
   @override
   Widget build(BuildContext context) {
@@ -20,14 +21,14 @@ class CustomNewsCard extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: Insets.small),
           shrinkWrap: true,
           scrollDirection: Axis.horizontal,
-          itemCount: images.length,
+          itemCount: news.length,
           separatorBuilder: (context, index) => SizedBox(width: Insets.small),
           itemBuilder: (context, index) {
             return InkMe(
               onTap: () {
                 Get.to(
                     () => NewsInfo(
-                          id: images[index] + index.toString(),
+                          news: news[index],
                         ),
                     transition: Transition.fade);
               },
@@ -42,7 +43,7 @@ class CustomNewsCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Hero(
-                      tag: images[index] + index.toString(),
+                      tag: news[index].id ?? "",
                       child: AspectRatio(
                         aspectRatio: 13 / 9,
                         child: Container(
@@ -50,18 +51,20 @@ class CustomNewsCard extends StatelessWidget {
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(Insets.small),
                           ),
-                          child: Image.asset(
-                            images[index],
+                          child: Images(
+                            img: news[index].image ?? "",
                             width: context.width * 0.6,
                             height: context.height * 0.3,
-                            fit: BoxFit.fill,
+                            radius: 0,
+                            defaultImg: true,
+                            color: context.theme.colorScheme.surface,
                           ),
                         ),
                       ),
                     ),
                     SizedBox(height: Insets.small),
                     Text(
-                      'آخر تحديثات الكيمنك!',
+                      news[index].title ?? "",
                       style: context.theme.textTheme.titleSmall!.copyWith(
                         color: context.theme.colorScheme.primary,
                         fontWeight: FontWeight.bold,
@@ -69,7 +72,7 @@ class CustomNewsCard extends StatelessWidget {
                     ),
                     SizedBox(height: Insets.exSmall),
                     Text(
-                      'باقات فايبر أكس تقدم مجموعة خدمات متنوعة من الباقات المُصممة لتلبية احتياجات العملاء ، موفرة إنترنت عالي السرعة مع ميزات وفوائد مختلفة.',
+                      news[index].description ?? "",
                       style: context.theme.textTheme.labelSmall!.copyWith(
                         color: context.theme.colorScheme.outline,
                       ),
@@ -90,14 +93,14 @@ class CustomNewsCard extends StatelessWidget {
               left: Insets.small,
               right: Insets.small,
               bottom: Insets.exLarge * 3),
-          itemCount: images.length,
+          itemCount: news.length,
           separatorBuilder: (context, index) => SizedBox(height: Insets.small),
           itemBuilder: (context, index) {
             return InkMe(
               onTap: () {
                 Get.to(
                     () => NewsInfo(
-                          id: images[index] + index.toString(),
+                          news: news[index],
                         ),
                     transition: Transition.fade);
               },
@@ -111,7 +114,7 @@ class CustomNewsCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Hero(
-                      tag: images[index] + index.toString(),
+                      tag: news[index].id ?? index.toString(),
                       child: AspectRatio(
                         aspectRatio: 15 / 9,
                         child: Container(
@@ -119,18 +122,20 @@ class CustomNewsCard extends StatelessWidget {
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(Insets.medium),
                           ),
-                          child: Image.asset(
-                            images[index],
+                          child: Images(
+                            img: news[index].image ?? "",
                             width: context.width * 0.6,
                             height: context.height * 0.3,
-                            fit: BoxFit.fill,
+                            defaultImg: true,
+                            radius: 0,
+                            color: context.theme.colorScheme.surface,
                           ),
                         ),
                       ),
                     ),
                     SizedBox(height: Insets.small),
                     Text(
-                      'آخر تحديثات الكيمنك!',
+                      news[index].title ?? '',
                       style: context.theme.textTheme.titleSmall!.copyWith(
                         color: context.theme.colorScheme.primary,
                         fontWeight: FontWeight.bold,
@@ -138,7 +143,7 @@ class CustomNewsCard extends StatelessWidget {
                     ),
                     SizedBox(height: Insets.exSmall),
                     Text(
-                      'باقات فايبر أكس تقدم مجموعة خدمات متنوعة من الباقات المُصممة لتلبية احتياجات العملاء ، موفرة إنترنت عالي السرعة مع ميزات وفوائد مختلفة.',
+                      news[index].description ?? '',
                       style: context.theme.textTheme.labelSmall!.copyWith(
                         color: context.theme.colorScheme.outline,
                       ),

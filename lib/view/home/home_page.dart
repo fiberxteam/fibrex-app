@@ -1,4 +1,5 @@
 import 'package:fiber/config/constant.dart';
+import 'package:fiber/controller/news/news_controller.dart';
 import 'package:fiber/view/home/components/custom_app_bar.dart';
 import 'package:fiber/view/home/components/custom_news_card.dart';
 import 'package:fiber/view/home/components/custom_offers_card.dart';
@@ -9,6 +10,7 @@ import 'package:fiber/view/plans/plans_page.dart';
 import 'package:fiber/view/service/pages/map_page.dart';
 import 'package:fiber/view/service/pages/receipts.dart';
 import 'package:fiber/view/setting/pages/support.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
 import '../internet_usage/internet_usage_page.dart';
@@ -22,6 +24,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  NewsController newsController = Get.find();
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -156,7 +160,9 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
           SizedBox(height: Insets.small),
-          CustomNewsCard(images: images),
+          Obx(() => newsController.isLoading == true
+              ? Center(child: CircularProgressIndicator())
+              : CustomNewsCard(news: newsController.news)),
           SizedBox(height: Insets.exLarge * 2.5),
         ].animate(interval: 30.ms).fadeIn(),
       ),

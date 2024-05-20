@@ -55,7 +55,7 @@ class _ImagesState extends State<Images> {
                     size: 10,
                   ),
                   Text(
-                    'Error'.tr,
+                    'خطأ في تحميل'.tr,
                     style: const TextStyle(
                       fontWeight: FontWeight.bold,
                       color: Colors.red,

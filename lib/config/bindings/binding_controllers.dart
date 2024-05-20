@@ -5,6 +5,8 @@ import 'package:fiber/controller/auth/auth_controller.dart';
 import 'package:fiber/controller/file_controller.dart';
 import 'package:fiber/controller/notification/notification_controller.dart';
 import 'package:fiber/controller/set_data_controller.dart';
+import 'package:fiber/controller/news/news_controller.dart';
+
 import 'package:get/get.dart';
 
 class BindingsController extends Bindings {
@@ -15,5 +17,6 @@ class BindingsController extends Bindings {
     AuthController authController = Get.put(AuthController());
     FileController fileController = Get.put(FileController());
     Get.lazyPut(() => NotificationController(), fenix: true);
+    Get.lazyPut(() => NewsController(), fenix: true);
   }
 }
