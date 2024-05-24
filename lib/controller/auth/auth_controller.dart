@@ -1,10 +1,13 @@
-import 'package:fiber/client/base_client.dart';
+import 'dart:convert';
+import 'package:fiber/client/sas_client.dart';
 import 'package:fiber/config/constant.dart';
 import 'package:fiber/controller/set_data_controller.dart';
 import 'package:fiber/main.dart';
 import 'package:fiber/view/auth/login_page.dart';
-import 'package:fiber/view/home/home_page.dart';
 import 'package:tuple/tuple.dart';
+
+import '../../client/encrypt.dart';
+import '../../view/navigation/navigation_page.dart';
 
 class AuthController extends GetxController {
   RxBool isLoading = false.obs;
@@ -15,15 +18,23 @@ class AuthController extends GetxController {
   Future<Tuple2<bool, dynamic>> login(
       {required String email, required String password}) async {
     isLoading.value = true;
-    Tuple2<bool, dynamic> response = await BaseClient.post(
-      api: '/login',
+    var data = {"username": email, "password": password, "language": "en"};
+
+    final passphrase = 'abcdefghijuklmno0123456789012345';
+
+    final encryptedData = encryptAESCryptoJS(jsonEncode(data), passphrase);
+
+    Tuple2<bool, dynamic> response = await SasClient.post(
+      api: '/api/auth/login',
       data: {
-        "email": email,
-        "password": password,
+        "payload": encryptedData,
       },
     );
+
+    print(response.item2);
     if (response.item1) {
-      Get.offAll(() => const HomePage(), transition: Transition.fadeIn);
+      prefs.setString('token', response.item2['token']);
+      Get.offAll(() => NavigationPage(), transition: Transition.fadeIn);
     }
     isLoading.value = false;
     return response;

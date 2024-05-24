@@ -1,13 +1,14 @@
 import 'package:fiber/config/constant.dart';
+import 'package:fiber/models/ads_model.dart';
 import 'package:flutter/material.dart';
 
 class CustomOffersCard extends StatefulWidget {
   const CustomOffersCard({
     super.key,
-    required this.images,
+    required this.ads,
   });
 
-  final List<String> images;
+  final List<AdsModel> ads;
 
   @override
   State<CustomOffersCard> createState() => _CustomOffersCardState();
@@ -22,7 +23,7 @@ class _CustomOffersCardState extends State<CustomOffersCard> {
           aspectRatio: 16 / 9,
           child: PageView.builder(
             scrollDirection: Axis.horizontal,
-            itemCount: widget.images.length,
+            itemCount: widget.ads.length,
             onPageChanged: (value) {
               setState(() {
                 currentIndex = value;
@@ -35,9 +36,12 @@ class _CustomOffersCardState extends State<CustomOffersCard> {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(Insets.medium),
                 ),
-                child: Image.asset(
-                  widget.images[index],
-                  fit: BoxFit.fill,
+                child: Images(
+                  img: widget.ads[index].image ?? "",
+                  radius: 0,
+                  height: context.height * 0.3,
+                  width: context.width * 0.6,
+                  color: context.theme.colorScheme.surface,
                 ),
               );
             },
@@ -47,7 +51,7 @@ class _CustomOffersCardState extends State<CustomOffersCard> {
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: List.generate(
-            widget.images.length,
+            widget.ads.length,
             (index) => AnimatedContainer(
               duration: Durations.long1,
               margin: EdgeInsets.symmetric(horizontal: Insets.small / 2),
@@ -58,8 +62,7 @@ class _CustomOffersCardState extends State<CustomOffersCard> {
                 boxShadow: index == currentIndex
                     ? [
                         BoxShadow(
-                          color: context.theme.colorScheme.primary
-                              .withOpacity(0.3),
+                          color: Colors.grey.withOpacity(0.3),
                           blurRadius: 10,
                           spreadRadius: 5,
                         )

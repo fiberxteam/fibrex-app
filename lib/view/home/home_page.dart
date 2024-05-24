@@ -1,4 +1,6 @@
 import 'package:fiber/config/constant.dart';
+import 'package:fiber/controller/ads/ads_controller.dart';
+import 'package:fiber/controller/home/home_controller.dart';
 import 'package:fiber/controller/news/news_controller.dart';
 import 'package:fiber/view/home/components/custom_app_bar.dart';
 import 'package:fiber/view/home/components/custom_news_card.dart';
@@ -25,6 +27,8 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   NewsController newsController = Get.find();
+  AdsController adsContoller = Get.find();
+  HomeController homeController = Get.put(HomeController());
 
   @override
   Widget build(BuildContext context) {
@@ -35,10 +39,13 @@ class _HomePageState extends State<HomePage> {
           SizedBox(height: Insets.exLarge),
           const CustomAppBar(),
           SizedBox(height: Insets.small),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: Insets.small),
-            child: const CustomSubScribeWidget(),
-          ),
+          Obx(() => null == homeController.serviceInfo.value.profileId
+              ? Center(child: CircularProgressIndicator())
+              : Padding(
+                  padding: EdgeInsets.symmetric(horizontal: Insets.small),
+                  child: CustomSubScribeWidget(
+                      serviceModel: homeController.serviceInfo.value),
+                )),
           SizedBox(height: Insets.medium),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: Insets.small),
@@ -136,18 +143,22 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
           SizedBox(height: Insets.medium),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: Insets.small),
-            child: Text(
-              'العروض'.tr,
-              style: context.theme.textTheme.titleSmall!.copyWith(
-                color: context.theme.colorScheme.scrim,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ),
-          SizedBox(height: Insets.small),
-          CustomOffersCard(images: images),
+          // Padding(
+          //   padding: EdgeInsets.symmetric(horizontal: Insets.small),
+          //   child: Text(
+          //     'العروض'.tr,
+          //     style: context.theme.textTheme.titleSmall!.copyWith(
+          //       color: context.theme.colorScheme.scrim,
+          //       fontWeight: FontWeight.bold,
+          //     ),
+          //   ),
+          // ),
+          // SizedBox(height: Insets.small),
+          Obx(() => adsContoller.isLoading.value
+              ? Center(child: CircularProgressIndicator())
+              : !adsContoller.isLoading.value && adsContoller.ads.isEmpty
+                  ? Container()
+                  : CustomOffersCard(ads: adsContoller.ads)),
           SizedBox(height: Insets.medium),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: Insets.small),

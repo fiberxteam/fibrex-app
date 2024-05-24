@@ -1,9 +1,12 @@
+import 'dart:math';
+
 import 'package:fiber/config/const_wodget/custom_chart_widget.dart';
 import 'package:fiber/config/constant.dart';
 import 'package:fiber/view/plans/components/custom_back_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:syncfusion_flutter_gauges/gauges.dart';
+import 'package:flutter_internet_speed_test/flutter_internet_speed_test.dart';
 
 class SpeedTestPage extends StatefulWidget {
   const SpeedTestPage({super.key});
@@ -13,6 +16,13 @@ class SpeedTestPage extends StatefulWidget {
 }
 
 class _SpeedTestPageState extends State<SpeedTestPage> {
+  final speedTest = FlutterInternetSpeedTest();
+  var internetSpeed = 0.0;
+  var ping = 0.0;
+  var download = 0.0;
+  var upload = 0.0;
+  var unit = "Mbps";
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,40 +57,40 @@ class _SpeedTestPageState extends State<SpeedTestPage> {
               axes: <RadialAxis>[
                 RadialAxis(
                   minimum: 0,
-                  maximum: 150,
+                  maximum: 10,
                   axisLabelStyle: const GaugeTextStyle(
                     color: Colors.red,
                   ),
                   ranges: <GaugeRange>[
                     GaugeRange(
                         startValue: 0,
-                        endValue: 50,
+                        endValue: 3,
                         color: Colors.red,
                         startWidth: 10,
                         endWidth: 10),
                     GaugeRange(
-                        startValue: 50,
-                        endValue: 100,
+                        startValue: 3,
+                        endValue: 6,
                         color: Colors.yellow,
                         startWidth: 10,
                         endWidth: 10),
                     GaugeRange(
-                        startValue: 100,
-                        endValue: 150,
+                        startValue: 6,
+                        endValue: 10,
                         color: Colors.green,
                         startWidth: 10,
                         endWidth: 10)
                   ],
                   pointers: <GaugePointer>[
                     NeedlePointer(
-                        value: 1,
+                        value: internetSpeed,
                         enableAnimation: true,
                         needleColor: context.theme.colorScheme.primary)
                   ],
                   annotations: [
                     GaugeAnnotation(
                         widget: Text(
-                          '0 Mbps',
+                          "",
                           style: TextStyle(
                             fontSize: 12,
                             fontWeight: FontWeight.bold,
@@ -97,7 +107,7 @@ class _SpeedTestPageState extends State<SpeedTestPage> {
               padding: EdgeInsets.all(Insets.small),
               child: CustomChartWidget(
                 title: "التحميل".tr,
-                value: "0",
+                value: download.toString(),
                 color: const Color(0xFF4FE080),
                 icon: CupertinoIcons.down_arrow,
               ),
@@ -106,20 +116,20 @@ class _SpeedTestPageState extends State<SpeedTestPage> {
               padding: EdgeInsets.all(Insets.small),
               child: CustomChartWidget(
                 title: "الرفع".tr,
-                value: "0",
+                value: upload.toString(),
                 color: const Color.fromARGB(255, 79, 108, 224),
                 icon: CupertinoIcons.up_arrow,
               ),
             ),
-            Padding(
-              padding: EdgeInsets.all(Insets.small),
-              child: CustomChartWidget(
-                title: "الإستجابة".tr,
-                value: "0",
-                color: const Color.fromARGB(255, 224, 79, 79),
-                icon: CupertinoIcons.wifi,
-              ),
-            ),
+            // Padding(
+            //   padding: EdgeInsets.all(Insets.small),
+            //   child: CustomChartWidget(
+            //     title: "الإستجابة".tr,
+            //     value: ping.toString(),
+            //     color: const Color.fromARGB(255, 224, 79, 79),
+            //     icon: CupertinoIcons.wifi,
+            //   ),
+            // ),
             SizedBox(height: Insets.exLarge * 2.5),
           ].animate(interval: 50.ms).fadeIn(),
         ),
@@ -129,7 +139,36 @@ class _SpeedTestPageState extends State<SpeedTestPage> {
         height: 50,
         margin: EdgeInsets.all(Insets.small),
         child: ElevatedButton(
-          onPressed: () {},
+          onPressed: () {
+            speedTest.startTesting(
+                useFastApi: true,
+                onStarted: () {
+                  upload = 0.0;
+                  download = 0.0;
+                  setState(() {});
+                },
+                onCompleted: (TestResult download, TestResult upload) {
+                  print(download.transferRate);
+                },
+                onProgress: (percent, data) {
+                  if (data.type == TestType.download) {
+                    setState(() {
+                      download = data.transferRate;
+                    });
+                  } else if (data.type == TestType.upload) {
+                    setState(() {
+                      upload = data.transferRate;
+                    });
+                  } else if (data.type == 'ping') {
+                    setState(() {
+                      ping = data.transferRate;
+                    });
+                  }
+                  setState(() {
+                    internetSpeed = data.transferRate;
+                  });
+                });
+          },
           style: ElevatedButton.styleFrom(
             backgroundColor: Theme.of(context).colorScheme.primary,
             shape: RoundedRectangleBorder(

@@ -1,9 +1,11 @@
 import 'package:fiber/config/constant.dart';
+import 'package:fiber/models/offers_model.dart';
 import 'package:fiber/view/plans/components/custom_active_bottom_sheet.dart';
 import 'package:flutter/material.dart';
 
 class OffersCardWidget extends StatelessWidget {
-  const OffersCardWidget({super.key});
+  final OffersModel model;
+  const OffersCardWidget({super.key, required this.model});
 
   @override
   Widget build(BuildContext context) {
@@ -44,33 +46,33 @@ class OffersCardWidget extends StatelessWidget {
             ),
             Gap(Insets.medium),
             Text(
-              "اشترك شهران و تحصل على شهر مجاني!!",
+              model.title ?? "",
               style: Theme.of(context).textTheme.titleMedium!.copyWith(
                   color: Theme.of(context).colorScheme.secondary,
                   fontWeight: FontWeight.bold),
             ),
             Gap(Insets.exSmall),
             Text(
-              "الآن يمكنك الاشتراك في شهري الاول و الثاني و ستحصل على شهر كامل مجانا",
+              model.description ?? "",
               style: TextStyle(color: Color(0xFF7C758A)),
             ),
             Gap(Insets.small),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  "اشترك الان",
-                  style: Theme.of(context).textTheme.titleMedium!.copyWith(
-                      color: Theme.of(context).colorScheme.primary,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 16),
-                ),
-                Icon(
-                  CupertinoIcons.forward,
-                  color: Theme.of(context).colorScheme.primary,
-                )
-              ],
-            )
+            // Row(
+            //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //   children: [
+            //     Text(
+            //       "اشترك الان",
+            //       style: Theme.of(context).textTheme.titleMedium!.copyWith(
+            //           color: Theme.of(context).colorScheme.primary,
+            //           fontWeight: FontWeight.bold,
+            //           fontSize: 16),
+            //     ),
+            //     Icon(
+            //       CupertinoIcons.forward,
+            //       color: Theme.of(context).colorScheme.primary,
+            //     )
+            //   ],
+            // )
           ],
         ),
       ),

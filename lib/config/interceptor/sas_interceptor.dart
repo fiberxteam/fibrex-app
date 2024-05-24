@@ -8,9 +8,9 @@ import 'package:dio/dio.dart';
 import 'package:fiber/config/constant.dart';
 import 'package:onesignal_flutter/onesignal_flutter.dart';
 
-class DioHttp extends GetxController {
+class SasHttp extends GetxController {
   Dio dio = Dio();
-  static const String baseUrls = 'http://164.92.197.198:9123/api';
+  static const String baseUrls = 'http://185.16.25.254/user/api/index.php';
 
   @override
   void onInit() {
@@ -24,7 +24,10 @@ class DioHttp extends GetxController {
       ..options.connectTimeout = const Duration(seconds: 120)
       ..options.receiveTimeout = const Duration(seconds: 120)
       ..options.contentType = 'application/json; charset=utf-8'
-      ..options.headers = {"accept": "*/*", "Content-Type": "application/json"};
+      ..options.headers = {
+        "accept": "*/*",
+        "Content-Type": "application/x-www-form-urlencoded"
+      };
     dio.interceptors.add(AwesomeDioInterceptor());
 
     dio.interceptors

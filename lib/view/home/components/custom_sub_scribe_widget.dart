@@ -1,11 +1,11 @@
 import 'package:fiber/config/constant.dart';
+import 'package:fiber/models/service_model.dart';
 import 'package:fiber/view/home/components/custom_subscription_info.dart';
 import 'package:flutter/material.dart';
 
 class CustomSubScribeWidget extends StatelessWidget {
-  const CustomSubScribeWidget({
-    super.key,
-  });
+  final ServiceModel serviceModel;
+  const CustomSubScribeWidget({super.key, required this.serviceModel});
 
   @override
   Widget build(BuildContext context) {
@@ -45,11 +45,13 @@ class CustomSubScribeWidget extends StatelessWidget {
                   vertical: Insets.exSmall,
                 ),
                 decoration: BoxDecoration(
-                  color: Colors.green.shade500,
+                  color: serviceModel.subscriptionStatus!.status
+                      ? Colors.green.shade500
+                      : Colors.red.shade500,
                   borderRadius: BorderRadius.circular(Insets.medium),
                 ),
                 child: Text(
-                  'فعال'.tr,
+                  serviceModel.subscriptionStatus!.status ? "فعال" : "غير فعال",
                   style: context.theme.textTheme.labelMedium!.copyWith(
                     color: context.theme.colorScheme.surface,
                     fontWeight: FontWeight.bold,
@@ -59,7 +61,7 @@ class CustomSubScribeWidget extends StatelessWidget {
             ],
           ),
           Text(
-            'أكسبرس',
+            serviceModel.profileName ?? "",
             style: context.theme.textTheme.headlineMedium!.copyWith(
               color: context.theme.colorScheme.surface,
               fontWeight: FontWeight.bold,
@@ -76,27 +78,31 @@ class CustomSubScribeWidget extends StatelessWidget {
                     CustomSubscriptionInfo(
                       icon: Assets.assetsIconsMoney,
                       title: 'السعر'.tr,
-                      subtitle: '50,000',
+                      subtitle: formatCurrency(
+                          double.parse(serviceModel.price!.toString())),
                     ),
                     CustomSubscriptionInfo(
                       icon: Assets.assetsIconsCalendarCheck,
                       title: 'المدة المتبقية'.tr,
-                      subtitle: '30 يوم',
+                      subtitle: serviceModel.expiration!
+                          .difference(DateTime.now())
+                          .inDays
+                          .toString(),
                     ),
                   ],
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    CustomSubscriptionInfo(
-                      icon: Assets.assetsIconsCalendarCheck,
-                      title: 'تاريخ الإشتراك'.tr,
-                      subtitle: '11-5-2024',
-                    ),
+                    // CustomSubscriptionInfo(
+                    //   icon: Assets.assetsIconsCalendarCheck,
+                    //   title: 'تاريخ الإشتراك'.tr,
+                    //   subtitle: '11-5-2024',
+                    // ),
                     CustomSubscriptionInfo(
                       icon: Assets.assetsIconsCalendarX,
                       title: 'تاريخ الانتهاء'.tr,
-                      subtitle: '11-5-2024',
+                      subtitle: makeDate(serviceModel.expiration),
                     ),
                   ],
                 )

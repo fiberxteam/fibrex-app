@@ -1,4 +1,8 @@
+import 'dart:convert';
 import 'dart:math';
+import 'dart:typed_data';
+import 'package:encrypt/encrypt.dart' as en;
+
 import 'package:fiber/main.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -97,4 +101,16 @@ SnackbarController noti(title, body, {Function(GetSnackBar)? onTap}) {
     onTap: onTap,
   );
   return x;
+}
+
+String encrypt(String data) {
+  var myKey = "VishnuTestKeyIsHereLongValid32Ch";
+
+  final encrypter =
+      en.Encrypter(en.AES(en.Key.fromUtf8(myKey), mode: en.AESMode.cbc));
+  final iv = en.IV.fromUtf8("1234567890123456");
+  var encrypted = encrypter.encrypt(data, iv: iv);
+  var encryptedString = encrypted.base64;
+  print(encryptedString);
+  return encrypted.base64;
 }

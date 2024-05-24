@@ -59,12 +59,12 @@ void main() async {
     controller.isDark.value = prefs.getBool('darkTheme')!;
   }
 
-  if (prefs.getBool('positive') != null) {
-    OneSignal.shared.disablePush(prefs.getBool('positive')! ? false : true);
-  } else {
-    OneSignal.shared.disablePush(false);
-  }
-  OneSignal.shared.disablePush(false);
+  // if (prefs.getBool('positive') != null) {
+  //   OneSignal.shared.disablePush(prefs.getBool('positive')! ? false : true);
+  // } else {
+  //   OneSignal.shared.disablePush(false);
+  // }
+  // OneSignal.shared.disablePush(false);
 
   runApp(const MyApp(page: SplashPage()));
 }
