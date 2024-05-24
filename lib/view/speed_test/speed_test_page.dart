@@ -22,6 +22,7 @@ class _SpeedTestPageState extends State<SpeedTestPage> {
   var download = 0.0;
   var upload = 0.0;
   var unit = "Mbps";
+  bool isTesting = false;
 
   @override
   Widget build(BuildContext context) {
@@ -134,56 +135,65 @@ class _SpeedTestPageState extends State<SpeedTestPage> {
           ].animate(interval: 50.ms).fadeIn(),
         ),
       ),
-      floatingActionButton: Container(
-        width: context.width,
-        height: 50,
-        margin: EdgeInsets.all(Insets.small),
-        child: ElevatedButton(
-          onPressed: () {
-            speedTest.startTesting(
-                useFastApi: true,
-                onStarted: () {
-                  upload = 0.0;
-                  download = 0.0;
-                  setState(() {});
+      floatingActionButton: isTesting
+          ? Container()
+          : Container(
+              width: context.width,
+              height: 50,
+              margin: EdgeInsets.all(Insets.small),
+              child: ElevatedButton(
+                onPressed: () {
+                  speedTest.startTesting(
+                      useFastApi: true,
+                      onStarted: () {
+                        upload = 0.0;
+                        download = 0.0;
+                        setState(() {
+                          isTesting = true;
+                        });
+                      },
+                      onCompleted: (TestResult download, TestResult upload) {
+                        print(download.transferRate);
+                        setState(() {
+                          isTesting = false;
+                          this.download = download.transferRate;
+                          this.upload = upload.transferRate;
+                        });
+                      },
+                      onProgress: (percent, data) {
+                        if (data.type == TestType.download) {
+                          setState(() {
+                            download = data.transferRate;
+                          });
+                        } else if (data.type == TestType.upload) {
+                          setState(() {
+                            upload = data.transferRate;
+                          });
+                        } else if (data.type == 'ping') {
+                          setState(() {
+                            ping = data.transferRate;
+                          });
+                        }
+                        setState(() {
+                          internetSpeed = data.transferRate;
+                        });
+                      });
                 },
-                onCompleted: (TestResult download, TestResult upload) {
-                  print(download.transferRate);
-                },
-                onProgress: (percent, data) {
-                  if (data.type == TestType.download) {
-                    setState(() {
-                      download = data.transferRate;
-                    });
-                  } else if (data.type == TestType.upload) {
-                    setState(() {
-                      upload = data.transferRate;
-                    });
-                  } else if (data.type == 'ping') {
-                    setState(() {
-                      ping = data.transferRate;
-                    });
-                  }
-                  setState(() {
-                    internetSpeed = data.transferRate;
-                  });
-                });
-          },
-          style: ElevatedButton.styleFrom(
-            backgroundColor: Theme.of(context).colorScheme.primary,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(Insets.large),
-            ),
-          ),
-          child: Text(
-            "بدء الفحص".tr,
-            style: Theme.of(context).textTheme.titleMedium!.copyWith(
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Theme.of(context).colorScheme.primary,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(Insets.large),
+                  ),
                 ),
-          ),
-        ),
-      ),
+                child: Text(
+                  !isTesting && download > 0 ? "اعادة الفحص" : "بدء الفحص",
+                  style: Theme.of(context).textTheme.titleMedium!.copyWith(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
+                ),
+              ),
+            ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
