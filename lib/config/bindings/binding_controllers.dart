@@ -19,8 +19,8 @@ class BindingsController extends Bindings {
     SetDataController dataController = Get.put(SetDataController());
     AuthController authController = Get.put(AuthController());
     FileController fileController = Get.put(FileController());
-    // Get.lazyPut(() => NotificationController(), fenix: true);
-    // Get.lazyPut(() => NewsController(), fenix: true);
-    // Get.lazyPut(() => AdsController(), fenix: true);
+    Get.lazyPut(() => NotificationController(), fenix: true);
+    Get.lazyPut(() => NewsController(), fenix: true);
+    Get.lazyPut(() => AdsController(), fenix: true);
   }
 }

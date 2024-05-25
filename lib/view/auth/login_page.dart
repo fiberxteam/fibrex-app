@@ -150,7 +150,9 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                     Gap(Insets.large),
                     InkMe(
-                      onTap: () {},
+                      onTap: () {
+                        Get.offAll(NavigationPage());
+                      },
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [

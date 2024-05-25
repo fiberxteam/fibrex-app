@@ -1,7 +1,9 @@
+import 'package:fiber/config/const_wodget/custom_fill_button.dart';
 import 'package:fiber/config/constant.dart';
 import 'package:fiber/controller/ads/ads_controller.dart';
 import 'package:fiber/controller/home/home_controller.dart';
 import 'package:fiber/controller/news/news_controller.dart';
+import 'package:fiber/view/auth/login_page.dart';
 import 'package:fiber/view/home/components/custom_app_bar.dart';
 import 'package:fiber/view/home/components/custom_news_card.dart';
 import 'package:fiber/view/home/components/custom_offers_card.dart';
@@ -37,19 +39,51 @@ class _HomePageState extends State<HomePage> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SizedBox(height: Insets.exLarge),
+          Obx(() => !homeController.isLoading.value &&
+                  null == homeController.serviceInfo.value.profileId
+              ? Container(
+                  padding: EdgeInsets.all(Insets.margin),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Text(
+                        "سجل دخولك للحصول على مميزات التطبيق",
+                        style: context.theme.textTheme.titleLarge!
+                            .copyWith(color: Color(0xFF7C758A)),
+                        textAlign: TextAlign.center,
+                      ),
+                      Gap(Insets.margin),
+                      CustomFillButton(
+                        onTap: () {
+                          Get.to(LoginPage());
+                        },
+                        title: "تسجيل الدخول",
+                        backgroundColor: context.theme.colorScheme.primary,
+                      ),
+                    ],
+                  ),
+                )
+              : Container()),
           Obx(() => null == homeController.userInfo.value.id
               ? Container()
-              : CustomAppBar(
-                  userModel: homeController.userInfo.value,
+              : Column(
+                  children: [
+                    CustomAppBar(
+                      userModel: homeController.userInfo.value,
+                    ),
+                  ],
                 )),
           SizedBox(height: Insets.small),
-          Obx(() => null == homeController.serviceInfo.value.profileId
+          Obx(() => homeController.isLoading.value
               ? Center(child: CircularProgressIndicator())
-              : Padding(
-                  padding: EdgeInsets.symmetric(horizontal: Insets.small),
-                  child: CustomSubScribeWidget(
-                      serviceModel: homeController.serviceInfo.value),
-                )),
+              : !homeController.isLoading.value &&
+                      null == homeController.serviceInfo.value.profileId
+                  ? Container()
+                  : Padding(
+                      padding: EdgeInsets.symmetric(horizontal: Insets.small),
+                      child: CustomSubScribeWidget(
+                          serviceModel: homeController.serviceInfo.value),
+                    )),
           SizedBox(height: Insets.medium),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: Insets.small),
