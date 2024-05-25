@@ -145,8 +145,7 @@ class _LoginPageState extends State<LoginPage> {
                     CustomOutLineButton(
                       title: 'الدخول التلقائي'.tr,
                       onTap: () {
-                        Get.offAll(() => const NavigationPage(),
-                            transition: Transition.fade);
+                        authController.autoLogin();
                       },
                     ),
                     Gap(Insets.large),

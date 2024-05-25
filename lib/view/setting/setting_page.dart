@@ -1,4 +1,7 @@
 import 'package:fiber/config/constant.dart';
+import 'package:fiber/controller/home/home_controller.dart';
+import 'package:fiber/main.dart';
+import 'package:fiber/view/auth/login_page.dart';
 import 'package:fiber/view/setting/components/custom_profile_card.dart';
 import 'package:fiber/view/setting/components/custom_support_card.dart';
 import 'package:flutter/material.dart';
@@ -12,6 +15,8 @@ class SettingPage extends StatefulWidget {
 }
 
 class _SettingPageState extends State<SettingPage> {
+  HomeController homeController = Get.find();
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -22,7 +27,9 @@ class _SettingPageState extends State<SettingPage> {
           SizedBox(
             height: Insets.exLarge + 24,
           ),
-          const CustomProfileCard(),
+          CustomProfileCard(
+            userModel: homeController.userInfo.value,
+          ),
           SizedBox(
             height: Insets.medium,
           ),
@@ -86,6 +93,10 @@ class _SettingPageState extends State<SettingPage> {
             visualDensity: VisualDensity.comfortable,
             enableFeedback: false,
             minVerticalPadding: 0,
+            onTap: () {
+              prefs.clear();
+              Get.offAll(() => const LoginPage());
+            },
             titleAlignment: ListTileTitleAlignment.center,
             style: ListTileStyle.list,
             horizontalTitleGap: Insets.small,

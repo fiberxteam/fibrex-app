@@ -40,6 +40,12 @@ class AuthController extends GetxController {
     return response;
   }
 
+  autoLogin() async {
+    var request = await SasClient.get(api: '/api/auth/autoLogin');
+    prefs.setString("token", request["token"]);
+    Get.offAll(() => NavigationPage(), transition: Transition.fadeIn);
+  }
+
   Future logout() async {
     prefs.remove('token');
     prefs.remove('role');
