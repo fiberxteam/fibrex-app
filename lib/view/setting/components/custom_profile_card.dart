@@ -1,10 +1,10 @@
 import 'package:fiber/config/constant.dart';
+import 'package:fiber/models/user_model.dart';
 import 'package:flutter/material.dart';
 
 class CustomProfileCard extends StatelessWidget {
-  const CustomProfileCard({
-    super.key,
-  });
+  final UserModel userModel;
+  const CustomProfileCard({super.key, required this.userModel});
 
   @override
   Widget build(BuildContext context) {
@@ -19,14 +19,14 @@ class CustomProfileCard extends StatelessWidget {
         contentPadding: EdgeInsets.zero,
         horizontalTitleGap: Insets.small,
         title: Text(
-          'علي جاسب كاظم',
+          userModel.name ?? "",
           style: Theme.of(context)
               .textTheme
               .titleSmall!
               .copyWith(fontWeight: FontWeight.bold),
         ),
         subtitle: Text(
-          '07706968056',
+          userModel.phone ?? "",
           style: Theme.of(context).textTheme.labelMedium!.copyWith(
               fontWeight: FontWeight.bold,
               color: context.theme.colorScheme.outline),

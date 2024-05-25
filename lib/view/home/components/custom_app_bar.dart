@@ -1,12 +1,12 @@
 import 'package:fiber/config/constant.dart';
+import 'package:fiber/models/user_model.dart';
 import 'package:flutter/material.dart';
 
 import '../../notification/notification_page.dart';
 
 class CustomAppBar extends StatelessWidget {
-  const CustomAppBar({
-    super.key,
-  });
+  UserModel userModel = UserModel();
+  CustomAppBar({super.key, required this.userModel});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +18,7 @@ class CustomAppBar extends StatelessWidget {
             .copyWith(color: context.theme.colorScheme.outline),
       ),
       subtitle: Text(
-        'Omar Mudhaffar Kadum',
+        userModel.name ?? "",
         style: context.theme.textTheme.titleMedium!
             .copyWith(color: context.theme.colorScheme.scrim),
       ),

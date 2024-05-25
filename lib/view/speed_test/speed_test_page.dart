@@ -148,6 +148,7 @@ class _SpeedTestPageState extends State<SpeedTestPage> {
                       onStarted: () {
                         upload = 0.0;
                         download = 0.0;
+                        internetSpeed = 0.0;
                         setState(() {
                           isTesting = true;
                         });

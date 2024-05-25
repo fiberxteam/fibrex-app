@@ -37,7 +37,11 @@ class _HomePageState extends State<HomePage> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SizedBox(height: Insets.exLarge),
-          const CustomAppBar(),
+          Obx(() => null == homeController.userInfo.value.id
+              ? Container()
+              : CustomAppBar(
+                  userModel: homeController.userInfo.value,
+                )),
           SizedBox(height: Insets.small),
           Obx(() => null == homeController.serviceInfo.value.profileId
               ? Center(child: CircularProgressIndicator())
