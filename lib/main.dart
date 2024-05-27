@@ -103,6 +103,7 @@ class _MyAppState extends State<MyApp> {
           initialBinding: BindingsController(),
           home: widget.page,
           title: "Fiber X",
+          defaultTransition: Transition.fadeIn,
           translationsKeys: AppTranslation.translations,
           // locale: Get.locale!,
           supportedLocales: const [

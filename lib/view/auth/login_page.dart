@@ -97,7 +97,7 @@ class _LoginPageState extends State<LoginPage> {
                             title: 'Login'.tr,
                             loading: data.isLoading.value
                                 ? CircularProgressIndicator(
-                                    color: context.theme.colorScheme.primary,
+                                    color: context.theme.colorScheme.onPrimary,
                                   )
                                 : null,
                             onTap: () {
@@ -142,16 +142,24 @@ class _LoginPageState extends State<LoginPage> {
                       ],
                     ),
                     Gap(Insets.large),
-                    CustomOutLineButton(
-                      title: 'الدخول التلقائي'.tr,
-                      onTap: () {
-                        authController.autoLogin();
-                      },
+                    GetX(
+                      init: authController,
+                      builder: (data) => CustomOutLineButton(
+                        title: 'الدخول التلقائي'.tr,
+                        loading: data.isLoading.value
+                            ? CircularProgressIndicator(
+                                color: context.theme.colorScheme.primary,
+                              )
+                            : null,
+                        onTap: () {
+                          data.autoLogin();
+                        },
+                      ),
                     ),
                     Gap(Insets.large),
                     InkMe(
                       onTap: () {
-                        Get.offAll(NavigationPage());
+                        Get.offAll(const NavigationPage());
                       },
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,

@@ -65,14 +65,12 @@ class _MapPageState extends State<MapPage> {
       ),
       body: Center(
         child: GoogleMap(
-            mapType: MapType.normal,
-            initialCameraPosition: const CameraPosition(
-                bearing: 1.8334901395799,
-                target: LatLng(33.31, 44.5),
-                zoom: 14),
-            onMapCreated: (GoogleMapController controller) {
-              controller.setMapStyle(Get.isDarkMode
-                  ? """
+          mapType: MapType.normal,
+          initialCameraPosition: const CameraPosition(
+              bearing: 1.8334901395799, target: LatLng(33.31, 44.5), zoom: 14),
+          onMapCreated: (GoogleMapController controller) {
+            controller.setMapStyle(Get.isDarkMode
+                ? """
                 [
       {
     "elementType": "geometry",
@@ -269,8 +267,8 @@ class _MapPageState extends State<MapPage> {
       }
     ]
     """
-                      .toString()
-                  : """
+                    .toString()
+                : """
            [
             {
           "elementType": "geometry",
@@ -331,27 +329,28 @@ class _MapPageState extends State<MapPage> {
             }
           ]
           """);
-              // controller.animateCamera(
-              //   CameraUpdate.newLatLngZoom(
-              //     LatLng(
-              //         double.parse(
-              //             (carController.paths.value.fromGarageLat ??
-              //                     33.3152)
-              //                 .toString()),
-              //         double.parse(
-              //             (carController.paths.value.fromGarageLng ??
-              //                     44.3661)
-              //                 .toString())),
-              //     zoomLevel - 1.1,
-              //   ),
-              // );
-            },
-            mapToolbarEnabled: false,
-            myLocationEnabled: true,
-            myLocationButtonEnabled: true,
-            zoomControlsEnabled: true,
-            zoomGesturesEnabled: true,
-            markers: markers),
+            // controller.animateCamera(
+            //   CameraUpdate.newLatLngZoom(
+            //     LatLng(
+            //         double.parse(
+            //             (carController.paths.value.fromGarageLat ??
+            //                     33.3152)
+            //                 .toString()),
+            //         double.parse(
+            //             (carController.paths.value.fromGarageLng ??
+            //                     44.3661)
+            //                 .toString())),
+            //     zoomLevel - 1.1,
+            //   ),
+            // );
+          },
+          mapToolbarEnabled: false,
+          myLocationEnabled: true,
+          myLocationButtonEnabled: true,
+          zoomControlsEnabled: true,
+          zoomGesturesEnabled: true,
+          markers: markers,
+        ),
       ),
     );
   }
