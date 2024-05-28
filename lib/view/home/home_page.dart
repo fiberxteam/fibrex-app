@@ -174,6 +174,13 @@ class _HomePageState extends State<HomePage> {
                   ),
                   SizedBox(width: Insets.small),
                   CustomServiceCard(
+                    onTap: () {
+                      Get.to(
+                          () => const SupportPage(
+                                isRepare: true,
+                              ),
+                          transition: Transition.fadeIn);
+                    },
                     icon: Assets.assetsIconsWifiX,
                     title: 'الصيانة'.tr,
                   ),

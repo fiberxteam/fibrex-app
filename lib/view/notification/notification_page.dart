@@ -1,5 +1,6 @@
 import 'package:fiber/config/const_wodget/no_data_widget.dart';
 import 'package:fiber/config/constant.dart';
+import 'package:fiber/controller/notification/notification_controller.dart';
 import 'package:fiber/controller/offers/offers_controller.dart';
 import 'package:fiber/view/notification/components/notify_widget.dart';
 import 'package:fiber/view/notification/components/offers_card_widget.dart';
@@ -19,6 +20,7 @@ class _NotificationPageState extends State<NotificationPage>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
   OfferController controller = Get.put(OfferController());
+  NotificationController notificationController = Get.find();
 
   @override
   void initState() {
@@ -125,23 +127,35 @@ class _NotificationPageState extends State<NotificationPage>
                               )
                             ].animate(interval: 50.ms).fadeIn(),
                           )),
-                Column(
-                  children: [
-                    Expanded(
-                      child: ListView.separated(
-                        itemCount: 15,
-                        padding: EdgeInsets.only(
-                            left: Insets.margin,
-                            right: Insets.margin,
-                            bottom: Insets.margin),
-                        separatorBuilder: (context, index) => Gap(Insets.small),
-                        itemBuilder: (context, index) {
-                          return const NotifyWidget();
-                        },
-                      ),
-                    )
-                  ].animate(interval: 50.ms).fadeIn(),
-                ),
+                Obx(() => notificationController.isLoading.value == true
+                    ? Center(child: CircularProgressIndicator())
+                    : !notificationController.isLoading.value &&
+                            notificationController.notifications.isEmpty
+                        ? Center(
+                            child: NoDataWidget(),
+                          )
+                        : Column(
+                            children: [
+                              Expanded(
+                                child: ListView.separated(
+                                  itemCount: notificationController
+                                      .notifications.length,
+                                  padding: EdgeInsets.only(
+                                      left: Insets.margin,
+                                      right: Insets.margin,
+                                      bottom: Insets.margin),
+                                  separatorBuilder: (context, index) =>
+                                      Gap(Insets.small),
+                                  itemBuilder: (context, index) {
+                                    return NotifyWidget(
+                                        notificationModel:
+                                            notificationController
+                                                .notifications[index]);
+                                  },
+                                ),
+                              )
+                            ].animate(interval: 50.ms).fadeIn(),
+                          )),
               ]),
             ),
           ],

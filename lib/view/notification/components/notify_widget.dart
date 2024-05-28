@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 
 import '../../../config/constant.dart';
 import 'package:since_date/since_date.dart';
+import '../../../models/notification_model.dart';
 
 class NotifyWidget extends StatelessWidget {
-  const NotifyWidget({super.key});
+  NotificationModel notificationModel;
+  NotifyWidget({super.key, required this.notificationModel});
 
   @override
   Widget build(BuildContext context) {

@@ -8,7 +8,8 @@ import 'package:fiber/view/plans/components/custom_back_button.dart';
 import 'package:flutter/material.dart';
 
 class SupportPage extends StatefulWidget {
-  const SupportPage({super.key});
+  final bool isRepare;
+  const SupportPage({super.key, this.isRepare = false});
 
   @override
   State<SupportPage> createState() => _SupportPageState();
@@ -38,7 +39,7 @@ class _SupportPageState extends State<SupportPage> {
           ],
         ),
         title: Text(
-          "مراسلة الدعم".tr,
+          widget.isRepare ? 'طلب صيانة' : "مراسلة الدعم".tr,
           style: Theme.of(context)
               .textTheme
               .titleMedium!
@@ -68,7 +69,7 @@ class _SupportPageState extends State<SupportPage> {
                       controller: subjectController,
                       validators: [IsRequiredRule()],
                       isLabelVisible: true,
-                      label: 'عنوان المشكلة'.tr,
+                      label: widget.isRepare ? 'العنوان' : 'عنوان المشكلة'.tr,
                       hint: '',
                       bottomSpace: Insets.medium,
                     ),
@@ -76,7 +77,9 @@ class _SupportPageState extends State<SupportPage> {
                       controller: descriptionController,
                       validators: [IsRequiredRule()],
                       isLabelVisible: true,
-                      label: 'عنوان المشكلة'.tr,
+                      label: widget.isRepare
+                          ? 'تفاصيل الصيانة'
+                          : 'عنوان المشكلة'.tr,
                       hint: '',
                       maxLines: 10,
                       bottomSpace: Insets.medium,
