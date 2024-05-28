@@ -196,9 +196,9 @@ class AppTheme {
 
   ColorScheme _buildColorScheme(Brightness brightness) {
     final colorScheme = ColorScheme.fromSeed(
-      background: Color(0xFFF3EDED),
-      secondary: Color(0xFFEA6F45),
-      primary: Color(0xFF592D96),
+      background: const Color(0xFFF3EDED),
+      secondary: const Color(0xFFEA6F45),
+      primary: const Color(0xFF592D96),
       seedColor: const Color(0xff592D96),
       brightness: brightness,
     );
