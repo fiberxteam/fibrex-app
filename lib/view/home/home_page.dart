@@ -96,88 +96,98 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
           SizedBox(height: Insets.small),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: Insets.small),
-            child: Row(
-              children: [
-                CustomServiceCard(
-                  icon: Assets.assetsIconsArrowsClockwise,
-                  title: 'تجديد إشتراك'.tr,
-                  onTap: () {
-                    customBottomSheet(
-                      context,
-                      height: context.height * 0.6,
-                      child: const SingleChildScrollView(
-                        child: CustomRenewSubscriptionCard(),
-                      ),
-                    );
-                  },
-                ),
-                SizedBox(width: Insets.small),
-                CustomServiceCard(
-                  onTap: () => {Get.to(const SpeedTestPage())},
-                  icon: Assets.assetsIconsSpeedometer,
-                  title: 'فحص السرعة'.tr,
-                ),
-                SizedBox(width: Insets.small),
-                CustomServiceCard(
-                  onTap: () {
-                    Get.to(() => const MapPage(),
-                        transition: Transition.fadeIn);
-                  },
-                  icon: Assets.assetsIconsMapPin,
-                  title: 'مواقعنا والتغطية'.tr,
-                ),
-                SizedBox(width: Insets.small),
-                CustomServiceCard(
-                  onTap: () {
-                    Get.to(const InternetUsagePage());
-                  },
-                  icon: Assets.assetsIconsChartLine,
-                  title: 'استخدام البيانات'.tr,
-                )
-              ],
+          Obx(
+            () => Padding(
+              padding: EdgeInsets.symmetric(horizontal: Insets.small),
+              child: Row(
+                children: [
+                  !homeController.isLoading.value &&
+                          null == homeController.serviceInfo.value.profileId
+                      ? Container()
+                      : CustomServiceCard(
+                          icon: Assets.assetsIconsArrowsClockwise,
+                          title: 'تجديد إشتراك'.tr,
+                          onTap: () {
+                            customBottomSheet(
+                              context,
+                              height: context.height * 0.6,
+                              child: const SingleChildScrollView(
+                                child: CustomRenewSubscriptionCard(),
+                              ),
+                            );
+                          },
+                        ),
+                  SizedBox(width: Insets.small),
+                  CustomServiceCard(
+                    onTap: () => {Get.to(const SpeedTestPage())},
+                    icon: Assets.assetsIconsSpeedometer,
+                    title: 'فحص السرعة'.tr,
+                  ),
+                  SizedBox(width: Insets.small),
+                  CustomServiceCard(
+                    onTap: () {
+                      Get.to(() => const MapPage(),
+                          transition: Transition.fadeIn);
+                    },
+                    icon: Assets.assetsIconsMapPin,
+                    title: 'مواقعنا والتغطية'.tr,
+                  ),
+                  SizedBox(width: Insets.small),
+                  CustomServiceCard(
+                    onTap: () {
+                      Get.to(const InternetUsagePage());
+                    },
+                    icon: Assets.assetsIconsChartLine,
+                    title: 'استخدام البيانات'.tr,
+                  )
+                ],
+              ),
             ),
           ),
           SizedBox(height: Insets.small),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: Insets.small),
-            child: Row(
-              children: [
-                CustomServiceCard(
-                  onTap: () {
-                    Get.to(
-                      () => const ReceiptsPage(),
-                      transition: Transition.fadeIn,
-                    );
-                  },
-                  icon: Assets.assetsIconsReceipts,
-                  title: 'الفواتير'.tr,
-                ),
-                SizedBox(width: Insets.small),
-                CustomServiceCard(
-                  icon: Assets.assetsIconsHandCoins,
-                  title: 'الباقات'.tr,
-                  onTap: () {
-                    Get.to(() => const PlansPage(),
-                        transition: Transition.fadeIn);
-                  },
-                ),
-                SizedBox(width: Insets.small),
-                CustomServiceCard(
-                  icon: Assets.assetsIconsWifiX,
-                  title: 'الصيانة'.tr,
-                ),
-                SizedBox(width: Insets.small),
-                CustomServiceCard(
-                  onTap: () {
-                    Get.to(() => const SupportPage(),
-                        transition: Transition.fadeIn);
-                  },
-                  icon: Assets.assetsIconsHeadset,
-                  title: 'الدعم'.tr,
-                )
-              ],
+          Obx(
+            () => Padding(
+              padding: EdgeInsets.symmetric(horizontal: Insets.small),
+              child: Row(
+                children: [
+                  !homeController.isLoading.value &&
+                          null == homeController.serviceInfo.value.profileId
+                      ? Container()
+                      : CustomServiceCard(
+                          onTap: () {
+                            Get.to(
+                              () => const ReceiptsPage(),
+                              transition: Transition.fadeIn,
+                            );
+                          },
+                          icon: Assets.assetsIconsReceipts,
+                          title: 'الفواتير'.tr,
+                        ),
+                  SizedBox(width: Insets.small),
+                  CustomServiceCard(
+                    icon: Assets.assetsIconsHandCoins,
+                    title: 'الباقات'.tr,
+                    onTap: () {
+                      Get.to(() => const PlansPage(),
+                          transition: Transition.fadeIn);
+                    },
+                  ),
+                  SizedBox(width: Insets.small),
+                  CustomServiceCard(
+                    icon: Assets.assetsIconsWifiX,
+                    title: 'الصيانة'.tr,
+                  ),
+                  SizedBox(width: Insets.small),
+                  CustomServiceCard(
+                    onTap: () {
+                      Get.to(() => const SupportPage(),
+                          transition: Transition.fadeIn);
+                    },
+                    icon: Assets.assetsIconsHeadset,
+                    title: 'الدعم'.tr,
+                  )
+                ],
+              ),
             ),
           ),
           SizedBox(height: Insets.medium),
