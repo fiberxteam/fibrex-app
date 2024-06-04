@@ -11,18 +11,18 @@ class PlanCardWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        showBottomSheet(
-            backgroundColor: Colors.transparent,
-            context: context,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(Insets.large),
-                topRight: Radius.circular(Insets.large),
-              ),
-            ),
-            builder: (BuildContext context) {
-              return CustomActiveBottomSheet();
-            });
+        // showBottomSheet(
+        //     backgroundColor: Colors.transparent,
+        //     context: context,
+        //     shape: RoundedRectangleBorder(
+        //       borderRadius: BorderRadius.only(
+        //         topLeft: Radius.circular(Insets.large),
+        //         topRight: Radius.circular(Insets.large),
+        //       ),
+        //     ),
+        //     builder: (BuildContext context) {
+        //       return CustomActiveBottomSheet();
+        //     });
       },
       child: Container(
         padding: EdgeInsets.all(Insets.margin),
@@ -36,13 +36,17 @@ class PlanCardWidget extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-              width: MediaQuery.of(context).size.width,
-              height: 150,
+              clipBehavior: Clip.antiAlias,
               decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(Insets.large),
-                  image: DecorationImage(
-                      image: AssetImage(Assets.assetsImagesImage1),
-                      fit: BoxFit.cover)),
+                borderRadius: BorderRadius.circular(Insets.medium),
+              ),
+              child: Images(
+                color: Theme.of(context).colorScheme.primary,
+                width: MediaQuery.of(context).size.width,
+                height: 150,
+                radius: Insets.exLarge,
+                img: plansModel.imageUrl,
+              ),
             ),
             Gap(Insets.medium),
             Text(
@@ -59,7 +63,7 @@ class PlanCardWidget extends StatelessWidget {
             ),
             Gap(Insets.small),
             Text(
-              plansModel.price.toString() + " د.ع",
+              formatCurrency(plansModel.price),
               style: Theme.of(context).textTheme.titleMedium!.copyWith(
                   color: Theme.of(context).colorScheme.primary,
                   fontWeight: FontWeight.bold,

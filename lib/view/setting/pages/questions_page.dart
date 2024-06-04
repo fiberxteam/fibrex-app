@@ -76,6 +76,7 @@ class _QuestionsPageState extends State<QuestionsPage> {
             return Text(item.question ?? "");
           },
           body: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Divider(
                 thickness: 0.5,

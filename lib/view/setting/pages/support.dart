@@ -79,7 +79,7 @@ class _SupportPageState extends State<SupportPage> {
                       isLabelVisible: true,
                       label: widget.isRepare
                           ? 'تفاصيل الصيانة'
-                          : 'عنوان المشكلة'.tr,
+                          : 'تفاصيل المشكلة'.tr,
                       hint: '',
                       maxLines: 10,
                       bottomSpace: Insets.medium,

@@ -1,5 +1,8 @@
 import 'package:fiber/config/constant.dart';
+import 'package:fiber/controller/home/home_controller.dart';
+import 'package:fiber/controller/sas/sas_controller.dart';
 import 'package:fiber/models/service_model.dart';
+import 'package:fiber/view/home/components/custom_add_to_wallet.dart';
 import 'package:fiber/view/home/components/custom_subscription_info.dart';
 import 'package:flutter/material.dart';
 
@@ -82,28 +85,57 @@ class CustomSubScribeWidget extends StatelessWidget {
                           double.parse(serviceModel.price!.toString())),
                     ),
                     CustomSubscriptionInfo(
-                      icon: Assets.assetsIconsCalendarCheck,
-                      title: 'المدة المتبقية'.tr,
-                      subtitle: serviceModel.expiration!
-                          .difference(DateTime.now())
-                          .inDays
-                          .toString(),
-                    ),
+                        icon: Assets.assetsIconsCalendarCheck,
+                        title: 'المدة المتبقية'.tr,
+                        subtitle: new DateTime(
+                                DateTime.now().year,
+                                serviceModel.expiration!.month,
+                                serviceModel.expiration!.day,
+                                22,
+                                0,
+                                0,
+                                0,
+                                0)
+                            .difference(DateTime.now())
+                            .inDays
+                            .toString()),
                   ],
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    // CustomSubscriptionInfo(
-                    //   icon: Assets.assetsIconsCalendarCheck,
-                    //   title: 'تاريخ الإشتراك'.tr,
-                    //   subtitle: '11-5-2024',
-                    // ),
                     CustomSubscriptionInfo(
                       icon: Assets.assetsIconsCalendarX,
                       title: 'تاريخ الانتهاء'.tr,
                       subtitle: makeDate(serviceModel.expiration),
                     ),
+                    Obx(
+                      () => CustomSubscriptionInfo(
+                        icon: Assets.assetsIconsWallet,
+                        title: 'المحفظة'.tr,
+                        trailing: InkMe(
+                          onTap: () {
+                            customBottomSheet(
+                              context,
+                              height: context.height * 0.3,
+                              child: SingleChildScrollView(
+                                child: CustomAddToWallet(),
+                              ),
+                            );
+                          },
+                          child: Icon(
+                            CupertinoIcons.add,
+                            color: Colors.white,
+                          ),
+                        ),
+                        subtitle: formatCurrency(double.parse(
+                            Get.find<HomeController>()
+                                .userInfo
+                                .value
+                                .balance
+                                .toString())),
+                      ),
+                    )
                   ],
                 )
               ],

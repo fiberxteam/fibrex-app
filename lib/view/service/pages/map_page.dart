@@ -2,6 +2,7 @@ import 'package:fiber/config/constant.dart';
 import 'package:fiber/controller/locations/location_controller.dart';
 import 'package:fiber/view/plans/components/custom_back_button.dart';
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class MapPage extends StatefulWidget {
@@ -13,12 +14,23 @@ class MapPage extends StatefulWidget {
 
 class _MapPageState extends State<MapPage> {
   LocationsController locationsController = Get.put(LocationsController());
+  late LatLng _currentPosition = LatLng(1, 1);
   // list of set of markers
   Set<Marker> markers = {};
+
+  Future<void> _getCurrentLocation() async {
+    Position position = await Geolocator.getCurrentPosition(
+        desiredAccuracy: LocationAccuracy.high);
+    setState(() {
+      _currentPosition = LatLng(position.latitude, position.longitude);
+    });
+  }
 
   @override
   void initState() {
     // TODO: implement initState
+
+    _getCurrentLocation();
 
     locationsController.getData().then((value) {
       print(value);
@@ -66,8 +78,8 @@ class _MapPageState extends State<MapPage> {
       body: Center(
         child: GoogleMap(
           mapType: MapType.normal,
-          initialCameraPosition: const CameraPosition(
-              bearing: 1.8334901395799, target: LatLng(33.31, 44.5), zoom: 14),
+          initialCameraPosition:
+              CameraPosition(target: _currentPosition, zoom: 14),
           onMapCreated: (GoogleMapController controller) {
             controller.setMapStyle(Get.isDarkMode
                 ? """

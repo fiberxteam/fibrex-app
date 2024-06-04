@@ -19,40 +19,42 @@ class _PlansPageState extends State<PlansPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        toolbarHeight: 70,
-        leadingWidth: 65,
-        leading: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Gap(Insets.margin),
-            const CustomBackButton(),
-          ],
+        appBar: AppBar(
+          backgroundColor: Colors.transparent,
+          toolbarHeight: 70,
+          leadingWidth: 65,
+          leading: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Gap(Insets.margin),
+              const CustomBackButton(),
+            ],
+          ),
+          title: Text(
+            "باقات الانترنت",
+            style: Theme.of(context)
+                .textTheme
+                .titleMedium!
+                .copyWith(fontWeight: FontWeight.bold),
+          ),
         ),
-        title: Text(
-          "باقات الانترنت",
-          style: Theme.of(context)
-              .textTheme
-              .titleMedium!
-              .copyWith(fontWeight: FontWeight.bold),
-        ),
-      ),
-      body: Obx(() => plansController.isLoading.value
-          ? Center(
-              child: CircularProgressIndicator(),
-            )
-          : !plansController.isLoading.value && plansController.plans.isEmpty
-              ? NoDataWidget(
-                  refresh: () => plansController.getData(),
-                  details: "سيتم نشر الباقات في اقرب وقت",
+        body: SafeArea(
+          child: Obx(() => plansController.isLoading.value
+              ? Center(
+                  child: CircularProgressIndicator(),
                 )
-              : ListView(
-                  padding: EdgeInsets.all(Insets.margin),
-                  children: plansController.plans.map((element) {
-                    return PlanCardWidget(plansModel: element);
-                  }).toList(),
-                )),
-    );
+              : !plansController.isLoading.value &&
+                      plansController.plans.isEmpty
+                  ? NoDataWidget(
+                      refresh: () => plansController.getData(),
+                      details: "سيتم نشر الباقات في اقرب وقت",
+                    )
+                  : ListView(
+                      padding: EdgeInsets.all(Insets.margin),
+                      children: plansController.plans.map((element) {
+                        return PlanCardWidget(plansModel: element);
+                      }).toList(),
+                    )),
+        ));
   }
 }

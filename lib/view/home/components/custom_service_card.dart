@@ -1,17 +1,19 @@
 import 'package:fiber/config/constant.dart';
+import 'package:flutter/material.dart';
 
 class CustomServiceCard extends StatelessWidget {
   final String icon;
   final String title;
   final void Function()? onTap;
   final bool? servicePage;
-  const CustomServiceCard({
-    super.key,
-    required this.icon,
-    required this.title,
-    this.onTap,
-    this.servicePage,
-  });
+  final bool? isDisabled;
+  const CustomServiceCard(
+      {super.key,
+      required this.icon,
+      required this.title,
+      this.onTap,
+      this.servicePage,
+      this.isDisabled = false});
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +31,9 @@ class CustomServiceCard extends StatelessWidget {
               padding: EdgeInsets.symmetric(
                   horizontal: Insets.small, vertical: Insets.exSmall),
               decoration: BoxDecoration(
-                color: context.theme.colorScheme.surface.withOpacity(0.5),
+                color: isDisabled == true
+                    ? Color.fromARGB(255, 224, 220, 220)
+                    : context.theme.colorScheme.surface.withOpacity(0.5),
                 border: Border.all(
                   color: context.theme.colorScheme.surface,
                   width: 1,

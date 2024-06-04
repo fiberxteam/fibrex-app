@@ -11,7 +11,7 @@ class NotificationController extends GetxController {
     isLoading.value = true;
     // var response =
 
-    await BaseClient.get(
+    var data = await BaseClient.get(
       api: '/notifications',
       queryParameters: {
         'pageNumber': page,
@@ -19,6 +19,7 @@ class NotificationController extends GetxController {
       },
     );
     // notifications.value = NotificationModel.fromJson(response);
+    // notifications = notificationModelToJson(data)
     isLoading.value = false;
   }
 

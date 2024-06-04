@@ -87,9 +87,9 @@ class CustomOutLineButton extends StatelessWidget {
       child: Container(
         width: context.width,
         padding: EdgeInsets.symmetric(
-            horizontal: Insets.medium, vertical: padding ?? Insets.small),
+            horizontal: Insets.medium, vertical: padding ?? Insets.margin),
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(Insets.medium),
+          borderRadius: BorderRadius.circular(Insets.large),
           color: Colors.transparent,
           border: Border.all(
             color: color ?? context.theme.colorScheme.onPrimaryContainer,

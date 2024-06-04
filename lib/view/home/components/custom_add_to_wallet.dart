@@ -6,18 +6,16 @@ import 'package:fiber/view/home/components/custom_renew_card_item.dart';
 import 'package:fiber/controller/home/home_controller.dart';
 import 'package:flutter/material.dart';
 
-class CustomRenewSubscriptionCard extends StatefulWidget {
-  CustomRenewSubscriptionCard({
+class CustomAddToWallet extends StatefulWidget {
+  CustomAddToWallet({
     super.key,
   });
 
   @override
-  State<CustomRenewSubscriptionCard> createState() =>
-      _CustomRenewSubscriptionCardState();
+  State<CustomAddToWallet> createState() => _CustomRenewSubscriptionCardState();
 }
 
-class _CustomRenewSubscriptionCardState
-    extends State<CustomRenewSubscriptionCard> {
+class _CustomRenewSubscriptionCardState extends State<CustomAddToWallet> {
   HomeController cc = Get.find();
   TextEditingController pin = TextEditingController();
 
@@ -29,16 +27,10 @@ class _CustomRenewSubscriptionCardState
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                ' الباقة'.tr,
+                'تعبئة بطاقة'.tr,
                 style: context.theme.textTheme.titleMedium!.copyWith(
                   fontWeight: FontWeight.bold,
                 ),
-              ),
-              Gap(Insets.medium),
-              CustomRenewCardItem(
-                title: cc.serviceInfo.value.profileName ?? "",
-                prices: double.parse(cc.serviceInfo.value.price.toString()),
-                isActive: true,
               ),
               Gap(Insets.medium),
               CustomTextFormField(
@@ -46,14 +38,14 @@ class _CustomRenewSubscriptionCardState
                   IsRequiredRule(),
                 ],
                 isLabelVisible: true,
-                label: 'رمز التفعيل'.tr,
+                label: 'رقم البطاقة'.tr,
                 hint: '***',
                 hasBorder: true,
                 controller: pin,
               ),
               Gap(Insets.medium),
               CustomFillButton(
-                loading: cc.activePinLoading.value
+                loading: cc.redeemLoading.value
                     ? SizedBox(
                         height: 24,
                         width: 24,
@@ -65,27 +57,11 @@ class _CustomRenewSubscriptionCardState
                     : null,
                 title: 'تعبئة'.tr,
                 onTap: () {
-                  cc.activePin(pin: pin.text);
+                  cc.addReedem(pin: pin.text);
                 },
                 backgroundColor: context.theme.colorScheme.primary,
               ),
               Gap(Insets.medium),
-              CustomOutLineButton(
-                loading: cc.activeWithoutReedemLoading.value
-                    ? SizedBox(
-                        height: 24,
-                        width: 24,
-                        child: CircularProgressIndicator(
-                          color: Colors.white,
-                          strokeWidth: 2,
-                        ),
-                      )
-                    : null,
-                title: 'تفعيل من المحفظة'.tr,
-                onTap: () {
-                  cc.activeWithoutReedem();
-                },
-              )
             ],
           )),
     );

@@ -33,7 +33,7 @@ class _ServicePageState extends State<ServicePage> {
               customBottomSheet(
                 context,
                 height: context.height * 0.6,
-                child: const SingleChildScrollView(
+                child: SingleChildScrollView(
                   child: CustomRenewSubscriptionCard(),
                 ),
               );

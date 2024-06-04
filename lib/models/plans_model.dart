@@ -15,8 +15,9 @@ class PlansModel {
   bool? deleted;
   DateTime? creationDate;
   String? name;
-  int? price;
+  dynamic? price;
   String? description;
+  String? imageUrl;
 
   PlansModel({
     this.id,
@@ -25,6 +26,7 @@ class PlansModel {
     this.name,
     this.price,
     this.description,
+    this.imageUrl,
   });
 
   factory PlansModel.fromJson(Map<String, dynamic> json) => PlansModel(
@@ -34,6 +36,7 @@ class PlansModel {
         name: json["name"],
         price: json["price"],
         description: json["description"],
+        imageUrl: json["imageUrl"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -43,5 +46,6 @@ class PlansModel {
         "name": name,
         "price": price,
         "description": description,
+        "imageUrl": imageUrl,
       };
 }

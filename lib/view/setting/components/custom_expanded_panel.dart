@@ -46,6 +46,8 @@ class _CustomExpansionPanelListState extends State<CustomExpansionPanelList> {
         ));
 
       final header = Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           new Expanded(
             child: new AnimatedContainer(
@@ -57,6 +59,7 @@ class _CustomExpansionPanelListState extends State<CustomExpansionPanelList> {
               //     ? kExpandedEdgeInsets
               //     : EdgeInsets.zero,
               child: Container(
+                alignment: Alignment.centerRight,
                 padding: EdgeInsets.all(Insets.exSmall),
                 height: _kPanelHeaderCollapsedHeight,
                 child: widget.children[index].headerBuilder(
@@ -66,9 +69,9 @@ class _CustomExpansionPanelListState extends State<CustomExpansionPanelList> {
               ),
             ),
           ),
-          new Container(
+          Container(
             margin: const EdgeInsetsDirectional.only(end: 10.0),
-            child: new ExpandIcon(
+            child: ExpandIcon(
               isExpanded: _isChildExpanded(index),
               onPressed: (bool isExpanded) {
                 if (widget.expansionCallback != null)
@@ -80,21 +83,22 @@ class _CustomExpansionPanelListState extends State<CustomExpansionPanelList> {
       );
 
       items.add(
-        new Container(
+        Container(
           margin: EdgeInsets.only(bottom: 16),
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(Insets.large),
               border: Border.all(width: 1, color: Colors.white)),
-          key: new _SaltedKey<BuildContext, int>(context, index * 2),
-          child: new Material(
+          key: _SaltedKey<BuildContext, int>(context, index * 2),
+          child: Material(
             borderRadius: BorderRadius.circular(Insets.large),
             elevation: 0.0,
             color: Colors.white.withOpacity(0.6),
             borderOnForeground: true,
-            child: new Column(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 header,
-                new AnimatedCrossFade(
+                AnimatedCrossFade(
                   firstChild: new Container(height: 0.0),
                   secondChild: widget.children[index].body,
                   firstCurve:

@@ -5,11 +5,13 @@ class CustomSubscriptionInfo extends StatelessWidget {
   final String icon;
   final String title;
   final String subtitle;
+  final Widget? trailing;
   const CustomSubscriptionInfo({
     super.key,
     required this.icon,
     required this.title,
     required this.subtitle,
+    this.trailing,
   });
 
   @override
@@ -17,6 +19,7 @@ class CustomSubscriptionInfo extends StatelessWidget {
     return Expanded(
       child: ListTile(
         dense: true,
+        trailing: trailing,
         horizontalTitleGap: Insets.small,
         visualDensity: VisualDensity.compact,
         contentPadding: EdgeInsets.zero,

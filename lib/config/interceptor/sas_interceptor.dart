@@ -6,11 +6,15 @@ import 'package:fiber/view/splash/splash_page.dart';
 import 'package:awesome_dio_interceptor/awesome_dio_interceptor.dart';
 import 'package:dio/dio.dart';
 import 'package:fiber/config/constant.dart';
+import 'package:get/get.dart';
 import 'package:onesignal_flutter/onesignal_flutter.dart';
+import '../../client/get_endpoint_url.dart';
 
 class SasHttp extends GetxController {
   Dio dio = Dio();
-  static const String baseUrls = 'http://185.16.25.254/user/api/index.php';
+  RxString url = ''.obs;
+
+  SassEndpoint endpoint = SassEndpoint();
 
   @override
   void onInit() {
@@ -18,9 +22,14 @@ class SasHttp extends GetxController {
     configureDio();
   }
 
-  void configureDio() {
+  getSassUrl() async {
+    url.value = await endpoint.getEndpoint() ?? "";
+  }
+
+  configureDio() async {
+    await getSassUrl();
     dio
-      ..options.baseUrl = baseUrls
+      ..options.baseUrl = '${url.value}/user/api/index.php'
       ..options.connectTimeout = const Duration(seconds: 120)
       ..options.receiveTimeout = const Duration(seconds: 120)
       ..options.contentType = 'application/json; charset=utf-8'
@@ -61,20 +70,19 @@ class SasHttp extends GetxController {
 
   void handleError(DioError e) {
     if (e.message?.contains('The request connection took longer') == true) {
-      noti('Check Your Network Connections'.tr, e.message);
+      noti('Check Your Network Connections'.tr, "حدث مشكلة في الاتصال بالمزود");
     }
     if (e.response?.statusCode == 401) {
       handleUnauthorized();
     } else if (e.response?.statusCode == 400) {
       handleBadRequest(e);
     } else if (e.response?.statusCode == 403) {
-      noti('Error'.tr, 'Forbidden'.tr);
+      noti('Error'.tr, "حدث مشكلة في الاتصال بالمزود");
     } else if (e.response?.statusCode == 500) {
-      noti('Error'.tr, 'Server Error'.tr);
+      noti('Error'.tr, "حدث مشكلة في الاتصال بالمزود");
     } else {
       try {
-        noti('Error'.tr,
-            e.response?.data['message'] ?? e.response?.data['error']);
+        noti('Error'.tr, "حدث مشكلة في الاتصال بالمزود");
       } catch (s) {
         noti('Error'.tr, s.toString());
       }
@@ -85,7 +93,7 @@ class SasHttp extends GetxController {
   }
 
   void handleUnauthorized() async {
-    Get.offAll(const SplashPage());
+    noti('خطأ'.tr, "لم يتم العثور على المستخدم");
     prefs.remove('token');
     prefs.remove('role');
     OneSignal.shared.removeExternalUserId();
@@ -94,9 +102,9 @@ class SasHttp extends GetxController {
   void handleBadRequest(DioError e) {
     try {
       final errorMessage = e.response!.data['message'];
-      noti('Error'.tr, errorMessage);
+      noti('خطأ'.tr, "حدث مشكلة في الاتصال بالمزود");
     } catch (s) {
-      noti('Error'.tr, e.response!.data.toString());
+      noti('خطأ'.tr, "حدث مشكلة في الاتصال بالمزود");
     }
     Logger().e(e.response?.data);
   }

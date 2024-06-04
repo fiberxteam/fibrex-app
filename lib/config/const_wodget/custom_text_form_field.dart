@@ -105,7 +105,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
           controller: widget.controller,
           obscureText: widget.obscureText,
           keyboardType: widget.keyboardType,
-          textDirection: Get.locale!.languageCode == "ar"
+          textDirection: isRTL(text ?? "") || widget.isRtl == true
               ? TextDirection.rtl
               : TextDirection.ltr,
           validator: (value) => widget.validators != null

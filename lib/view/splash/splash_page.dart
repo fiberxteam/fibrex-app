@@ -1,5 +1,6 @@
 import 'package:fiber/config/constant.dart';
 import 'package:fiber/main.dart';
+import 'package:fiber/select_gov/select_gov.dart';
 import 'package:fiber/view/auth/login_page.dart';
 import 'package:fiber/view/home/home_page.dart';
 import 'package:flutter/material.dart';
@@ -35,12 +36,16 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
             autoPlay: true,
             controller: controller,
             onComplete: (controller) {
-              if (prefs.getString('token') == null) {
-                Get.offAll(() => const LoginPage(),
-                    transition: Transition.fadeIn);
+              if (prefs.getBool("selected_gov") == null) {
+                Get.offAll(SelectGovPage());
               } else {
-                Get.offAll(() => const NavigationPage(),
-                    transition: Transition.fadeIn);
+                if (prefs.getString('token') == null) {
+                  Get.offAll(() => const LoginPage(),
+                      transition: Transition.fadeIn);
+                } else {
+                  Get.offAll(() => const NavigationPage(),
+                      transition: Transition.fadeIn);
+                }
               }
             },
             effects: [

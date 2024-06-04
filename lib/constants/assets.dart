@@ -1,17 +1,19 @@
 class Assets {
   Assets._();
-  
+
   /// Assets for assetsFontsCairoBold
   /// assets/fonts/cairo_bold.ttf
   static const String assetsFontsCairoBold = "assets/fonts/cairo_bold.ttf";
 
   /// Assets for assetsFontsCairoRegular
   /// assets/fonts/cairo_regular.ttf
-  static const String assetsFontsCairoRegular = "assets/fonts/cairo_regular.ttf";
+  static const String assetsFontsCairoRegular =
+      "assets/fonts/cairo_regular.ttf";
 
   /// Assets for assetsFontsExpoArabicBook
   /// assets/fonts/ExpoArabic-Book.ttf
-  static const String assetsFontsExpoArabicBook = "assets/fonts/ExpoArabic-Book.ttf";
+  static const String assetsFontsExpoArabicBook =
+      "assets/fonts/ExpoArabic-Book.ttf";
 
   /// Assets for assetsIconsArchive
   /// assets/icons/archive.svg
@@ -19,7 +21,8 @@ class Assets {
 
   /// Assets for assetsIconsArrowsClockwise
   /// assets/icons/ArrowsClockwise.svg
-  static const String assetsIconsArrowsClockwise = "assets/icons/ArrowsClockwise.svg";
+  static const String assetsIconsArrowsClockwise =
+      "assets/icons/ArrowsClockwise.svg";
 
   /// Assets for assetsIconsBag
   /// assets/icons/bag.svg
@@ -27,7 +30,10 @@ class Assets {
 
   /// Assets for assetsIconsCalendarCheck
   /// assets/icons/CalendarCheck.svg
-  static const String assetsIconsCalendarCheck = "assets/icons/CalendarCheck.svg";
+  static const String assetsIconsCalendarCheck =
+      "assets/icons/CalendarCheck.svg";
+
+  static const String assetsIconsWallet = "assets/icons/wallet.svg";
 
   /// Assets for assetsIconsCalendarX
   /// assets/icons/CalendarX.svg
@@ -199,11 +205,13 @@ class Assets {
 
   /// Assets for assetsImagesBackgroundLogin
   /// assets/images/background_login.png
-  static const String assetsImagesBackgroundLogin = "assets/images/background_login.png";
+  static const String assetsImagesBackgroundLogin =
+      "assets/images/background_login.png";
 
   /// Assets for assetsImagesBackgroundSplash
   /// assets/images/background_splash.png
-  static const String assetsImagesBackgroundSplash = "assets/images/background_splash.png";
+  static const String assetsImagesBackgroundSplash =
+      "assets/images/background_splash.png";
 
   /// Assets for assetsImagesBg
   /// assets/images/Bg.png
@@ -223,7 +231,8 @@ class Assets {
 
   /// Assets for assetsImagesLoginBackground
   /// assets/images/login_background.png
-  static const String assetsImagesLoginBackground = "assets/images/login_background.png";
+  static const String assetsImagesLoginBackground =
+      "assets/images/login_background.png";
 
   /// Assets for assetsImagesLogo
   /// assets/images/logo.png
@@ -239,7 +248,8 @@ class Assets {
 
   /// Assets for assetsImagesLogoBackground
   /// assets/images/logo_background.png
-  static const String assetsImagesLogoBackground = "assets/images/logo_background.png";
+  static const String assetsImagesLogoBackground =
+      "assets/images/logo_background.png";
 
   /// Assets for assetsImagesSubscripe
   /// assets/images/subscripe.png
@@ -261,4 +271,3 @@ class Assets {
   /// assets/json/trip.json
   static const String assetsJsonTrip = "assets/json/trip.json";
 }
-

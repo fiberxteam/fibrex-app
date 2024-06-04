@@ -3,6 +3,7 @@ import 'package:fiber/config/constant.dart';
 import 'package:fiber/controller/ads/ads_controller.dart';
 import 'package:fiber/controller/home/home_controller.dart';
 import 'package:fiber/controller/news/news_controller.dart';
+import 'package:fiber/main.dart';
 import 'package:fiber/view/auth/login_page.dart';
 import 'package:fiber/view/home/components/custom_app_bar.dart';
 import 'package:fiber/view/home/components/custom_news_card.dart';
@@ -10,6 +11,9 @@ import 'package:fiber/view/home/components/custom_offers_card.dart';
 import 'package:fiber/view/home/components/custom_renew_subscription_card.dart';
 import 'package:fiber/view/home/components/custom_service_card.dart';
 import 'package:fiber/view/home/components/custom_sub_scribe_widget.dart';
+import 'package:fiber/view/home/components/requst_active_page.dart';
+import 'package:fiber/view/news/news_page.dart';
+import 'package:fiber/view/notification/components/offers_card_widget.dart';
 import 'package:fiber/view/plans/plans_page.dart';
 import 'package:fiber/view/service/pages/map_page.dart';
 import 'package:fiber/view/service/pages/receipts.dart';
@@ -34,6 +38,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    var isrequested = prefs.getString('requested');
     return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -41,28 +46,31 @@ class _HomePageState extends State<HomePage> {
           SizedBox(height: Insets.exLarge),
           Obx(() => !homeController.isLoading.value &&
                   null == homeController.serviceInfo.value.profileId
-              ? Container(
-                  padding: EdgeInsets.all(Insets.margin),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Text(
-                        "سجل دخولك للحصول على مميزات التطبيق",
-                        style: context.theme.textTheme.titleLarge!
-                            .copyWith(color: Color(0xFF7C758A)),
-                        textAlign: TextAlign.center,
+              ? isrequested == null
+                  ? Container(
+                      padding: EdgeInsets.all(Insets.margin),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Gap(Insets.large),
+                          CustomOutLineButton(
+                            onTap: () {
+                              Get.to(ReqyestActivePage());
+                            },
+                            title: "طلب تفعيل الخدمة",
+                          ),
+                        ],
                       ),
-                      Gap(Insets.margin),
-                      CustomFillButton(
-                        onTap: () {
-                          Get.to(LoginPage());
-                        },
-                        title: "تسجيل الدخول",
-                        backgroundColor: context.theme.colorScheme.primary,
-                      ),
-                    ],
-                  ),
-                )
+                    )
+                  : Container(
+                      margin: EdgeInsets.only(top: Insets.margin),
+                      padding: EdgeInsets.all(Insets.margin),
+                      child: Text(
+                          "- تم ارسال طلب تفعيل الخدمة سيتم الاتصال بك قريبا",
+                          style: context.theme.textTheme.titleMedium!.copyWith(
+                            color: context.theme.colorScheme.primary,
+                          )),
+                    )
               : Container()),
           Obx(() => null == homeController.userInfo.value.id
               ? Container()
@@ -84,7 +92,10 @@ class _HomePageState extends State<HomePage> {
                       child: CustomSubScribeWidget(
                           serviceModel: homeController.serviceInfo.value),
                     )),
-          SizedBox(height: Insets.medium),
+          !homeController.isLoading.value &&
+                  null == homeController.serviceInfo.value.profileId
+              ? Container()
+              : SizedBox(height: Insets.medium),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: Insets.small),
             child: Text(
@@ -107,14 +118,19 @@ class _HomePageState extends State<HomePage> {
                       : CustomServiceCard(
                           icon: Assets.assetsIconsArrowsClockwise,
                           title: 'تجديد إشتراك'.tr,
+                          isDisabled: true,
                           onTap: () {
-                            customBottomSheet(
-                              context,
-                              height: context.height * 0.6,
-                              child: const SingleChildScrollView(
-                                child: CustomRenewSubscriptionCard(),
-                              ),
-                            );
+                            Get.snackbar("الخدمة غير مفعلة",
+                                "سيتم تفعيل خدمة التجديد قريبا",
+                                margin: EdgeInsets.all(20),
+                                snackPosition: SnackPosition.BOTTOM);
+                            // customBottomSheet(
+                            //   context,
+                            //   height: context.height * 0.45,
+                            //   child: SingleChildScrollView(
+                            //     child: CustomRenewSubscriptionCard(),
+                            //   ),
+                            // );
                           },
                         ),
                   SizedBox(width: Insets.small),
@@ -133,13 +149,26 @@ class _HomePageState extends State<HomePage> {
                     title: 'مواقعنا والتغطية'.tr,
                   ),
                   SizedBox(width: Insets.small),
-                  CustomServiceCard(
-                    onTap: () {
-                      Get.to(const InternetUsagePage());
-                    },
-                    icon: Assets.assetsIconsChartLine,
-                    title: 'استخدام البيانات'.tr,
-                  )
+                  !homeController.isLoading.value &&
+                          null == homeController.serviceInfo.value.profileId
+                      ? Container()
+                      : CustomServiceCard(
+                          onTap: () {
+                            Get.to(const InternetUsagePage());
+                          },
+                          icon: Assets.assetsIconsChartLine,
+                          title: 'استخدام البيانات'.tr,
+                        ),
+                  !homeController.isLoading.value &&
+                          null == homeController.serviceInfo.value.profileId
+                      ? CustomServiceCard(
+                          onTap: () {
+                            Get.to(const NewsPage());
+                          },
+                          icon: Assets.assetsIconsNews,
+                          title: 'الاخبار'.tr,
+                        )
+                      : Container()
                 ],
               ),
             ),

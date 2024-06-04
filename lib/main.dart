@@ -20,7 +20,7 @@ void main() async {
   Get.changeThemeMode(ThemeMode.light);
   Get.updateLocale(const Locale('ar'));
   OneSignal.shared.setLogLevel(OSLogLevel.debug, OSLogLevel.none);
-  OneSignal.shared.setAppId('54c66e7d-707b-481f-b354-f46c3443b8df');
+  OneSignal.shared.setAppId('6710bf63-e967-4d5e-8447-d8abd4a201c0');
   OneSignal.shared.promptUserForPushNotificationPermission().then((accepted) {
     Logger().d("Accepted permission: $accepted");
   });
@@ -46,6 +46,8 @@ void main() async {
     event.complete(event.notification);
   });
 
+  // set segments
+  OneSignal.shared.setExternalUserId(prefs.getString('token') ?? "");
   // var deviceLanguageCode = Get.deviceLocale!.languageCode;
   // var local = Locale(prefs.getString("languageCode") ?? deviceLanguageCode);
 
@@ -108,7 +110,6 @@ class _MyAppState extends State<MyApp> {
           // locale: Get.locale!,
           supportedLocales: const [
             Locale("ar", "SA"),
-            Locale("en", "US"),
           ],
           fallbackLocale: const Locale("ar", "AR"),
           localizationsDelegates: const [

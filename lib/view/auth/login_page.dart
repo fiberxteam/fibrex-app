@@ -5,6 +5,7 @@ import 'package:fiber/config/validator/validators.dart';
 import 'package:fiber/controller/auth/auth_controller.dart';
 import 'package:fiber/controller/set_data_controller.dart';
 import 'package:fiber/view/auth/components/custom_app_bar.dart';
+import 'package:fiber/view/auth/signup_page.dart';
 import 'package:fiber/view/navigation/navigation_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -81,7 +82,8 @@ class _LoginPageState extends State<LoginPage> {
                                 data.isShow.value = !data.isShow.value;
                               },
                               child: Container(
-                                margin: const EdgeInsets.only(top: 10),
+                                margin:
+                                    const EdgeInsets.only(top: 10, right: 5),
                                 child: Icon(
                                   !data.isShow.value
                                       ? CupertinoIcons.eye
@@ -96,8 +98,13 @@ class _LoginPageState extends State<LoginPage> {
                           CustomFillButton(
                             title: 'Login'.tr,
                             loading: data.isLoading.value
-                                ? CircularProgressIndicator(
-                                    color: context.theme.colorScheme.onPrimary,
+                                ? SizedBox(
+                                    height: 24,
+                                    width: 24,
+                                    child: CircularProgressIndicator(
+                                      color: Colors.white,
+                                      strokeWidth: 2,
+                                    ),
                                   )
                                 : null,
                             onTap: () {
@@ -157,19 +164,37 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                     ),
                     Gap(Insets.large),
-                    InkMe(
-                      onTap: () {
-                        Get.offAll(const NavigationPage());
-                      },
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            'ليس لديك حساب '.tr,
-                            style: context.theme.textTheme.titleSmall!.copyWith(
-                                color: context.theme.colorScheme.outline),
-                          ),
-                          Text(
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          'ليس لديك حساب '.tr,
+                          style: context.theme.textTheme.titleSmall!.copyWith(
+                              color: context.theme.colorScheme.outline),
+                        ),
+                        // InkMe(
+                        //   onTap: () {
+                        //     Get.to(SignupPage());
+                        //   },
+                        //   child: Text(
+                        //     'انشاء حساب'.tr,
+                        //     style: context.theme.textTheme.titleSmall!.copyWith(
+                        //       color:
+                        //           context.theme.colorScheme.onPrimaryContainer,
+                        //       fontWeight: FontWeight.bold,
+                        //     ),
+                        //   ),
+                        // ),
+                        // Text(
+                        //   ' او '.tr,
+                        //   style: context.theme.textTheme.titleSmall!.copyWith(
+                        //       color: context.theme.colorScheme.outline),
+                        // ),
+                        InkMe(
+                          onTap: () {
+                            Get.offAll(const NavigationPage());
+                          },
+                          child: Text(
                             'الدخول كزائر'.tr,
                             style: context.theme.textTheme.titleSmall!.copyWith(
                               color:
@@ -177,8 +202,8 @@ class _LoginPageState extends State<LoginPage> {
                               fontWeight: FontWeight.bold,
                             ),
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                   ],
                 ),
