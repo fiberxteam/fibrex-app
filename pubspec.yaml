@@ -39,7 +39,7 @@ dependencies:
 
   flutter_rating_bar: ^4.0.1
   carousel_slider: ^4.2.1
-  intl: ^0.18.0
+  intl: ^0.19.0
   readmore: ^2.2.0
   dio: ^5.3.2
   awesome_dio_interceptor: ^1.0.0
@@ -51,7 +51,6 @@ dependencies:
   qrscan: ^0.3.3
   pinput: ^3.0.1
   google_maps_flutter: ^2.5.3
-  flutter_animated_dialog: ^2.0.1
   mobkit_dashed_border: ^0.0.5
   responsive_framework: ^1.1.1
   flutter_device_type: ^0.4.0

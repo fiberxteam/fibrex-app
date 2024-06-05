@@ -10,8 +10,12 @@ class CustomBackButton extends StatefulWidget {
 }
 
 class _CustomBackButtonState extends State<CustomBackButton> {
+  
   @override
   Widget build(BuildContext context) {
+
+     final isRtl = Directionality.of(context) == TextDirection.rtl;
+
     return InkWell(
       borderRadius: BorderRadius.circular(100),
       onTap: () {
@@ -25,9 +29,12 @@ class _CustomBackButtonState extends State<CustomBackButton> {
           border: Border.all(color: Color(0xFFEBEBEB)),
           color: Colors.white,
         ),
-        child: Icon(
-          CupertinoIcons.back,
-          color: Theme.of(context).colorScheme.primary,
+        child: Directionality(
+          textDirection: TextDirection.ltr,
+          child: Icon(
+            isRtl ? CupertinoIcons.forward : CupertinoIcons.back,
+            color: Theme.of(context).colorScheme.primary,
+          ),
         ),
       ),
     );

@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:fiber/config/constant.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
 import 'package:intl/intl.dart';
 
 Future<dynamic> customBottomSheet(BuildContext context,
@@ -76,27 +75,27 @@ Future<dynamic> customDialog(BuildContext context,
       onConfirm: onConfirm);
 }
 
-Future getDialog({
-  required BuildContext context,
-  required Widget child,
-}) {
-  return showAnimatedDialog(
-    context: context,
-    barrierDismissible: true,
-    builder: (BuildContext context) {
-      return AlertDialog(
-        titlePadding: EdgeInsets.zero,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(Insets.medium),
-        ),
-        title: child,
-      );
-    },
-    animationType: DialogTransitionType.slideFromBottom,
-    curve: Curves.fastLinearToSlowEaseIn,
-    duration: const Duration(milliseconds: 700),
-  );
-}
+// Future getDialog({
+//   required BuildContext context,
+//   required Widget child,
+// }) {
+//   return showAnimatedDialog(
+//     context: context,
+//     barrierDismissible: true,
+//     builder: (BuildContext context) {
+//       return AlertDialog(
+//         titlePadding: EdgeInsets.zero,
+//         shape: RoundedRectangleBorder(
+//           borderRadius: BorderRadius.circular(Insets.medium),
+//         ),
+//         title: child,
+//       );
+//     },
+//     animationType: DialogTransitionType.slideFromBottom,
+//     curve: Curves.fastLinearToSlowEaseIn,
+//     duration: const Duration(milliseconds: 700),
+//   );
+// }
 
 Future<bool> showExitPopup(context) async {
   return await showDialog(
