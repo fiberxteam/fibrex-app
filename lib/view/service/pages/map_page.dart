@@ -4,6 +4,7 @@ import 'package:fiber/view/plans/components/custom_back_button.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 class MapPage extends StatefulWidget {
   const MapPage({super.key});
@@ -14,23 +15,55 @@ class MapPage extends StatefulWidget {
 
 class _MapPageState extends State<MapPage> {
   LocationsController locationsController = Get.put(LocationsController());
-  late LatLng _currentPosition = LatLng(1, 1);
+  late LatLng _currentPosition = LatLng(33.2984442, 44.3331072);
   // list of set of markers
   Set<Marker> markers = {};
+  late GoogleMapController mapController;
 
   Future<void> _getCurrentLocation() async {
     Position position = await Geolocator.getCurrentPosition(
-        desiredAccuracy: LocationAccuracy.high);
+        desiredAccuracy: LocationAccuracy.medium);
     setState(() {
       _currentPosition = LatLng(position.latitude, position.longitude);
+      print("loooooooooooooooooooooooooooo");
+      print(_currentPosition);
     });
+  }
+
+  Future<void> _requestPermissionAndGetLocation() async {
+    // Request location permission
+    var status = await Permission.locationWhenInUse.request();
+
+    if (status == PermissionStatus.granted) {
+      // Permission granted, get location
+      Position position = await Geolocator.getCurrentPosition(
+          desiredAccuracy: LocationAccuracy.high);
+      print("okkkkkkkkkkkkkkkkkk");
+
+      mapController.animateCamera(
+        CameraUpdate.newCameraPosition(
+          CameraPosition(
+            target: LatLng(position.latitude, position.longitude),
+            zoom: 14,
+          ),
+        ),
+      );
+
+      setState(() {
+        _currentPosition = LatLng(position.latitude, position.longitude);
+      });
+    } else if (status == PermissionStatus.denied) {
+      var r = await Permission.locationWhenInUse.request();
+    } else if (status == PermissionStatus.permanentlyDenied) {
+      await openAppSettings();
+    }
   }
 
   @override
   void initState() {
     // TODO: implement initState
 
-    _getCurrentLocation();
+    _requestPermissionAndGetLocation();
 
     locationsController.getData().then((value) {
       print(value);
@@ -81,6 +114,7 @@ class _MapPageState extends State<MapPage> {
           initialCameraPosition:
               CameraPosition(target: _currentPosition, zoom: 14),
           onMapCreated: (GoogleMapController controller) {
+            mapController = controller;
             controller.setMapStyle(Get.isDarkMode
                 ? """
                 [

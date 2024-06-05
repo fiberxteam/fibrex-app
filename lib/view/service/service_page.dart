@@ -26,17 +26,18 @@ class _ServicePageState extends State<ServicePage> {
         children: [
           SizedBox(height: Insets.exLarge + Insets.medium + 5),
           CustomServiceCard(
+            isDisabled: true,
             icon: Assets.assetsIconsArrowsClockwise,
             title: 'تجديد إشتراك'.tr,
             servicePage: true,
             onTap: () {
-              customBottomSheet(
-                context,
-                height: context.height * 0.6,
-                child: SingleChildScrollView(
-                  child: CustomRenewSubscriptionCard(),
-                ),
-              );
+              // customBottomSheet(
+              //   context,
+              //   height: context.height * 0.6,
+              //   child: SingleChildScrollView(
+              //     child: CustomRenewSubscriptionCard(),
+              //   ),
+              // );
             },
           ),
           SizedBox(height: Insets.small),

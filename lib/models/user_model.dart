@@ -36,7 +36,7 @@ class UserModel {
     this.registeredOn,
     this.id,
     this.staticIp,
-    this.balance,
+    this.balance = 0.0,
     this.autoRenew,
     this.profileId,
   });
