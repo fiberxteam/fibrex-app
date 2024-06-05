@@ -1,6 +1,7 @@
 import 'package:fiber/config/constant.dart';
 import 'package:fiber/controller/news/news_controller.dart';
 import 'package:fiber/view/home/components/custom_news_card.dart';
+import 'package:fiber/view/plans/components/custom_back_button.dart';
 import 'package:flutter/material.dart';
 
 class NewsPage extends StatefulWidget {
@@ -32,6 +33,13 @@ class _NewsPageState extends State<NewsPage> {
             backgroundColor: Colors.transparent,
             toolbarHeight: 70,
             leadingWidth: 65,
+              leading: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Gap(Insets.margin),
+              const CustomBackButton(),
+            ],
+          ),
             title: Text(
               "اخر الاخبار",
               style: Theme.of(context)
