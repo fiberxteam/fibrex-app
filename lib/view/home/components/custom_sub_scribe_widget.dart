@@ -84,21 +84,21 @@ class CustomSubScribeWidget extends StatelessWidget {
                       subtitle: formatCurrency(
                           double.parse(serviceModel.price!.toString())),
                     ),
-                    CustomSubscriptionInfo(
+                    Obx(() => CustomSubscriptionInfo(
                         icon: Assets.assetsIconsCalendarCheck,
                         title: 'المدة المتبقية'.tr,
-                        subtitle: new DateTime(
-                                DateTime.now().year,
-                                serviceModel.expiration!.month,
-                                serviceModel.expiration!.day,
-                                22,
-                                0,
-                                0,
-                                0,
-                                0)
-                            .difference(DateTime.now())
-                            .inDays
-                            .toString()),
+                        subtitle: Get.find<HomeController>()
+                                    .dashboardModel
+                                    .value
+                                    .remainingDays <=
+                                0
+                            ? "0"
+                            : Get.find<HomeController>()
+                                .dashboardModel
+                                .value
+                                .remainingDays
+                                .toString()
+                                .replaceAll("null", ""))),
                   ],
                 ),
                 Row(

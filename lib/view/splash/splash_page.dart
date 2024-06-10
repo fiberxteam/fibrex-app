@@ -6,6 +6,7 @@ import 'package:fiber/view/home/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
+import '../../client/sas_client.dart';
 import '../navigation/navigation_page.dart';
 
 class SplashPage extends StatefulWidget {
@@ -35,7 +36,7 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
           ).animate(
             autoPlay: true,
             controller: controller,
-            onComplete: (controller) {
+            onComplete: (controller) async {
               if (prefs.getBool("selected_gov") == null) {
                 Get.offAll(SelectGovPage());
               } else {
@@ -43,6 +44,10 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
                   Get.offAll(() => const LoginPage(),
                       transition: Transition.fadeIn);
                 } else {
+                  var request = await SasClient.get(api: '/api/auth/autoLogin');
+                  if (request["status"] == 200) {
+                    prefs.setString("token", request["token"]);
+                  }
                   Get.offAll(() => const NavigationPage(),
                       transition: Transition.fadeIn);
                 }

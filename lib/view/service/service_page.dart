@@ -8,6 +8,8 @@ import 'package:fiber/view/setting/pages/support.dart';
 import 'package:fiber/view/speed_test/speed_test_page.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
+import '../home/components/map_page.dart';
+
 class ServicePage extends StatefulWidget {
   const ServicePage({super.key});
 
@@ -52,6 +54,9 @@ class _ServicePageState extends State<ServicePage> {
           ),
           SizedBox(height: Insets.small),
           CustomServiceCard(
+            onTap: () {
+              Get.to(() => MapPage(), transition: Transition.fadeIn);
+            },
             servicePage: true,
             icon: Assets.assetsIconsMapPin,
             title: 'مواقعنا والتغطية'.tr,
@@ -91,6 +96,11 @@ class _ServicePageState extends State<ServicePage> {
             servicePage: true,
             icon: Assets.assetsIconsWifiX,
             title: 'الصيانة'.tr,
+            onTap: () {
+              Get.to(SupportPage(
+                isRepare: true,
+              ));
+            },
           ),
           SizedBox(height: Insets.small),
           CustomServiceCard(

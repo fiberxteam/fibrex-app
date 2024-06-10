@@ -32,7 +32,7 @@ class CustomAppBar extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: Insets.medium),
                 child: Text(
-                  'الشريك الرسمي لوزارة الاتصالات العراقية والمزود الأكبر للإنترنت الضوئي في واسط ',
+                  'الشريك الرسمي لوزارة الاتصالات العراقية والمزود الأكبر للإنترنت الضوئي في واسط والبصرة',
                   style: Theme.of(context).textTheme.labelLarge!.copyWith(
                       color: context.theme.colorScheme.surface, fontSize: 15),
                 ),
