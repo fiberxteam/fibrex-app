@@ -111,8 +111,12 @@ class _SettingPageState extends State<SettingPage> {
                 Get.find<SetDataController>().page.value = 0;
               } else {
                 Get.find<SetDataController>().page.value = 0;
+                var gov = prefs.getInt("gov");
+                var selectedGov = prefs.getBool("selected_gov");
                 prefs.clear();
                 Get.offAll(() => const LoginPage());
+                prefs.setBool("selected_gov", true);
+                prefs.setInt("gov", gov ?? 1);
               }
             },
             titleAlignment: ListTileTitleAlignment.center,

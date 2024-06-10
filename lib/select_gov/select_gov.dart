@@ -57,12 +57,10 @@ class _SelectGovPageState extends State<SelectGovPage> {
                 return InkMe(
                   onTap: () {
                     setState(() {
-                      govs.forEach((element) {
-                        setState(() {
-                          govs[govs.indexOf(element)]["selected"] = false;
-                        });
-                      });
-                      govs[govs.indexOf(e)]["selected"] = true;
+                      prefs.setBool("selected_gov", true);
+                      prefs.setInt("gov", e["id"]);
+                      Get.find<SasHttp>().configureDio();
+                      Get.offAll(() => LoginPage());
                     });
                   },
                   child: Container(
@@ -78,7 +76,7 @@ class _SelectGovPageState extends State<SelectGovPage> {
                             color: e["selected"]
                                 ? Colors.transparent
                                 : Colors.white),
-                        borderRadius: BorderRadius.circular(Insets.small)),
+                        borderRadius: BorderRadius.circular(Insets.exLarge)),
                     child: Text(
                       e["title"],
                       style: Theme.of(context)
@@ -91,24 +89,24 @@ class _SelectGovPageState extends State<SelectGovPage> {
               }).toList(),
             ),
             Gap(Insets.margin),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: Insets.margin),
-              child: CustomOutLineButton(
-                onTap: () {
-                  var getSelected = govs.firstWhere(
-                      (element) => element["selected"] == true,
-                      orElse: () => null);
-                  if (getSelected != null) {
-                    prefs.setBool("selected_gov", true);
-                    prefs.setInt("gov", getSelected["id"]);
-                    Get.find<SasHttp>().configureDio();
-                    Get.offAll(() => LoginPage());
-                  }
-                },
-                title: "دخول",
-                color: Colors.white,
-              ),
-            )
+            // Padding(
+            //   padding: EdgeInsets.symmetric(horizontal: Insets.margin),
+            //   child: CustomOutLineButton(
+            //     onTap: () {
+            //       var getSelected = govs.firstWhere(
+            //           (element) => element["selected"] == true,
+            //           orElse: () => null);
+            //       if (getSelected != null) {
+            //         prefs.setBool("selected_gov", true);
+            //         prefs.setInt("gov", getSelected["id"]);
+            //         Get.find<SasHttp>().configureDio();
+            //         Get.offAll(() => LoginPage());
+            //       }
+            //     },
+            //     title: "دخول",
+            //     color: Colors.white,
+            //   ),
+            // )
           ],
         ),
       ),
