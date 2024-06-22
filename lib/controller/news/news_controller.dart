@@ -13,7 +13,6 @@ class NewsController extends GetxController {
     var query = {"pageSize": 10, "pageNumber": 1};
     var data = await BaseClient.get(api: "/News", queryParameters: query);
 
-    print("data: ${data}");
 
     if (data != null) {
       news.value = newsModelFromJson(jsonEncode(data['data']));
