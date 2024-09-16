@@ -109,6 +109,7 @@ class HomeController extends GetxController {
   }
 
   addReedem({required String pin}) async {
+   
     var token = prefs.getString('token');
     if (token != null) {
       redeemLoading.value = true;
@@ -125,11 +126,12 @@ class HomeController extends GetxController {
       );
       if (response.item1) {
         if (response.item2["status"] == 200) {
+          Get.back();
+
           Get.snackbar("تمت العملية", "تمت  عملية التعبئة بنجاح",
               margin: EdgeInsets.all(Insets.margin),
               backgroundColor: Get.theme.colorScheme.primary,
               colorText: Colors.white);
-          Get.back();
           getUserInfo();
         }
         redeemLoading.value = false;
@@ -154,46 +156,45 @@ class HomeController extends GetxController {
       );
       if (response.item1) {
         if (response.item2["status"] == 200) {
-          if (serviceInfo.value.subscriptionStatus!.status) {
+          Get.back();
             Get.snackbar("تمت العملية", "تمت  عملية التعبئة بنجاح",
                 margin: EdgeInsets.all(Insets.margin),
                 backgroundColor: Get.theme.colorScheme.primary,
                 colorText: Colors.white);
-            Get.back();
             getServiceInfo();
             getUserInfo();
-          } else {
-            var uuid = Uuid();
+       
+            // var uuid = Uuid();
 
-            var secondData = {"uuid": uuid.v1(), "current_password": true};
+            // var secondData = {"uuid": uuid.v1(), "current_password": true};
 
-            final encryptedData2 =
-                encryptAESCryptoJS(jsonEncode(secondData), passphrase);
+            // final encryptedData2 =
+            //     encryptAESCryptoJS(jsonEncode(secondData), passphrase);
 
-            SasClient.post(
-              api: '/api/user/activate',
-              data: {
-                "payload": encryptedData2,
-              },
-            ).then((value) {
-              if (value.item1) {
-                if (value.item2["status"] == 200) {
-                  Get.back();
-                  Get.snackbar("تمت العملية", "تمت  عملية التفعيل بنجاح",
-                      margin: EdgeInsets.all(Insets.margin),
-                      backgroundColor: Get.theme.colorScheme.primary,
-                      colorText: Colors.white);
-                  getServiceInfo();
-                  getUserInfo();
-                } else {
-                  Get.snackbar("خطأ", "حدث خطأ ما",
-                      margin: EdgeInsets.all(Insets.margin),
-                      backgroundColor: Get.theme.colorScheme.error,
-                      colorText: Colors.white);
-                }
-              }
-            });
-          }
+            // SasClient.post(
+            //   api: '/api/user/activate',
+            //   data: {
+            //     "payload": encryptedData2,
+            //   },
+            // ).then((value) {
+            //   if (value.item1) {
+            //     if (value.item2["status"] == 200) {
+            //       Get.back();
+            //       Get.snackbar("تمت العملية", "تمت  عملية التفعيل بنجاح",
+            //           margin: EdgeInsets.all(Insets.margin),
+            //           backgroundColor: Get.theme.colorScheme.primary,
+            //           colorText: Colors.white);
+            //       getServiceInfo();
+            //       getUserInfo();
+            //     } else {
+            //       Get.snackbar("خطأ", "حدث خطأ ما",
+            //           margin: EdgeInsets.all(Insets.margin),
+            //           backgroundColor: Get.theme.colorScheme.error,
+            //           colorText: Colors.white);
+            //     }
+            //   }
+            // });
+          
         }
 
         activePinLoading.value = false;

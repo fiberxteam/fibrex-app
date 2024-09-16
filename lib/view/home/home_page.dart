@@ -118,19 +118,19 @@ class _HomePageState extends State<HomePage> {
                       : CustomServiceCard(
                           icon: Assets.assetsIconsArrowsClockwise,
                           title: 'تجديد إشتراك'.tr,
-                          isDisabled: true,
+                          isDisabled: false,
                           onTap: () {
-                            Get.snackbar("الخدمة غير مفعلة",
-                                "سيتم تفعيل خدمة التجديد قريبا",
-                                margin: EdgeInsets.all(20),
-                                snackPosition: SnackPosition.BOTTOM);
-                            // customBottomSheet(
-                            //   context,
-                            //   height: context.height * 0.45,
-                            //   child: SingleChildScrollView(
-                            //     child: CustomRenewSubscriptionCard(),
-                            //   ),
-                            // );
+                            // Get.snackbar("الخدمة غير مفعلة",
+                            //     "سيتم تفعيل خدمة التجديد قريبا",
+                            //     margin: EdgeInsets.all(20),
+                            //     snackPosition: SnackPosition.BOTTOM);
+                            customBottomSheet(
+                              context,
+                              height: context.height * 0.50,
+                              child: SingleChildScrollView(
+                                child: CustomRenewSubscriptionCard(),
+                              ),
+                            );
                           },
                         ),
                   SizedBox(width: Insets.small),

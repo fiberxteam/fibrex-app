@@ -1,6 +1,5 @@
 import 'package:fiber/config/constant.dart';
 import 'package:fiber/main.dart';
-import 'package:network_info_plus/network_info_plus.dart';
 import 'dart:io';
 
 class SassEndpoint {
@@ -15,18 +14,10 @@ class SassEndpoint {
     if (gov == 1) {
       return "http://185.16.25.254";
     } else {
-      return "http://94.176.40.66";
+      return "http://185.16.25.249:2220"; // http://94.176.40.66
     }
   }
 
-  Future<String?> getLocalIpAddressInRange() async {
-    final info = NetworkInfo();
-    String? ip = await info.getWifiIP();
-    if (ip != null && ip.startsWith('10.')) {
-      return ip;
-    }
-    return null;
-  }
 
   static Future<String> getLocalIpAddress() async {
     final interfaces = await NetworkInterface.list(

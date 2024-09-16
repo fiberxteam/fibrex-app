@@ -7,7 +7,7 @@ import 'package:awesome_dio_interceptor/awesome_dio_interceptor.dart';
 import 'package:dio/dio.dart';
 import 'package:fiber/config/constant.dart';
 import 'package:get/get.dart';
-import 'package:onesignal_flutter/onesignal_flutter.dart';
+// import 'package:onesignal_flutter/onesignal_flutter.dart';
 import '../../client/get_endpoint_url.dart';
 
 class SasHttp extends GetxController {
@@ -96,7 +96,7 @@ class SasHttp extends GetxController {
     noti('خطأ'.tr, "لم يتم العثور على المستخدم");
     prefs.remove('token');
     prefs.remove('role');
-    OneSignal.shared.removeExternalUserId();
+    // OneSignal.shared.removeExternalUserId();
   }
 
   void handleBadRequest(DioError e) {

@@ -69,32 +69,32 @@ class CustomSupportCard extends StatelessWidget {
             height: 24,
           ),
         ),
-        ListTile(
-          contentPadding: EdgeInsets.zero,
-          dense: true,
-          visualDensity: VisualDensity.comfortable,
-          enableFeedback: false,
-          minVerticalPadding: 0,
-          titleAlignment: ListTileTitleAlignment.center,
-          style: ListTileStyle.list,
-          horizontalTitleGap: Insets.small,
-          title: Text(
-            'الاحكام و الشروط'.tr,
-            style: Theme.of(context).textTheme.titleMedium!.copyWith(
-                  color: Theme.of(context).colorScheme.outline,
-                ),
-          ),
-          leading: SvgPicture.asset(
-            Assets.assetsIconsCertificate,
-            width: 24,
-            height: 24,
-          ),
-          trailing: SvgPicture.asset(
-            Assets.assetsIconsCaretRight,
-            width: 24,
-            height: 24,
-          ),
-        ),
+        // ListTile(
+        //   contentPadding: EdgeInsets.zero,
+        //   dense: true,
+        //   visualDensity: VisualDensity.comfortable,
+        //   enableFeedback: false,
+        //   minVerticalPadding: 0,
+        //   titleAlignment: ListTileTitleAlignment.center,
+        //   style: ListTileStyle.list,
+        //   horizontalTitleGap: Insets.small,
+        //   title: Text(
+        //     'الاحكام و الشروط'.tr,
+        //     style: Theme.of(context).textTheme.titleMedium!.copyWith(
+        //           color: Theme.of(context).colorScheme.outline,
+        //         ),
+        //   ),
+        //   leading: SvgPicture.asset(
+        //     Assets.assetsIconsCertificate,
+        //     width: 24,
+        //     height: 24,
+        //   ),
+        //   trailing: SvgPicture.asset(
+        //     Assets.assetsIconsCaretRight,
+        //     width: 24,
+        //     height: 24,
+        //   ),
+        // ),
       ],
     );
   }

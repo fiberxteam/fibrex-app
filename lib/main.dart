@@ -7,7 +7,7 @@ import 'package:fiber/view/splash/splash_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:onesignal_flutter/onesignal_flutter.dart';
+// import 'package:onesignal_flutter/onesignal_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
@@ -19,35 +19,35 @@ void main() async {
 
   Get.changeThemeMode(ThemeMode.light);
   Get.updateLocale(const Locale('ar'));
-  OneSignal.shared.setLogLevel(OSLogLevel.debug, OSLogLevel.none);
-  OneSignal.shared.setAppId('6710bf63-e967-4d5e-8447-d8abd4a201c0');
-  OneSignal.shared.promptUserForPushNotificationPermission().then((accepted) {
-    Logger().d("Accepted permission: $accepted");
-  });
+  // OneSignal.shared.setLogLevel(OSLogLevel.debug, OSLogLevel.none);
+  // OneSignal.shared.setAppId('6710bf63-e967-4d5e-8447-d8abd4a201c0');
+  // OneSignal.shared.promptUserForPushNotificationPermission().then((accepted) {
+  //   Logger().d("Accepted permission: $accepted");
+  // });
 
-  OneSignal.shared.setLanguage(
-      prefs.getString("languageCode") ?? Get.deviceLocale!.languageCode);
-  OneSignal.shared
-      .setNotificationOpenedHandler((OSNotificationOpenedResult result) {
-    noti(
-      result.notification.title ?? "",
-      result.notification.body ?? "",
-    );
+  // OneSignal.shared.setLanguage(
+  //     prefs.getString("languageCode") ?? Get.deviceLocale!.languageCode);
+  // OneSignal.shared
+  //     .setNotificationOpenedHandler((OSNotificationOpenedResult result) {
+  //   noti(
+  //     result.notification.title ?? "",
+  //     result.notification.body ?? "",
+  //   );
 
-    Logger().d("Opened notification: ${result.notification}");
-  });
-  OneSignal.shared.setNotificationWillShowInForegroundHandler(
-      (OSNotificationReceivedEvent event) {
-    noti(
-      event.notification.title ?? "",
-      event.notification.body ?? "",
-    );
+  //   Logger().d("Opened notification: ${result.notification}");
+  // });
+  // OneSignal.shared.setNotificationWillShowInForegroundHandler(
+  //     (OSNotificationReceivedEvent event) {
+  //   noti(
+  //     event.notification.title ?? "",
+  //     event.notification.body ?? "",
+  //   );
 
-    event.complete(event.notification);
-  });
+  //   event.complete(event.notification);
+  // });
 
-  // set segments
-  OneSignal.shared.setExternalUserId(prefs.getString('token') ?? "");
+  // // set segments
+  // OneSignal.setExternalUserId(prefs.getString('token') ?? "");
   // var deviceLanguageCode = Get.deviceLocale!.languageCode;
   // var local = Locale(prefs.getString("languageCode") ?? deviceLanguageCode);
 

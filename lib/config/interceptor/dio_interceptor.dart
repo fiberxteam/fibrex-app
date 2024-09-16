@@ -6,11 +6,11 @@ import 'package:fiber/view/splash/splash_page.dart';
 import 'package:awesome_dio_interceptor/awesome_dio_interceptor.dart';
 import 'package:dio/dio.dart';
 import 'package:fiber/config/constant.dart';
-import 'package:onesignal_flutter/onesignal_flutter.dart';
+// import 'package:onesignal_flutter/onesignal_flutter.dart';
 
 class DioHttp extends GetxController {
   Dio dio = Dio();
-  static const String baseUrls = 'http://164.92.197.198:9123/api';
+  static const String baseUrls = 'https://app-backend.fiberx-iq.com/api';
 
   @override
   void onInit() {
@@ -85,7 +85,7 @@ class DioHttp extends GetxController {
     Get.offAll(const SplashPage());
     prefs.remove('token');
     prefs.remove('role');
-    OneSignal.shared.removeExternalUserId();
+    // OneSignal.shared.removeExternalUserId();
   }
 
   void handleBadRequest(DioError e) {

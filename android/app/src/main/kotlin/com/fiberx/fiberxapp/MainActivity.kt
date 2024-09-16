@@ -1,4 +1,4 @@
-package com.example.fiber_x
+package com.fiberx.fiberxapp
 
 import io.flutter.embedding.android.FlutterActivity
 

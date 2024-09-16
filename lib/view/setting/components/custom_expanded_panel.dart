@@ -137,8 +137,8 @@ class _SaltedKey<S, V> extends LocalKey {
     return salt == typedOther.salt && value == typedOther.value;
   }
 
-  @override
-  int get hashCode => hashValues(runtimeType, salt, value);
+  // @override
+  // int get hashCode => hashValues(runtimeType, salt, value);
 
   @override
   String toString() {
