@@ -43,7 +43,7 @@ class AuthController extends GetxController {
     };
 
     Tuple2<bool, dynamic> response = await BaseClient.post(
-      api: '/requests',
+      api: '/contactUs',
       data: data,
     );
 
@@ -88,7 +88,7 @@ class AuthController extends GetxController {
 
   autoLogin() async {
     var request = await SasClient.get(api: '/api/auth/autoLogin');
-    prefs.setString("token", request["token"]);
+    prefs.setString("token", "");
     Get.offAll(() => SplashPage(), transition: Transition.fadeIn);
   }
 

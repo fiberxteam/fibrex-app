@@ -1,9 +1,11 @@
-import 'package:fiber/config/interceptor/dio_interceptor.dart';
 import 'package:dio/dio.dart';
-import 'package:fiber/config/interceptor/sas_interceptor.dart';
-import 'package:get/instance_manager.dart';
 import 'package:logger/logger.dart';
 import 'package:tuple/tuple.dart';
+import 'package:get/instance_manager.dart';
+import 'package:fiber/config/interceptor/dio_interceptor.dart';
+import 'package:fiber/config/interceptor/sas_interceptor.dart';
+
+import '../main.dart';
 
 class SasClient {
   static SasHttp get dioHttp => Get.find<SasHttp>();
@@ -13,8 +15,33 @@ class SasClient {
     Map<String, dynamic>? queryParameters,
   }) async {
     try {
+      var token = prefs.getString('token');
+      if (token == null) {
+        throw Exception("Token is null");
+      }
+
+      Options options = Options(
+        headers: {
+          'Authorization': 'Bearer $token',
+          'Accept': 'application/json',
+        },
+      );
+
+      // إضافة Interceptor لتعطيل التحقق من الشهادات في بيئة التطوير
+      dioHttp.dio.interceptors.add(InterceptorsWrapper(
+        onRequest: (options, handler) {
+          // يمكن تعديل هذا لتعطيل التحقق من الشهادات في بيئة التطوير
+          options.headers["Accept"] = "application/json";
+          return handler.next(options);
+        },
+        onError: (DioError e, handler) {
+          // هنا يمكن إضافة معالجة للأخطاء
+          return handler.next(e);
+        },
+      ));
+
       Response<dynamic> response =
-          await dioHttp.dio.get(api, queryParameters: queryParameters);
+      await dioHttp.dio.get(api, queryParameters: queryParameters, options: options);
       return response.data;
     } catch (e) {
       Logger().e("Error in GET request: $e");
@@ -48,8 +75,6 @@ class SasClient {
         queryParameters: queryParameters,
         data: data,
         options: Options(
-          // contentType: "multipart/form-data",
-
           receiveTimeout: const Duration(days: 21),
           sendTimeout: const Duration(days: 21),
         ),

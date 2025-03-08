@@ -37,7 +37,7 @@ class _CustomOffersCardState extends State<CustomOffersCard> {
                   borderRadius: BorderRadius.circular(Insets.medium),
                 ),
                 child: Images(
-                  img: widget.ads[index].image ?? "",
+                  img: widget.ads[index].getFullImageUrl() ?? "",
                   radius: 0,
                   height: context.height * 0.3,
                   width: context.width * 0.6,

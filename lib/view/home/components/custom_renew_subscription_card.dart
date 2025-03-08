@@ -71,6 +71,35 @@ class _CustomRenewSubscriptionCardState
               ),
               Gap(Insets.medium),
               CustomOutLineButton(
+                icon : SvgPicture.asset(
+                  Assets.assetsIconsZainCash,
+                  color: Colors.black,
+                  width: Insets.large,
+                  fit: BoxFit.fill,
+                ),
+                loading: cc.loadZainCash.value
+                    ? SizedBox(
+                  height: 24,
+                  width: 24,
+                  child: CircularProgressIndicator(
+                    color: Colors.purple,
+                    strokeWidth: 2,
+                  ),
+                )
+                    : null,
+                title: 'تفعيل من زين كاش',
+                onTap: () {
+                  cc.getUrlZainCash();
+                },
+              ),
+              Gap(Insets.medium),
+              CustomOutLineButton(
+                icon: SvgPicture.asset(
+                  Assets.assetsIconsWallet,
+                  color: Colors.black,
+                  width: Insets.large,
+                  fit: BoxFit.fill,
+                ),
                 loading: cc.activeWithoutReedemLoading.value
                     ? SizedBox(
                         height: 24,
@@ -85,7 +114,8 @@ class _CustomRenewSubscriptionCardState
                 onTap: () {
                   cc.activeWithoutReedem();
                 },
-              )
+              ),
+              Gap(Insets.medium),
             ],
           )),
     );

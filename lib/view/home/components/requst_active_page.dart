@@ -58,7 +58,7 @@ class _SignupPageState extends State<ReqyestActivePage> {
         disabled = true;
       });
     } else if (status == PermissionStatus.permanentlyDenied) {
-      await openAppSettings();
+     // await openAppSettings();
     }
   }
 

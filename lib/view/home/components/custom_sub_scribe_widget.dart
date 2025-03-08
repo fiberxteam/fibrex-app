@@ -48,13 +48,15 @@ class CustomSubScribeWidget extends StatelessWidget {
                   vertical: Insets.exSmall,
                 ),
                 decoration: BoxDecoration(
-                  color: serviceModel.subscriptionStatus!.status
+                  color: serviceModel.subscriptionStatus?.status ?? false
                       ? Colors.green.shade500
                       : Colors.red.shade500,
                   borderRadius: BorderRadius.circular(Insets.medium),
                 ),
                 child: Text(
-                  serviceModel.subscriptionStatus!.status ? "فعال" : "غير فعال",
+                  serviceModel.subscriptionStatus?.status ?? false
+                      ? "فعال"
+                      : "غير فعال",
                   style: context.theme.textTheme.labelMedium!.copyWith(
                     color: context.theme.colorScheme.surface,
                     fontWeight: FontWeight.bold,
@@ -64,7 +66,7 @@ class CustomSubScribeWidget extends StatelessWidget {
             ],
           ),
           Text(
-            serviceModel.profileName ?? "",
+            serviceModel.profileName ?? "معلومات غير متوفرة",
             style: context.theme.textTheme.headlineMedium!.copyWith(
               color: context.theme.colorScheme.surface,
               fontWeight: FontWeight.bold,
@@ -81,24 +83,21 @@ class CustomSubScribeWidget extends StatelessWidget {
                     CustomSubscriptionInfo(
                       icon: Assets.assetsIconsMoney,
                       title: 'السعر'.tr,
-                      subtitle: formatCurrency(
-                          double.parse(serviceModel.price!.toString())),
+                      subtitle: serviceModel.price != null
+                          ? formatCurrency(int.parse(serviceModel.price!.toString()))
+                          : "غير متوفر",
                     ),
-                    Obx(() => CustomSubscriptionInfo(
+                    Obx(() {
+                      int remainingDays = Get.find<HomeController>()
+                          .dashboardModel
+                          .value
+                          .remainingDays ?? 0; // Use 0 if remainingDays is null
+                      return CustomSubscriptionInfo(
                         icon: Assets.assetsIconsCalendarCheck,
                         title: 'المدة المتبقية'.tr,
-                        subtitle: Get.find<HomeController>()
-                                    .dashboardModel
-                                    .value
-                                    .remainingDays <=
-                                0
-                            ? "0"
-                            : Get.find<HomeController>()
-                                .dashboardModel
-                                .value
-                                .remainingDays
-                                .toString()
-                                .replaceAll("null", ""))),
+                        subtitle: remainingDays <= 0 ? "0" : remainingDays.toString(),
+                      );
+                    }),
                   ],
                 ),
                 Row(
@@ -107,33 +106,25 @@ class CustomSubScribeWidget extends StatelessWidget {
                     CustomSubscriptionInfo(
                       icon: Assets.assetsIconsCalendarX,
                       title: 'تاريخ الانتهاء'.tr,
-                      subtitle: makeDate(serviceModel.expiration),
+                      subtitle: serviceModel.expiration != null
+                          ? makeDate(serviceModel.expiration)
+                          : "غير محدد",
                     ),
                     Obx(
-                      () => CustomSubscriptionInfo(
+                          () => CustomSubscriptionInfo(
                         icon: Assets.assetsIconsWallet,
                         title: 'المحفظة'.tr,
-                        trailing: InkMe(
-                          onTap: () {
-                            customBottomSheet(
-                              context,
-                              height: context.height * 0.3,
-                              child: SingleChildScrollView(
-                                child: CustomAddToWallet(),
-                              ),
-                            );
-                          },
-                          child: Icon(
-                            CupertinoIcons.add,
-                            color: Colors.white,
-                          ),
-                        ),
-                        subtitle: formatCurrency(double.parse(
-                            Get.find<HomeController>()
-                                .userInfo
-                                .value
-                                .balance
-                                .toString())),
+                        subtitle: Get.find<HomeController>()
+                            .userInfo
+                            .value
+                            .balance !=
+                            0.0
+                            ? formatCurrency(int.parse(Get.find<HomeController>()
+                            .userInfo
+                            .value
+                            .balance
+                            .toString()))
+                            : "غير متوفر",
                       ),
                     )
                   ],

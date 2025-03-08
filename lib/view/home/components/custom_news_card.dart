@@ -52,7 +52,7 @@ class CustomNewsCard extends StatelessWidget {
                             borderRadius: BorderRadius.circular(Insets.small),
                           ),
                           child: Images(
-                            img: news[index].image ?? "",
+                            img: news[index].getFullImageUrl() ?? "",
                             width: context.width * 0.6,
                             height: context.height * 0.3,
                             radius: 0,
@@ -72,7 +72,7 @@ class CustomNewsCard extends StatelessWidget {
                     ),
                     SizedBox(height: Insets.exSmall),
                     Text(
-                      news[index].description ?? "",
+                      news[index].content ?? "",
                       style: context.theme.textTheme.labelSmall!.copyWith(
                         color: context.theme.colorScheme.outline,
                       ),
@@ -123,7 +123,7 @@ class CustomNewsCard extends StatelessWidget {
                             borderRadius: BorderRadius.circular(Insets.medium),
                           ),
                           child: Images(
-                            img: news[index].image ?? "",
+                            img: news[index].getFullImageUrl() ?? "",
                             width: context.width * 0.6,
                             height: context.height * 0.3,
                             defaultImg: true,
@@ -143,7 +143,7 @@ class CustomNewsCard extends StatelessWidget {
                     ),
                     SizedBox(height: Insets.exSmall),
                     Text(
-                      news[index].description ?? '',
+                      news[index].content ?? '',
                       style: context.theme.textTheme.labelSmall!.copyWith(
                         color: context.theme.colorScheme.outline,
                       ),

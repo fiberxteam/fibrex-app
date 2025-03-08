@@ -8,13 +8,13 @@ class SassEndpoint {
     var gov = prefs.getInt("gov");
     print(gov);
     if (gov == null) {
-      return "http://185.16.25.249:2220";
+      return "http://188.72.40.196:2220";
     }
 
     if (gov == 1) {
-      return "http://185.16.25.254";
+      return "https://k-sas.fiberx.iq";
     } else {
-      return "http://185.16.25.249:2220"; // http://94.176.40.66
+      return "https://b-sas.fiberx.iq"; // http://94.176.40.66
     }
   }
 

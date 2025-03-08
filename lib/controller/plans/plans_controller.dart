@@ -13,7 +13,7 @@ class PlansController extends GetxController {
   getData() async {
     isLoading.value = true;
     var query = {"pageSize": 10, "pageNumber": 1};
-    var data = await BaseClient.get(api: "/Plans", queryParameters: query);
+    var data = await BaseClient.get(api: "/get-plans", queryParameters: query);
 
     if (data != null) {
       plans.value = plansModelFromJson(jsonEncode(data['data']));

@@ -52,7 +52,7 @@ class _NewsInfoState extends State<NewsInfo> {
                       borderRadius: BorderRadius.circular(Insets.medium),
                     ),
                     child: Images(
-                      img: widget.news.image ?? "",
+                      img: widget.news.getFullImageUrl() ?? "",
                       width: context.width * 0.6,
                       height: context.height * 0.3,
                       defaultImg: true,
@@ -72,7 +72,7 @@ class _NewsInfoState extends State<NewsInfo> {
               ),
               SizedBox(height: Insets.exSmall),
               SinceDate(
-                widget.news.creationDate!,
+                widget.news.createdAt!,
                 textStyle: Theme.of(context).textTheme.labelSmall!.copyWith(
                       color: Theme.of(context).colorScheme.outline,
                     ),
@@ -80,7 +80,7 @@ class _NewsInfoState extends State<NewsInfo> {
               ),
               SizedBox(height: Insets.small),
               Text(
-                widget.news.description ?? '',
+                widget.news.content ?? '',
                 style: Theme.of(context).textTheme.labelLarge!.copyWith(
                       color: Theme.of(context).colorScheme.outline,
                     ),

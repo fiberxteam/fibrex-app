@@ -35,6 +35,8 @@ class Assets {
 
   static const String assetsIconsWallet = "assets/icons/wallet.svg";
 
+  static const String assetsIconsZainCash = "assets/icons/zaincash.svg";
+
   /// Assets for assetsIconsCalendarX
   /// assets/icons/CalendarX.svg
   static const String assetsIconsCalendarX = "assets/icons/CalendarX.svg";

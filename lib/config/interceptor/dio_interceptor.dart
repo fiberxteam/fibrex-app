@@ -6,11 +6,10 @@ import 'package:fiber/view/splash/splash_page.dart';
 import 'package:awesome_dio_interceptor/awesome_dio_interceptor.dart';
 import 'package:dio/dio.dart';
 import 'package:fiber/config/constant.dart';
-// import 'package:onesignal_flutter/onesignal_flutter.dart';
-
 class DioHttp extends GetxController {
   Dio dio = Dio();
-  static const String baseUrls = 'https://app-backend.fiberx-iq.com/api';
+  static const String ip = 'https://fiberx-api.com'; // Static IP that we can access directly
+  static const String baseUrls = '${ip}/fiberxApp/user/api/v1/';
 
   @override
   void onInit() {
@@ -34,9 +33,6 @@ class DioHttp extends GetxController {
       options.headers.addAll({
         HttpHeaders.authorizationHeader: "Bearer $token",
       });
-
-      // Logger()
-      //     .d('${options.queryParameters}\n ${options.path} \n ${options.data}');
 
       return handler.next(options); //continue
     }, onResponse: (response, handler) async {
@@ -96,5 +92,10 @@ class DioHttp extends GetxController {
       noti('Error'.tr, e.response!.data.toString());
     }
     Logger().e(e.response?.data);
+  }
+
+  // Provide a method to access the IP
+  static String getIpAddress() {
+    return ip;
   }
 }

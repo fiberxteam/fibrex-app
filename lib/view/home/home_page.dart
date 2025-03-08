@@ -21,6 +21,7 @@ import 'package:fiber/view/setting/pages/support.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
+import '../../controller/set_data_controller.dart';
 import '../internet_usage/internet_usage_page.dart';
 import '../speed_test/speed_test_page.dart';
 
@@ -126,7 +127,7 @@ class _HomePageState extends State<HomePage> {
                             //     snackPosition: SnackPosition.BOTTOM);
                             customBottomSheet(
                               context,
-                              height: context.height * 0.50,
+                              height: context.height * 0.55,
                               child: SingleChildScrollView(
                                 child: CustomRenewSubscriptionCard(),
                               ),
@@ -163,7 +164,9 @@ class _HomePageState extends State<HomePage> {
                           null == homeController.serviceInfo.value.profileId
                       ? CustomServiceCard(
                           onTap: () {
-                            Get.to(const NewsPage());
+                            SetDataController controller = Get.find();
+                            controller.page(2);
+                            //Get.to(const NewsPage());
                           },
                           icon: Assets.assetsIconsNews,
                           title: 'الاخبار'.tr,

@@ -45,7 +45,7 @@ class PlanCardWidget extends StatelessWidget {
                 width: MediaQuery.of(context).size.width,
                 height: 150,
                 radius: Insets.exLarge,
-                img: plansModel.imageUrl,
+                img: plansModel.getFullImageUrl(),
               ),
             ),
             Gap(Insets.medium),

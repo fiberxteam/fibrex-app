@@ -33,13 +33,6 @@ class _NewsPageState extends State<NewsPage> {
             backgroundColor: Colors.transparent,
             toolbarHeight: 70,
             leadingWidth: 65,
-              leading: Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Gap(Insets.margin),
-              const CustomBackButton(),
-            ],
-          ),
             title: Text(
               "اخر الاخبار",
               style: Theme.of(context)

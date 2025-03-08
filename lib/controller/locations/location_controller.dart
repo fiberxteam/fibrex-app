@@ -11,10 +11,11 @@ class LocationsController extends GetxController {
 
   RxList<LocationModel> locations = RxList();
 
-  Future<List<LocationModel>> getData() async {
+  Future<LocationModel> getData() async {
     var query = {"pageSize": 10, "pageNumber": 0};
-    var data = await BaseClient.get(api: "/Locations", queryParameters: query);
-    return locationModelFromJson(jsonEncode(data['data']));
+    var data = await BaseClient.get(api: "/get-locations", queryParameters: query);
+    print(data);
+    return locationModelFromJson(jsonEncode(data));
   }
 
   @override

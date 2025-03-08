@@ -1,3 +1,5 @@
+import 'dart:convert';
+import 'dart:io';
 import 'package:fiber/config/bindings/binding_controllers.dart';
 import 'package:fiber/config/constant.dart';
 import 'package:fiber/config/themes/theme_generator.dart';
@@ -7,51 +9,28 @@ import 'package:fiber/view/splash/splash_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-// import 'package:onesignal_flutter/onesignal_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:responsive_framework/responsive_framework.dart';
+import 'package:http/http.dart' as http;
 
 late SharedPreferences prefs;
+
+
+class MyHttpOverrides extends HttpOverrides{
+  @override
+  HttpClient createHttpClient(SecurityContext? context){
+    return super.createHttpClient(context)
+      ..badCertificateCallback = (X509Certificate cert, String host, int port)=> true;
+  }
+}
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  HttpOverrides.global = MyHttpOverrides();
   prefs = await SharedPreferences.getInstance();
-  // prefs.remove('token');
 
   Get.changeThemeMode(ThemeMode.light);
   Get.updateLocale(const Locale('ar'));
-  // OneSignal.shared.setLogLevel(OSLogLevel.debug, OSLogLevel.none);
-  // OneSignal.shared.setAppId('6710bf63-e967-4d5e-8447-d8abd4a201c0');
-  // OneSignal.shared.promptUserForPushNotificationPermission().then((accepted) {
-  //   Logger().d("Accepted permission: $accepted");
-  // });
 
-  // OneSignal.shared.setLanguage(
-  //     prefs.getString("languageCode") ?? Get.deviceLocale!.languageCode);
-  // OneSignal.shared
-  //     .setNotificationOpenedHandler((OSNotificationOpenedResult result) {
-  //   noti(
-  //     result.notification.title ?? "",
-  //     result.notification.body ?? "",
-  //   );
-
-  //   Logger().d("Opened notification: ${result.notification}");
-  // });
-  // OneSignal.shared.setNotificationWillShowInForegroundHandler(
-  //     (OSNotificationReceivedEvent event) {
-  //   noti(
-  //     event.notification.title ?? "",
-  //     event.notification.body ?? "",
-  //   );
-
-  //   event.complete(event.notification);
-  // });
-
-  // // set segments
-  // OneSignal.setExternalUserId(prefs.getString('token') ?? "");
-  // var deviceLanguageCode = Get.deviceLocale!.languageCode;
-  // var local = Locale(prefs.getString("languageCode") ?? deviceLanguageCode);
-
-  // Get.updateLocale(local);
   SetDataController controller = Get.put(SetDataController());
   if (prefs.getBool('darkTheme') == null) {
     Get.changeThemeMode(ThemeMode.light);
@@ -61,33 +40,42 @@ void main() async {
     controller.isDark.value = prefs.getBool('darkTheme')!;
   }
 
-  // if (prefs.getBool('positive') != null) {
-  //   OneSignal.shared.disablePush(prefs.getBool('positive')! ? false : true);
-  // } else {
-  //   OneSignal.shared.disablePush(false);
-  // }
-  // OneSignal.shared.disablePush(false);
+  // Check IP address and navigate accordingly
+  String ipAddress = await _fetchPublicIP();
+  String countryCode = await getCountryByIP(ipAddress);
 
-  runApp(const MyApp(page: SplashPage()));
+  runApp(MyApp(page: SplashPage())); // Change to your pages
 }
 
-class MyApp extends StatefulWidget {
+Future<String> _fetchPublicIP() async {
+  final response = await http.get(Uri.parse('https://api.myip.com'));
+  if (response.statusCode == 200) {
+    final data = json.decode(response.body);
+    return data['ip'];
+  } else {
+    throw Exception('Failed to fetch IP address.');
+  }
+}
+
+Future<String> getCountryByIP(String ip) async {
+  final apiKey = '1e1f1909280f49328b051e2a46101b07'; // Replace with your actual API key
+  final response = await http.get(Uri.parse('https://api.ipgeolocation.io/ipgeo?apiKey=$apiKey&ip=$ip'));
+
+  if (response.statusCode == 200) {
+    final data = json.decode(response.body);
+    return data['country_code2']; // Get the country code
+  } else {
+    throw Exception('Failed to load country data.');
+  }
+}
+
+class MyApp extends StatelessWidget {
   final Widget page;
 
   const MyApp({
     super.key,
     required this.page,
   });
-
-  @override
-  State<MyApp> createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
-  @override
-  void initState() {
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -103,11 +91,10 @@ class _MyAppState extends State<MyApp> {
         return GetMaterialApp(
           debugShowCheckedModeBanner: false,
           initialBinding: BindingsController(),
-          home: widget.page,
+          home: page,
           title: "Fiber X",
           defaultTransition: Transition.fadeIn,
           translationsKeys: AppTranslation.translations,
-          // locale: Get.locale!,
           supportedLocales: const [
             Locale("ar", "SA"),
           ],
@@ -117,15 +104,6 @@ class _MyAppState extends State<MyApp> {
             GlobalWidgetsLocalizations.delegate,
             GlobalCupertinoLocalizations.delegate,
           ],
-          localeResolutionCallback: (locale, supportedLocales) {
-            for (var supportedLocale in supportedLocales) {
-              if (supportedLocale.languageCode == locale!.languageCode &&
-                  supportedLocale.countryCode == locale.countryCode) {
-                return supportedLocale;
-              }
-            }
-            return supportedLocales.first;
-          },
           theme: theme.buildLightTheme(),
           themeMode: Get.isDarkMode ? ThemeMode.dark : ThemeMode.light,
           darkTheme: theme.buildDarkTheme(),

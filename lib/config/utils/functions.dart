@@ -27,7 +27,7 @@ String getStringOrDefault(String? inputString, [String defaultString = '-']) {
   }
 }
 
-String formatCurrency(double amount) {
+String formatCurrency(int amount) {
   final NumberFormat formatter = NumberFormat.decimalPattern('ar_IQ');
   return formatter.format(amount) + " IQ".tr;
 }

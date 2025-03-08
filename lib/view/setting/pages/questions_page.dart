@@ -5,6 +5,7 @@ import 'package:fiber/controller/settings/questions_controller.dart';
 import 'package:fiber/models/questions_model.dart';
 import 'package:fiber/view/plans/components/custom_back_button.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart'; // Ensure you have GetX imported
 
 import '../components/custom_expanded_panel.dart';
 
@@ -41,55 +42,53 @@ class _QuestionsPageState extends State<QuestionsPage> {
           ),
         ),
         body: Obx(
-          () => controller.isLoading.value
+              () => controller.isLoading.value
               ? Center(
-                  child: CircularProgressIndicator(),
-                )
+            child: CircularProgressIndicator(),
+          )
               : !controller.isLoading.value && controller.questions.isEmpty
-                  ? NoDataWidget(
-                      details: "سيتم نشر الاسئلة الشائعة في اقرب وقت",
-                      refresh: () => controller.getData(),
-                    )
-                  : SingleChildScrollView(
-                      child: Container(
-                        child: Padding(
-                          padding: EdgeInsets.all(Insets.margin),
-                          child: _buildPanel(controller.questions),
-                        ),
-                      ),
-                    ),
+              ? NoDataWidget(
+            details: "سيتم نشر الاسئلة الشائعة في اقرب وقت",
+            refresh: () => controller.getData(),
+          )
+              : SingleChildScrollView(
+            child: Padding(
+              padding: EdgeInsets.all(Insets.margin),
+              child: _buildPanel(controller.questions),
+            ),
+          ),
         ));
   }
 
-  Widget _buildPanel(List<QuestionsModel> data) {
+  Widget _buildPanel(List<Datum> data) {
     return CustomExpansionPanelList(
       expansionCallback: (int index, bool isExpanded) {
         print(index);
         print(isExpanded);
         setState(() {
+          // Toggle the isExpanded flag for the specific item
           data[index].isExpanded = !isExpanded;
         });
       },
-      children: data.map<ExpansionPanel>((QuestionsModel item) {
+      children: data.map<ExpansionPanel>((Datum item) {
         return ExpansionPanel(
           headerBuilder: (BuildContext context, bool isExpanded) {
-            return Text(item.question ?? "");
+            return ListTile(
+              title: Text(item.question ?? "No question available"),
+            );
           },
           body: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Divider(
-                thickness: 0.5,
-              ),
+              Divider(thickness: 0.5),
               Padding(
-                padding: EdgeInsets.all(Insets.margin),
+                padding: EdgeInsets.all(8.0),  // Adjusted padding
                 child: Text(
-                  item.answer ?? "",
+                  item.answer ?? "No answer available",
                   style: context.theme.textTheme.bodyMedium!
                       .copyWith(color: Color(0xFF7C758A)),
                 ),
               ),
-              Gap(Insets.small),
             ],
           ),
           isExpanded: item.isExpanded ?? false,

@@ -11,11 +11,18 @@ class NewsController extends GetxController {
   getData() async {
     isLoading.value = true;
     var query = {"pageSize": 10, "pageNumber": 1};
-    var data = await BaseClient.get(api: "/News", queryParameters: query);
 
+    var data = await BaseClient.get(api: "/AllNews", queryParameters: query);
 
-    if (data != null) {
-      news.value = newsModelFromJson(jsonEncode(data['data']));
+    if (data != null && data.isNotEmpty) {
+      try {
+        // Assuming the API returns a JSON response with the key "data"
+        news.value = newsModelFromJson(json.encode(data));
+      } catch (e) {
+        print("Error parsing news data: $e");
+      }
+    } else {
+      print("No data received from API.");
     }
 
     isLoading.value = false;

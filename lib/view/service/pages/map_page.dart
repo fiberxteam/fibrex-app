@@ -55,7 +55,7 @@ class _MapPageState extends State<MapPage> {
     } else if (status == PermissionStatus.denied) {
       var r = await Permission.locationWhenInUse.request();
     } else if (status == PermissionStatus.permanentlyDenied) {
-      await openAppSettings();
+     // await openAppSettings();
     }
   }
 
@@ -66,21 +66,31 @@ class _MapPageState extends State<MapPage> {
     _requestPermissionAndGetLocation();
 
     locationsController.getData().then((value) {
-      print(value);
-      for (var i = 0; i < value.length; i++) {
-        setState(() {
-          markers.add(
-            Marker(
-              markerId: MarkerId(value[i].id.toString()),
-              position: LatLng(double.parse(value[i].lat.toString()),
-                  double.parse(value[i].long.toString())),
-              infoWindow: InfoWindow(
-                title: value[i].name,
+      print('Response data: $value'); // قم بطباعة الـ response للتحقق منه
+      if (value != null && value.data.isNotEmpty) {
+        for (var i = 0; i < value.data.length; i++) {
+          // تأكد من أن lat و long صالحين
+          double lat = double.tryParse(value.data[i].lat ?? '') ?? 0.0;
+          double long = double.tryParse(value.data[i].long ?? '') ?? 0.0;
+
+          setState(() {
+            markers.add(
+              Marker(
+                markerId: MarkerId(value.data[i].id.toString()),
+                position: LatLng(lat, long),
+                infoWindow: InfoWindow(
+                  title: value.data[i].name,
+                    snippet : value.data[i].address,
+                ),
               ),
-            ),
-          );
-        });
+            );
+          });
+        }
+      } else {
+        print("لا توجد بيانات للعرض.");
       }
+    }).catchError((e) {
+      print("حدث خطأ أثناء استرجاع البيانات: $e");
     });
 
     super.initState();
