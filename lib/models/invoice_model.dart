@@ -15,11 +15,11 @@ class InvoiceModel {
   String? invoiceNumber;
   String? type;
   String? amount;
-  dynamic? description;
+  dynamic description;
   int? paid;
   int? createdBy;
   DateTime? createdAt;
-  dynamic? paymentMethod;
+  dynamic paymentMethod;
   DateTime? dueDate;
 
   InvoiceModel({

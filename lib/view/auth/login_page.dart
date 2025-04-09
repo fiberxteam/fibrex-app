@@ -101,7 +101,7 @@ class _LoginPageState extends State<LoginPage> {
                           CustomFillButton(
                             title: 'Login'.tr,
                             loading: data.isLoading.value
-                                ? SizedBox(
+                                ? const SizedBox(
                                     height: 24,
                                     width: 24,
                                     child: CircularProgressIndicator(
@@ -211,14 +211,14 @@ class _LoginPageState extends State<LoginPage> {
                     Gap(Insets.large),
                     InkMe(
                       onTap: () {
-                        Get.offAll(SelectGovPage());
+                        Get.offAll(const SelectGovPage());
                       },
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           prefs.getInt("gov") == 1
-                              ? Text("الكوت")
-                              : Text("البصرة"),
+                              ? const Text("الكوت")
+                              : const Text("البصرة"),
                           Gap(Insets.small),
                           Icon(
                             CupertinoIcons.arrow_left_circle_fill,

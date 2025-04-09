@@ -10,17 +10,17 @@ String userModelToJson(UserModel data) => json.encode(data.toJson());
 
 class UserModel {
   String? username;
-  dynamic? firstname;
-  dynamic? lastname;
-  dynamic? name;
+  dynamic firstname;
+  dynamic lastname;
+  dynamic name;
   String? email;
   String? phone;
-  dynamic? address;
-  dynamic? company;
+  dynamic address;
+  dynamic company;
   RegisteredOn? registeredOn;
   int? id;
-  dynamic? staticIp;
-  dynamic? balance;
+  dynamic staticIp;
+  dynamic balance;
   int? autoRenew;
   int? profileId;
 

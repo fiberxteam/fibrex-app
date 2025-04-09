@@ -23,7 +23,7 @@ class _SelectGovPageState extends State<SelectGovPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.primary,
-      body: Container(
+      body: SizedBox(
         width: MediaQuery.of(context).size.width,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -60,7 +60,7 @@ class _SelectGovPageState extends State<SelectGovPage> {
                       prefs.setBool("selected_gov", true);
                       prefs.setInt("gov", e["id"]);
                       Get.find<SasHttp>().configureDio();
-                      Get.offAll(() => LoginPage());
+                      Get.offAll(() => const LoginPage());
                     });
                   },
                   child: Container(

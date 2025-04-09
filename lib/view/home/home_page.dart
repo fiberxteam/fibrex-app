@@ -56,7 +56,7 @@ class _HomePageState extends State<HomePage> {
                           Gap(Insets.large),
                           CustomOutLineButton(
                             onTap: () {
-                              Get.to(ReqyestActivePage());
+                              Get.to(const ReqyestActivePage());
                             },
                             title: "طلب تفعيل الخدمة",
                           ),
@@ -84,7 +84,7 @@ class _HomePageState extends State<HomePage> {
                 )),
           SizedBox(height: Insets.small),
           Obx(() => homeController.isLoading.value
-              ? Center(child: CircularProgressIndicator())
+              ? const Center(child: CircularProgressIndicator())
               : !homeController.isLoading.value &&
                       null == homeController.serviceInfo.value.profileId
                   ? Container()
@@ -127,7 +127,7 @@ class _HomePageState extends State<HomePage> {
                             //     snackPosition: SnackPosition.BOTTOM);
                             customBottomSheet(
                               context,
-                              height: context.height * 0.55,
+                              height: context.height * 0.65,
                               child: SingleChildScrollView(
                                 child: CustomRenewSubscriptionCard(),
                               ),
@@ -242,7 +242,7 @@ class _HomePageState extends State<HomePage> {
           // ),
           // SizedBox(height: Insets.small),
           Obx(() => adsContoller.isLoading.value
-              ? Center(child: CircularProgressIndicator())
+              ? const Center(child: CircularProgressIndicator())
               : !adsContoller.isLoading.value && adsContoller.ads.isEmpty
                   ? Container()
                   : CustomOffersCard(ads: adsContoller.ads)),
@@ -259,7 +259,7 @@ class _HomePageState extends State<HomePage> {
           ),
           SizedBox(height: Insets.small),
           Obx(() => newsController.isLoading == true
-              ? Center(child: CircularProgressIndicator())
+              ? const Center(child: CircularProgressIndicator())
               : CustomNewsCard(news: newsController.news)),
           SizedBox(height: Insets.exLarge * 2.5),
         ].animate(interval: 30.ms).fadeIn(),

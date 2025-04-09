@@ -104,7 +104,7 @@ class _SupportPageState extends State<SupportPage> {
                           },
                           title: "ارسال",
                           loading: supportController.isLoading.value
-                              ? SizedBox(
+                              ? const SizedBox(
                                   height: 24,
                                   width: 24,
                                   child: CircularProgressIndicator(

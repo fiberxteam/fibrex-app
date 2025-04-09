@@ -18,7 +18,7 @@ class InkMe extends StatefulWidget {
   final BorderRadius? radius;
   final GestureTapCallback? onTap;
   final GestureTapCallback? onLongPress;
-  final MaterialStateProperty<Color?>? overlayColor;
+  final WidgetStateProperty<Color?>? overlayColor;
   final double? padding;
 
   @override
@@ -41,7 +41,7 @@ class _InkMeState extends State<InkMe> {
                 borderRadius: widget.radius ??
                     BorderRadius.circular(BorderSize.defaultSize),
                 overlayColor: widget.overlayColor ??
-                    MaterialStatePropertyAll(
+                    WidgetStatePropertyAll(
                         context.theme.colorScheme.primary.withOpacity(0.1)),
                 onTap: widget.onTap,
               ),

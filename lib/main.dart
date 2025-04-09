@@ -11,7 +11,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:responsive_framework/responsive_framework.dart';
-import 'package:http/http.dart' as http;
 
 late SharedPreferences prefs;
 
@@ -40,34 +39,11 @@ void main() async {
     controller.isDark.value = prefs.getBool('darkTheme')!;
   }
 
-  // Check IP address and navigate accordingly
-  String ipAddress = await _fetchPublicIP();
-  String countryCode = await getCountryByIP(ipAddress);
 
-  runApp(MyApp(page: SplashPage())); // Change to your pages
+  runApp(const MyApp(page: SplashPage())); // Change to your pages
 }
 
-Future<String> _fetchPublicIP() async {
-  final response = await http.get(Uri.parse('https://api.myip.com'));
-  if (response.statusCode == 200) {
-    final data = json.decode(response.body);
-    return data['ip'];
-  } else {
-    throw Exception('Failed to fetch IP address.');
-  }
-}
 
-Future<String> getCountryByIP(String ip) async {
-  final apiKey = '1e1f1909280f49328b051e2a46101b07'; // Replace with your actual API key
-  final response = await http.get(Uri.parse('https://api.ipgeolocation.io/ipgeo?apiKey=$apiKey&ip=$ip'));
-
-  if (response.statusCode == 200) {
-    final data = json.decode(response.body);
-    return data['country_code2']; // Get the country code
-  } else {
-    throw Exception('Failed to load country data.');
-  }
-}
 
 class MyApp extends StatelessWidget {
   final Widget page;

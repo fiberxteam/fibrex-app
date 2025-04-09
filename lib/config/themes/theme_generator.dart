@@ -31,10 +31,10 @@ class AppTheme {
         checkboxTheme: CheckboxThemeData(
           materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
           splashRadius: 0,
-          fillColor: MaterialStateProperty.all(Colors.transparent),
-          checkColor: MaterialStateProperty.all(Colors.white),
+          fillColor: WidgetStateProperty.all(Colors.transparent),
+          checkColor: WidgetStateProperty.all(Colors.white),
           visualDensity: VisualDensity.compact,
-          overlayColor: MaterialStateProperty.all(Colors.transparent),
+          overlayColor: WidgetStateProperty.all(Colors.transparent),
           side: BorderSide(
             color: Colors.grey.shade400,
             width: 1,
@@ -176,7 +176,7 @@ class AppTheme {
 
     return InputDecorationTheme(
       contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
-      fillColor: colorScheme.surfaceVariant.withOpacity(0.5),
+      fillColor: colorScheme.surfaceContainerHighest.withOpacity(0.5),
       filled: true,
       activeIndicatorBorder: BorderSide.none,
       border: buildBorder(colorScheme.outline.withOpacity(0.5)),

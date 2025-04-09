@@ -28,7 +28,7 @@ class CustomAppBar extends StatelessWidget {
       ),
       trailing: InkWell(
         onTap: () {
-          Get.to(() => NotificationPage());
+          Get.to(() => const NotificationPage());
         },
         child: Container(
           padding: EdgeInsets.all(Insets.small),

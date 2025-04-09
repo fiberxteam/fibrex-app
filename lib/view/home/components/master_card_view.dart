@@ -1,13 +1,17 @@
+import 'package:fiber/client/sas_client.dart';
+import 'package:fiber/view/home/components/zain_cash_view.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:get/get.dart';
-import 'package:flutter_inappwebview/flutter_inappwebview.dart';  // Import the new package
+
+import '../../../main.dart';
 import '../../navigation/navigation_page.dart';
 
-// Controller لإدارة حالة الدفع باستخدام GetX
-class PaymentZainCashController extends GetxController {
+// Controller to manage payment status using GetX
+class PaymentController extends GetxController {
   var isPaymentSuccessful = false.obs;
 
-  // دالة لتحديد ما إذا كانت عملية الدفع ناجحة
+  // Function to set the payment status
   void setPaymentStatus(bool status) {
     isPaymentSuccessful.value = status;
   }
@@ -17,44 +21,43 @@ class PaymentZainCashController extends GetxController {
   }
 }
 
-class ZainCashWebView extends StatefulWidget {
-  final String url;
-  final String token;
-
-  const ZainCashWebView({super.key, required this.url, required this.token});
-
+class WebViewScreenPayment extends StatefulWidget {
   @override
-  _ZainCashWebViewState createState() => _ZainCashWebViewState();
+  _WebViewScreenState createState() => _WebViewScreenState();
 }
 
-class _ZainCashWebViewState extends State<ZainCashWebView> {
-  late InAppWebViewController controller;  // Declare the controller for InAppWebView
+class _WebViewScreenState extends State<WebViewScreenPayment> {
+  late InAppWebViewController controller; // WebView controller
   bool isLoading = true;
-  final PaymentZainCashController paymentController = Get.put(PaymentZainCashController());
+  final PaymentController paymentController = Get.put(PaymentController());
+  var token = prefs.getString('token');
+  String baseUrl = "${SasClient.dioHttp.url}/user/api/index.php/api/user/payment/request/hyperpay";
 
-  @override
-  void initState() {
-    super.initState();
-    // Initialize InAppWebView, no need to initialize controller here
-  }
+
+
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('ZainCash Payment'),
-        backgroundColor: Colors.blue,
+        title: const Text('MasterCard Payment'),
+        backgroundColor: Colors.orange,
       ),
       body: Stack(
         children: [
           InAppWebView(
-            initialUrlRequest: URLRequest(url: WebUri(widget.url)),
+            initialUrlRequest: URLRequest(
+              url: WebUri(baseUrl),
+              headers: {
+                "Authorization": "Bearer $token", // Sending token in headers
+              },
+            ),
             onWebViewCreated: (InAppWebViewController webViewController) {
-              // Set the controller when WebView is created
               controller = webViewController;
             },
             onLoadStart: (controller, url) {
               print("Loading started: $url");
+              print("${SasClient.dioHttp.url}/user/api/index.php/api/user/payment/request/hyperpay");
               setState(() {
                 isLoading = true;
               });
@@ -64,7 +67,15 @@ class _ZainCashWebViewState extends State<ZainCashWebView> {
               setState(() {
                 isLoading = false;
               });
-              checkPageContent();
+              String? pageContent = await controller.evaluateJavascript(source: "document.body.innerText");
+
+              if (url != null && url.toString().contains("php/api/payment/process/hyperpay")) {
+                String? pageContent = await controller.evaluateJavascript(source: "document.body.innerText");
+
+                if (pageContent != null && pageContent.contains('{"status":200,"message":"rsp_success"}')) {
+                  _showSuccessDialog();
+                }
+              }
             },
             onProgressChanged: (controller, progress) {
               setState(() {
@@ -73,20 +84,17 @@ class _ZainCashWebViewState extends State<ZainCashWebView> {
             },
             onReceivedError: (controller, request, error) {
               print("Web resource error: ${error.description}");
-              // Handle web resource errors (e.g., no internet, page not found)
             },
             onConsoleMessage: (controller, consoleMessage) {
               print("Console Message: ${consoleMessage.message}");
             },
-            // SSL handling - Accept SSL errors
             onReceivedServerTrustAuthRequest: (controller, challenge) async {
-              // Accept all SSL certificates (this is where SSL errors are ignored)
               return ServerTrustAuthResponse(
-                action: ServerTrustAuthResponseAction.PROCEED,  // Allow SSL errors
+                action: ServerTrustAuthResponseAction.PROCEED,
               );
             },
           ),
-          if (isLoading) // Show loader if the page is still loading
+          if (isLoading)
             const Center(
               child: CircularProgressIndicator(),
             ),
@@ -94,21 +102,6 @@ class _ZainCashWebViewState extends State<ZainCashWebView> {
       ),
     );
   }
-
-  // دالة للتحقق من محتوى الصفحة بعد تحميلها
-  void checkPageContent() async {
-    final result = await controller.evaluateJavascript(source: "document.body.innerText");
-    String pageContent = result.toString();
-    print("Page content: $pageContent");
-
-    if (pageContent.contains("Thank you for your payment")) {
-      paymentController.setPaymentStatus(true);
-      _showSuccessDialog();
-    } else {
-      print("Payment not successful or page doesn't contain the expected content.");
-    }
-  }
-
   void _showSuccessDialog() {
     Get.defaultDialog(
       title: "تم بنجاح",

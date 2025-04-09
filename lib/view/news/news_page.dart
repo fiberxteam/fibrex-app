@@ -14,7 +14,7 @@ class NewsPage extends StatefulWidget {
 class _NewsPageState extends State<NewsPage> {
   NewsController newsController = Get.find();
 
-  RefreshController _refreshController =
+  final RefreshController _refreshController =
       RefreshController(initialRefresh: false);
 
   void _onRefresh() async {
@@ -42,7 +42,7 @@ class _NewsPageState extends State<NewsPage> {
             ),
           ),
           body: Obx(() => newsController.isLoading.value
-              ? Center(
+              ? const Center(
                   child: CircularProgressIndicator(),
                 )
               : Column(

@@ -80,7 +80,7 @@ class _SignupPageState extends State<ReqyestActivePage> {
                 Gap(Insets.margin),
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: Insets.margin),
-                  child: Row(
+                  child: const Row(
                     children: [CustomBackButton()],
                   ),
                 ),
@@ -121,7 +121,7 @@ class _SignupPageState extends State<ReqyestActivePage> {
                               bottomSpace: Insets.margin,
                             ),
                             CustomTextFormField(
-                              validators: [],
+                              validators: const [],
                               hint: ''.tr,
                               controller: data.emailController,
                               prefixIcon: const Icon(CupertinoIcons.mail),
@@ -176,7 +176,7 @@ class _SignupPageState extends State<ReqyestActivePage> {
                                 : CustomFillButton(
                                     title: 'طلب التفعيل'.tr,
                                     loading: data.isLoading.value
-                                        ? SizedBox(
+                                        ? const SizedBox(
                                             height: 24,
                                             width: 24,
                                             child: CircularProgressIndicator(

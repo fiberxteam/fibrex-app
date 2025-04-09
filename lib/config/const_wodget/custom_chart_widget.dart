@@ -55,7 +55,7 @@ class CustomChartWidget extends StatelessWidget {
                       ? Theme.of(context).textTheme.titleSmall
                       : Theme.of(context).textTheme.titleSmall,
                 ),
-                Spacer(),
+                const Spacer(),
                 Text(
                   "Mbps",
                   style: isRow
@@ -78,7 +78,7 @@ class CustomChartWidget extends StatelessWidget {
               ],
             ),
           ),
-          Spacer(),
+          const Spacer(),
           ClipRRect(
             borderRadius: BorderRadius.circular(Insets.large),
             child: Sparkline(

@@ -144,7 +144,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
               borderRadius: BorderRadius.circular(30),
               borderSide: BorderSide(
                 width: 1,
-                color: Color(0xFFEBEBEB),
+                color: const Color(0xFFEBEBEB),
                 style: widget.hasBorder == true
                     ? BorderStyle.solid
                     : BorderStyle.none,

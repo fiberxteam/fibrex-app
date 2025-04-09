@@ -15,15 +15,15 @@ class CustomWitchWidget extends StatelessWidget {
       init: controller,
       builder: (controller) => Switch(
         value: controller.isDark.value,
-        thumbColor: MaterialStateProperty.all(
+        thumbColor: WidgetStateProperty.all(
             context.theme.colorScheme.outline.withOpacity(0.5)),
         inactiveThumbColor: context.theme.colorScheme.outline.withOpacity(0.5),
         activeTrackColor: context.theme.colorScheme.outline.withOpacity(0.2),
-        trackOutlineColor: const MaterialStatePropertyAll(Colors.transparent),
-        overlayColor: const MaterialStatePropertyAll(Colors.transparent),
+        trackOutlineColor: const WidgetStatePropertyAll(Colors.transparent),
+        overlayColor: const WidgetStatePropertyAll(Colors.transparent),
         thumbIcon: controller.isDark.value
             ? null
-            : const MaterialStatePropertyAll(Icon(Icons.sunny)),
+            : const WidgetStatePropertyAll(Icon(Icons.sunny)),
         activeThumbImage: const AssetImage(Assets.assetsIconsMoon),
         inactiveThumbImage: const AssetImage(Assets.assetsIconsNotMoon),
         onChanged: (value) {

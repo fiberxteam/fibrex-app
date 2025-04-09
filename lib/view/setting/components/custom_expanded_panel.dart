@@ -7,13 +7,11 @@ const double _kPanelHeaderExpandedHeight = 64.0;
 
 class CustomExpansionPanelList extends StatefulWidget {
   const CustomExpansionPanelList(
-      {Key? key,
-      this.children: const <ExpansionPanel>[],
+      {super.key,
+      this.children = const <ExpansionPanel>[],
       required this.expansionCallback,
-      this.animationDuration: kThemeAnimationDuration})
-      : assert(children != null),
-        assert(animationDuration != null),
-        super(key: key);
+      this.animationDuration = kThemeAnimationDuration})
+      : assert(animationDuration != null);
 
   final List<ExpansionPanel> children;
 
@@ -34,23 +32,24 @@ class _CustomExpansionPanelListState extends State<CustomExpansionPanelList> {
   @override
   Widget build(BuildContext context) {
     final List<Widget> items = <Widget>[];
-    const EdgeInsets kExpandedEdgeInsets = const EdgeInsets.symmetric(
+    const EdgeInsets kExpandedEdgeInsets = EdgeInsets.symmetric(
         vertical: _kPanelHeaderExpandedHeight - _kPanelHeaderCollapsedHeight);
 
     for (int index = 0; index < widget.children.length; index += 1) {
-      if (_isChildExpanded(index) && index != 0 && !_isChildExpanded(index - 1))
-        items.add(new Divider(
-          key: new _SaltedKey<BuildContext, int>(context, index * 2 - 1),
+      if (_isChildExpanded(index) && index != 0 && !_isChildExpanded(index - 1)) {
+        items.add(Divider(
+          key: _SaltedKey<BuildContext, int>(context, index * 2 - 1),
           height: 0.0,
           color: Colors.transparent,
         ));
+      }
 
       final header = Row(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
-          new Expanded(
-            child: new AnimatedContainer(
+          Expanded(
+            child: AnimatedContainer(
               padding: EdgeInsets.symmetric(
                   horizontal: Insets.medium, vertical: Insets.exSmall),
               duration: widget.animationDuration,
@@ -74,8 +73,7 @@ class _CustomExpansionPanelListState extends State<CustomExpansionPanelList> {
             child: ExpandIcon(
               isExpanded: _isChildExpanded(index),
               onPressed: (bool isExpanded) {
-                if (widget.expansionCallback != null)
-                  widget.expansionCallback(index, isExpanded);
+                widget.expansionCallback(index, isExpanded);
               },
             ),
           ),
@@ -84,7 +82,7 @@ class _CustomExpansionPanelListState extends State<CustomExpansionPanelList> {
 
       items.add(
         Container(
-          margin: EdgeInsets.only(bottom: 16),
+          margin: const EdgeInsets.only(bottom: 16),
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(Insets.large),
               border: Border.all(width: 1, color: Colors.white)),
@@ -99,7 +97,7 @@ class _CustomExpansionPanelListState extends State<CustomExpansionPanelList> {
               children: <Widget>[
                 header,
                 AnimatedCrossFade(
-                  firstChild: new Container(height: 0.0),
+                  firstChild: Container(height: 0.0),
                   secondChild: widget.children[index].body,
                   firstCurve:
                       const Interval(0.0, 0.6, curve: Curves.fastOutSlowIn),
@@ -118,7 +116,7 @@ class _CustomExpansionPanelListState extends State<CustomExpansionPanelList> {
       );
     }
 
-    return new Column(
+    return Column(
       children: items,
     );
   }

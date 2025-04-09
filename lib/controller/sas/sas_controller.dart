@@ -17,7 +17,7 @@ class SasController extends GetxController {
 
   getUserTraffic() async {
     isLoaing(true);
-    final passphrase = 'abcdefghijuklmno0123456789012345';
+    const passphrase = 'abcdefghijuklmno0123456789012345';
 
     var date = DateTime.now();
     var body = {

@@ -53,7 +53,7 @@ class _NavigationPageState extends State<NavigationPage> {
             children: [
               InkMe(
                 onTap: () => data.page.value = 0,
-                overlayColor: MaterialStatePropertyAll(
+                overlayColor: WidgetStatePropertyAll(
                     context.theme.colorScheme.primary.withOpacity(0)),
                 child: CustomIconsButton(
                   title: 'الرئيسية'.tr,
@@ -69,7 +69,7 @@ class _NavigationPageState extends State<NavigationPage> {
               ),
               InkMe(
                 onTap: () => data.page.value = 1,
-                overlayColor: MaterialStatePropertyAll(
+                overlayColor: WidgetStatePropertyAll(
                     context.theme.colorScheme.primary.withOpacity(0)),
                 child: CustomIconsButton(
                   title: 'الخدمات'.tr,
@@ -79,7 +79,7 @@ class _NavigationPageState extends State<NavigationPage> {
               ),
               InkMe(
                 onTap: () => data.page.value = 2,
-                overlayColor: MaterialStatePropertyAll(
+                overlayColor: WidgetStatePropertyAll(
                     context.theme.colorScheme.primary.withOpacity(0)),
                 child: CustomIconsButton(
                   title: 'الأخبار'.tr,
@@ -89,7 +89,7 @@ class _NavigationPageState extends State<NavigationPage> {
               ),
               InkMe(
                 onTap: () => data.page.value = 3,
-                overlayColor: MaterialStatePropertyAll(
+                overlayColor: WidgetStatePropertyAll(
                     context.theme.colorScheme.primary.withOpacity(0)),
                 child: CustomIconsButton(
                   title: 'الاعدادات'.tr,

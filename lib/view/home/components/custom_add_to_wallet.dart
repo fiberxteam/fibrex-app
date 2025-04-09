@@ -7,7 +7,7 @@ import 'package:fiber/controller/home/home_controller.dart';
 import 'package:flutter/material.dart';
 
 class CustomAddToWallet extends StatefulWidget {
-  CustomAddToWallet({
+  const CustomAddToWallet({
     super.key,
   });
 
@@ -46,7 +46,7 @@ class _CustomRenewSubscriptionCardState extends State<CustomAddToWallet> {
               Gap(Insets.medium),
               CustomFillButton(
                 loading: cc.redeemLoading.value
-                    ? SizedBox(
+                    ? const SizedBox(
                         height: 24,
                         width: 24,
                         child: CircularProgressIndicator(

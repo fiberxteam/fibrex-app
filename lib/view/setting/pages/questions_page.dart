@@ -43,7 +43,7 @@ class _QuestionsPageState extends State<QuestionsPage> {
         ),
         body: Obx(
               () => controller.isLoading.value
-              ? Center(
+              ? const Center(
             child: CircularProgressIndicator(),
           )
               : !controller.isLoading.value && controller.questions.isEmpty
@@ -80,13 +80,13 @@ class _QuestionsPageState extends State<QuestionsPage> {
           body: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Divider(thickness: 0.5),
+              const Divider(thickness: 0.5),
               Padding(
-                padding: EdgeInsets.all(8.0),  // Adjusted padding
+                padding: const EdgeInsets.all(8.0),  // Adjusted padding
                 child: Text(
                   item.answer ?? "No answer available",
                   style: context.theme.textTheme.bodyMedium!
-                      .copyWith(color: Color(0xFF7C758A)),
+                      .copyWith(color: const Color(0xFF7C758A)),
                 ),
               ),
             ],

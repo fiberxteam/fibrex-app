@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'package:fiber/models/ads_model.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../client/base_client.dart';

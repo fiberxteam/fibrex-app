@@ -1,4 +1,3 @@
-import 'package:fiber/config/constant.dart';
 import 'package:fiber/main.dart';
 import 'dart:io';
 
@@ -14,7 +13,7 @@ class SassEndpoint {
     if (gov == 1) {
       return "https://k-sas.fiberx.iq";
     } else {
-      return "https://b-sas.fiberx.iq"; // http://94.176.40.66
+      return "https://test-sas.fiberx.iq:2223"; // http://94.176.40.66
     }
   }
 

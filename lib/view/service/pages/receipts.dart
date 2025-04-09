@@ -49,12 +49,12 @@ class _ReceiptsPageState extends State<ReceiptsPage> {
         ),
         body: Obx(
           () => homeController.loadInvoice.value
-              ? Center(
+              ? const Center(
                   child: CircularProgressIndicator(),
                 )
               : !homeController.loadInvoice.value &&
                       homeController.invoiceList.isEmpty
-                  ? Center(
+                  ? const Center(
                       child: NoDataWidget(),
                     )
                   : Column(
@@ -124,7 +124,7 @@ class _ReceiptsPageState extends State<ReceiptsPage> {
                                                     .textTheme
                                                     .titleMedium!
                                                     .copyWith()),
-                                            Spacer(),
+                                            const Spacer(),
                                             SinceDate(
                                               DateTime.now().subtract(
                                                 const Duration(days: 1),
@@ -137,7 +137,7 @@ class _ReceiptsPageState extends State<ReceiptsPage> {
                                         Gap(Insets.exSmall),
                                         Text(
                                           invoiceModel.description ?? "",
-                                          style: TextStyle(
+                                          style: const TextStyle(
                                               color: Color(0xFF7C758A)),
                                         )
                                       ],

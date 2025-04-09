@@ -2,11 +2,9 @@
 
 import 'dart:io';
 import 'package:fiber/main.dart';
-import 'package:fiber/view/splash/splash_page.dart';
 import 'package:awesome_dio_interceptor/awesome_dio_interceptor.dart';
 import 'package:dio/dio.dart';
 import 'package:fiber/config/constant.dart';
-import 'package:get/get.dart';
 // import 'package:onesignal_flutter/onesignal_flutter.dart';
 import '../../client/get_endpoint_url.dart';
 

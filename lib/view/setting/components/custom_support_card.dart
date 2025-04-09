@@ -18,7 +18,7 @@ class CustomSupportCard extends StatelessWidget {
           enableFeedback: false,
           minVerticalPadding: 0,
           onTap: () {
-            Get.to(QuestionsPage());
+            Get.to(const QuestionsPage());
           },
           titleAlignment: ListTileTitleAlignment.center,
           style: ListTileStyle.list,

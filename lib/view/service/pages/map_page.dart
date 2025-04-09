@@ -15,7 +15,7 @@ class MapPage extends StatefulWidget {
 
 class _MapPageState extends State<MapPage> {
   LocationsController locationsController = Get.put(LocationsController());
-  late LatLng _currentPosition = LatLng(33.2984442, 44.3331072);
+  late LatLng _currentPosition = const LatLng(33.2984442, 44.3331072);
   // list of set of markers
   Set<Marker> markers = {};
   late GoogleMapController mapController;
@@ -67,7 +67,7 @@ class _MapPageState extends State<MapPage> {
 
     locationsController.getData().then((value) {
       print('Response data: $value'); // قم بطباعة الـ response للتحقق منه
-      if (value != null && value.data.isNotEmpty) {
+      if (value.data.isNotEmpty) {
         for (var i = 0; i < value.data.length; i++) {
           // تأكد من أن lat و long صالحين
           double lat = double.tryParse(value.data[i].lat ?? '') ?? 0.0;

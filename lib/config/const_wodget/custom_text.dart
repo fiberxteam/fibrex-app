@@ -34,18 +34,18 @@ class CustomText extends StatelessWidget {
       selectedTextStyle = TextStyle(
         fontWeight: FontWeight.bold,
         fontSize: fontSize * 1.2,
-        color: color?.withOpacity(0.8) ?? Theme.of(context).colorScheme.onBackground,
+        color: color?.withOpacity(0.8) ?? Theme.of(context).colorScheme.onSurface,
       );
     } else if (textType == TextType.label) {
       selectedTextStyle = TextStyle(
         fontSize: fontSize * 0.8,
-        color: color ?? Theme.of(context).colorScheme.onBackground,
+        color: color ?? Theme.of(context).colorScheme.onSurface,
       );
     } else {
       selectedTextStyle = TextStyle(
         fontWeight: fontWeight ? FontWeight.bold : FontWeight.normal,
         fontSize: fontSize,
-        color: color?.withOpacity(0.6) ?? Theme.of(context).colorScheme.onBackground,
+        color: color?.withOpacity(0.6) ?? Theme.of(context).colorScheme.onSurface,
         height: height,
       );
     }

@@ -19,7 +19,7 @@ class _OpenImageState extends State<OpenImage> {
         backgroundColor: context.theme.cardColor,
         leading: IconButton(
           icon: Icon(CupertinoIcons.back,
-              color: context.theme.colorScheme.onBackground),
+              color: context.theme.colorScheme.onSurface),
           onPressed: () => Navigator.of(context).pop(),
         ),
         actions: [

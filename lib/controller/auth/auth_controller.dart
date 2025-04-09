@@ -67,7 +67,7 @@ class AuthController extends GetxController {
     isLoading.value = true;
     var data = {"username": email, "password": password, "language": "en"};
 
-    final passphrase = 'abcdefghijuklmno0123456789012345';
+    const passphrase = 'abcdefghijuklmno0123456789012345';
 
     final encryptedData = encryptAESCryptoJS(jsonEncode(data), passphrase);
 
@@ -80,7 +80,7 @@ class AuthController extends GetxController {
 
     if (response.item1) {
       prefs.setString('token', response.item2['token']);
-      Get.offAll(() => SplashPage(), transition: Transition.fadeIn);
+      Get.offAll(() => const SplashPage(), transition: Transition.fadeIn);
     }
     isLoading.value = false;
     return response;
@@ -89,7 +89,7 @@ class AuthController extends GetxController {
   autoLogin() async {
     var request = await SasClient.get(api: '/api/auth/autoLogin');
     prefs.setString("token", "");
-    Get.offAll(() => SplashPage(), transition: Transition.fadeIn);
+    Get.offAll(() => const SplashPage(), transition: Transition.fadeIn);
   }
 
   Future logout() async {

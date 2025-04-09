@@ -37,7 +37,7 @@ class _SignupPageState extends State<SignupPage> {
                 Gap(Insets.margin),
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: Insets.margin),
-                  child: Row(
+                  child: const Row(
                     children: [CustomBackButton()],
                   ),
                 ),
@@ -151,7 +151,7 @@ class _SignupPageState extends State<SignupPage> {
                             CustomFillButton(
                               title: 'انشاء الحساب'.tr,
                               loading: data.isLoading.value
-                                  ? SizedBox(
+                                  ? const SizedBox(
                                       height: 24,
                                       width: 24,
                                       child: CircularProgressIndicator(

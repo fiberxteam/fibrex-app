@@ -2,8 +2,6 @@ import 'dart:convert';
 
 import 'package:fiber/client/base_client.dart';
 import 'package:fiber/models/location_model.dart';
-import 'package:fiber/models/plans_model.dart';
-import 'package:fiber/models/questions_model.dart';
 import 'package:get/get.dart';
 
 class LocationsController extends GetxController {

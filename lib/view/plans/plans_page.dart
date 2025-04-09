@@ -40,7 +40,7 @@ class _PlansPageState extends State<PlansPage> {
         ),
         body: SafeArea(
           child: Obx(() => plansController.isLoading.value
-              ? Center(
+              ? const Center(
                   child: CircularProgressIndicator(),
                 )
               : !plansController.isLoading.value &&

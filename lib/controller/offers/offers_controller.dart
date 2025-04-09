@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:fiber/client/base_client.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../models/offers_model.dart';

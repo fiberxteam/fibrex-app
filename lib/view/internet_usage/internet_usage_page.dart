@@ -17,7 +17,7 @@ class InternetUsagePage extends StatefulWidget {
 }
 
 class _InternetUsagePageState extends State<InternetUsagePage> {
-  SasController _sasController = Get.put(SasController());
+  final SasController _sasController = Get.put(SasController());
 
   @override
   void initState() {
@@ -51,7 +51,7 @@ class _InternetUsagePageState extends State<InternetUsagePage> {
         ),
         body: Obx(
           () => _sasController.isLoaing.value
-              ? Center(child: CircularProgressIndicator())
+              ? const Center(child: CircularProgressIndicator())
               : SingleChildScrollView(
                   child: Container(
                     padding: EdgeInsets.symmetric(horizontal: Insets.margin),
@@ -85,7 +85,7 @@ class _InternetUsagePageState extends State<InternetUsagePage> {
                               value:
                                   _sasController.totalUpload.value.toString(),
                               isRow: true,
-                              color: Color(0xFF4F9AE0),
+                              color: const Color(0xFF4F9AE0),
                               icon: CupertinoIcons.up_arrow,
                             ),
                             Gap(Insets.medium),
@@ -94,7 +94,7 @@ class _InternetUsagePageState extends State<InternetUsagePage> {
                               value:
                                   _sasController.totalDownload.value.toString(),
                               isRow: true,
-                              color: Color(0xFF4FE080),
+                              color: const Color(0xFF4FE080),
                               icon: CupertinoIcons.down_arrow,
                             )
                           ],
@@ -107,7 +107,7 @@ class _InternetUsagePageState extends State<InternetUsagePage> {
                               value:
                                   _sasController.totalTraffic.value.toString(),
                               isRow: true,
-                              color: Color.fromARGB(255, 183, 79, 224),
+                              color: const Color.fromARGB(255, 183, 79, 224),
                               icon: CupertinoIcons.up_arrow,
                             ),
                             Gap(Insets.medium),
@@ -116,7 +116,7 @@ class _InternetUsagePageState extends State<InternetUsagePage> {
                               value:
                                   _sasController.remainingData.value.toString(),
                               isRow: true,
-                              color: Color.fromARGB(255, 224, 144, 79),
+                              color: const Color.fromARGB(255, 224, 144, 79),
                               icon: CupertinoIcons.down_arrow,
                             )
                           ],

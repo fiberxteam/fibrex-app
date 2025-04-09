@@ -36,10 +36,10 @@ class CustomPinPut extends StatelessWidget {
         height: Insets.exLarge * 1.5,
         margin: const EdgeInsets.symmetric(horizontal: 0),
         textStyle: context.theme.textTheme.titleMedium!.copyWith(
-          color: context.theme.colorScheme.onBackground,
+          color: context.theme.colorScheme.onSurface,
         ),
         decoration: BoxDecoration(
-          color: context.theme.colorScheme.background,
+          color: context.theme.colorScheme.surface,
           border: Border.all(color: context.theme.colorScheme.primaryContainer),
           borderRadius: BorderRadius.circular(10),
         ),
@@ -49,10 +49,10 @@ class CustomPinPut extends StatelessWidget {
         width: Insets.exLarge * 1.5,
         height: Insets.exLarge * 1.5,
         textStyle: context.theme.textTheme.titleMedium!.copyWith(
-          color: context.theme.colorScheme.onBackground,
+          color: context.theme.colorScheme.onSurface,
         ),
         decoration: BoxDecoration(
-          color: context.theme.colorScheme.background,
+          color: context.theme.colorScheme.surface,
           border: Border.all(color: context.theme.colorScheme.primaryContainer),
           borderRadius: BorderRadius.circular(10),
         ),

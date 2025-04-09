@@ -20,6 +20,7 @@ class HomeController extends GetxController {
   RxBool isLoading = false.obs;
   RxBool loadUser = false.obs;
   RxBool loadZainCash = false.obs;
+  RxBool loadMasterCard = false.obs;
   RxBool loadInvoice = false.obs;
   Rx<ServiceModel> serviceInfo = ServiceModel().obs;
   Rx<UserModel> userInfo = UserModel().obs;
@@ -52,6 +53,42 @@ class HomeController extends GetxController {
       loadUser.value = false;
     }
   }
+
+
+  //Fetch MasterCart Url
+  getUrlMasterCard() async {
+    var token = prefs.getString('token');
+    if (token != null) {
+      loadMasterCard.value = true;
+
+      // Fetch the ZainCash URL
+      final response = await SasClient.get(api: '/api/user/payment/request/zaincash');
+      if (response != null) {
+        var data = response["data"]; // This should be the URL string
+
+        if (data != null) {
+          activeZainCashLoading.value = false;
+          // Successfully parse the ZainCash data
+          zainCash.value = ZainCash.fromJson({
+            "status": response["status"], // Use the status from the response
+            "data": data,  // Use the URL string directly
+          });
+
+          // Navigate to the ZainCash WebView screen
+
+          Get.to(() => ZainCashWebView(url: data , token: token,));
+        } else {
+          print('ok 1');
+          Get.snackbar("Error", "No MasterCard data found.");
+        }
+      } else {
+        print('ok 2');
+        Get.snackbar("Error", "Failed to fetch MasterCard info.");
+      }
+      loadMasterCard.value = false;
+    }
+  }
+
 
   // Fetching ZainCash URL
   getUrlZainCash() async {
@@ -112,8 +149,8 @@ class HomeController extends GetxController {
         return;
       }
 
-      final passphrase = 'abcdefghijuklmno0123456789012345';
-      var uuid = Uuid();
+      const passphrase = 'abcdefghijuklmno0123456789012345';
+      var uuid = const Uuid();
 
       var secondData = {"uuid": uuid.v1(), "current_password": true};
 
@@ -153,7 +190,7 @@ class HomeController extends GetxController {
     if (token != null) {
       redeemLoading.value = true;
       var data = {"pin": pin};
-      final passphrase = 'abcdefghijuklmno0123456789012345';
+      const passphrase = 'abcdefghijuklmno0123456789012345';
       final encryptedData = encryptAESCryptoJS(jsonEncode(data), passphrase);
 
       final response = await SasClient.post(
@@ -183,7 +220,7 @@ class HomeController extends GetxController {
     if (token != null) {
       activePinLoading.value = true;
       var data = {"pin": pin};
-      final passphrase = 'abcdefghijuklmno0123456789012345';
+      const passphrase = 'abcdefghijuklmno0123456789012345';
       final encryptedData = encryptAESCryptoJS(jsonEncode(data), passphrase);
 
       final response = await SasClient.post(
@@ -214,7 +251,7 @@ class HomeController extends GetxController {
       loadInvoice.value = true;
       var data = {"page": 1, "count": 10, "sortBy": "id", "direction": "desc"};
 
-      final passphrase = 'abcdefghijuklmno0123456789012345';
+      const passphrase = 'abcdefghijuklmno0123456789012345';
       final encryptedData = encryptAESCryptoJS(jsonEncode(data), passphrase);
 
       final response = await SasClient.post(

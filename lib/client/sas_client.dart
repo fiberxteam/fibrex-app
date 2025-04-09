@@ -34,7 +34,7 @@ class SasClient {
           options.headers["Accept"] = "application/json";
           return handler.next(options);
         },
-        onError: (DioError e, handler) {
+        onError: (DioException e, handler) {
           // هنا يمكن إضافة معالجة للأخطاء
           return handler.next(e);
         },

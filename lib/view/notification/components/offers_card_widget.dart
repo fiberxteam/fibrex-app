@@ -21,7 +21,7 @@ class OffersCardWidget extends StatelessWidget {
               ),
             ),
             builder: (BuildContext context) {
-              return CustomActiveBottomSheet();
+              return const CustomActiveBottomSheet();
             });
       },
       child: Container(
@@ -40,7 +40,7 @@ class OffersCardWidget extends StatelessWidget {
               height: 150,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(Insets.large),
-                  image: DecorationImage(
+                  image: const DecorationImage(
                       image: AssetImage(Assets.assetsImagesImage1),
                       fit: BoxFit.cover)),
             ),
@@ -54,7 +54,7 @@ class OffersCardWidget extends StatelessWidget {
             Gap(Insets.exSmall),
             Text(
               model.description ?? "",
-              style: TextStyle(color: Color(0xFF7C758A)),
+              style: const TextStyle(color: Color(0xFF7C758A)),
             ),
             Gap(Insets.small),
             // Row(

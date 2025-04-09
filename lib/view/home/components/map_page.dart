@@ -6,6 +6,8 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:geolocator/geolocator.dart';
 
 class MapPage extends StatefulWidget {
+  const MapPage({super.key});
+
   @override
   _MapPageState createState() => _MapPageState();
 }
@@ -47,7 +49,7 @@ class _MapPageState extends State<MapPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('تحديد الموقع'),
+        title: const Text('تحديد الموقع'),
       ),
       body: Stack(
         children: [
@@ -59,7 +61,7 @@ class _MapPageState extends State<MapPage> {
             ),
             markers: {
               Marker(
-                markerId: MarkerId('selected-location'),
+                markerId: const MarkerId('selected-location'),
                 position: _currentPosition,
                 draggable: true,
                 onDragEnd: (LatLng newPosition) {

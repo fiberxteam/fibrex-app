@@ -103,9 +103,9 @@ class _NotificationPageState extends State<NotificationPage>
             Expanded(
               child: TabBarView(controller: _tabController, children: [
                 Obx(() => controller.isLoading.value
-                    ? Center(child: CircularProgressIndicator())
+                    ? const Center(child: CircularProgressIndicator())
                     : !controller.isLoading.value && controller.offers.isEmpty
-                        ? Center(
+                        ? const Center(
                             child: NoDataWidget(),
                           )
                         : Column(
@@ -128,10 +128,10 @@ class _NotificationPageState extends State<NotificationPage>
                             ].animate(interval: 50.ms).fadeIn(),
                           )),
                 Obx(() => notificationController.isLoading.value == true
-                    ? Center(child: CircularProgressIndicator())
+                    ? const Center(child: CircularProgressIndicator())
                     : !notificationController.isLoading.value &&
                             notificationController.notifications.isEmpty
-                        ? Center(
+                        ? const Center(
                             child: NoDataWidget(),
                           )
                         : Column(

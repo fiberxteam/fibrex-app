@@ -59,7 +59,7 @@ class PlanCardWidget extends StatelessWidget {
             Gap(Insets.exSmall),
             Text(
               plansModel.description ?? "",
-              style: TextStyle(color: Color(0xFF7C758A)),
+              style: const TextStyle(color: Color(0xFF7C758A)),
             ),
             Gap(Insets.small),
             Text(

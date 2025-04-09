@@ -9,7 +9,7 @@ import 'package:fiber/config/constant.dart';
 class DioHttp extends GetxController {
   Dio dio = Dio();
   static const String ip = 'https://fiberx-api.com'; // Static IP that we can access directly
-  static const String baseUrls = '${ip}/fiberxApp/user/api/v1/';
+  static const String baseUrls = '$ip/fiberxApp/user/api/v1/';
 
   @override
   void onInit() {

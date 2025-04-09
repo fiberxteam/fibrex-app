@@ -11,11 +11,11 @@ String serviceModelToJson(ServiceModel data) => json.encode(data.toJson());
 
 class ServiceModel {
   String? profileName;
-  dynamic? description;
+  dynamic description;
   DateTime? expiration;
   int? profileId;
   bool? status;
-  dynamic? price;
+  dynamic price;
   SubscriptionStatus? subscriptionStatus;
   Limits? limits;
 

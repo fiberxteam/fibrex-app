@@ -10,11 +10,11 @@ DashboardModel dashboardModelFromJson(String str) =>
 String dashboardModelToJson(DashboardModel data) => json.encode(data.toJson());
 
 class DashboardModel {
-  dynamic? remainingDays;
-  dynamic? remainingTraffic;
-  dynamic? remainingUptime;
-  dynamic? balance;
-  dynamic? unpaidInvoices;
+  dynamic remainingDays;
+  dynamic remainingTraffic;
+  dynamic remainingUptime;
+  dynamic balance;
+  dynamic unpaidInvoices;
   Loan? loan;
 
   DashboardModel({
@@ -46,10 +46,10 @@ class DashboardModel {
 }
 
 class Loan {
-  dynamic? rxMb;
-  dynamic? txMb;
-  dynamic? rxtxMb;
-  dynamic? days;
+  dynamic rxMb;
+  dynamic txMb;
+  dynamic rxtxMb;
+  dynamic days;
 
   Loan({
     this.rxMb,

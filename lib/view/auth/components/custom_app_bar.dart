@@ -11,7 +11,7 @@ class CustomAppBar extends StatelessWidget {
     return Container(
       width: double.infinity,
       height: 230,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
           image: DecorationImage(
               image: AssetImage(Assets.assetsImagesBackgroundLogin),
               fit: BoxFit.cover)),

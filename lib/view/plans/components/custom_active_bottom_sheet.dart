@@ -50,7 +50,7 @@ class CustomActiveBottomSheet extends StatelessWidget {
                       height: 3,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(100),
-                        color: Theme.of(context).colorScheme.background,
+                        color: Theme.of(context).colorScheme.surface,
                       ),
                     ),
                   ],
@@ -62,7 +62,7 @@ class CustomActiveBottomSheet extends StatelessWidget {
                         .titleMedium!
                         .copyWith(fontWeight: FontWeight.bold)),
                 Gap(Insets.small),
-                Divider(
+                const Divider(
                   thickness: 0.6,
                 ),
                 Gap(Insets.medium),
@@ -72,14 +72,14 @@ class CustomActiveBottomSheet extends StatelessWidget {
                         .titleMedium!
                         .copyWith(fontWeight: FontWeight.bold)),
                 Gap(Insets.small),
-                CustomTextFormField(
+                const CustomTextFormField(
                   validators: [],
                   hint: "**",
                   isLabelVisible: true,
                   label: "رمز التفعيل",
                   hasBorder: true,
                 ),
-                Spacer(),
+                const Spacer(),
                 CustomFillButton(
                     title: "تفعيل",
                     backgroundColor: context.theme.colorScheme.primary),

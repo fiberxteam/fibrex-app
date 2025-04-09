@@ -3,13 +3,13 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
 List<Color> gradientColors = [
-  Color(0xFF592D96),
-  Color(0xFF592D96).withOpacity(0.5),
-  Color(0xFF592D96).withOpacity(0.1),
+  const Color(0xFF592D96),
+  const Color(0xFF592D96).withOpacity(0.5),
+  const Color(0xFF592D96).withOpacity(0.1),
 ];
 
 class InternetChartWidget extends StatelessWidget {
-  InternetChartWidget({super.key});
+  const InternetChartWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +21,7 @@ class InternetChartWidget extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
+            const Text(
               "البيانات المستخدمة",
               style: TextStyle(color: Color(0xFF9291A5), fontSize: 14),
             ),
@@ -43,7 +43,7 @@ class InternetChartWidget extends StatelessWidget {
               ],
             ),
             Gap(Insets.small),
-            Divider(
+            const Divider(
               color: Color(0xFFE5E5EF),
             ),
             Gap(Insets.margin),

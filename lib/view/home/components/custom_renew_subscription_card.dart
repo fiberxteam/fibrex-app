@@ -4,10 +4,11 @@ import 'package:fiber/config/constant.dart';
 import 'package:fiber/config/validator/validators.dart';
 import 'package:fiber/view/home/components/custom_renew_card_item.dart';
 import 'package:fiber/controller/home/home_controller.dart';
+import 'package:fiber/view/home/components/master_card_view.dart';
 import 'package:flutter/material.dart';
 
 class CustomRenewSubscriptionCard extends StatefulWidget {
-  CustomRenewSubscriptionCard({
+  const CustomRenewSubscriptionCard({
     super.key,
   });
 
@@ -54,7 +55,7 @@ class _CustomRenewSubscriptionCardState
               Gap(Insets.medium),
               CustomFillButton(
                 loading: cc.activePinLoading.value
-                    ? SizedBox(
+                    ? const SizedBox(
                         height: 24,
                         width: 24,
                         child: CircularProgressIndicator(
@@ -72,13 +73,35 @@ class _CustomRenewSubscriptionCardState
               Gap(Insets.medium),
               CustomOutLineButton(
                 icon : SvgPicture.asset(
+                  Assets.assetsIconsMasterCard,
+                  width: Insets.large,
+                  fit: BoxFit.fill,
+                ),
+                loading: cc.loadZainCash.value
+                    ? const SizedBox(
+                  height: 24,
+                  width: 24,
+                  child: CircularProgressIndicator(
+                    color: Colors.purple,
+                    strokeWidth: 2,
+                  ),
+                )
+                    : null,
+                title: 'تفعيل من بطاقة ائتمان',
+                onTap: () {
+                  Get.to(() => WebViewScreenPayment());
+                },
+              ),
+              Gap(Insets.medium),
+              CustomOutLineButton(
+                icon : SvgPicture.asset(
                   Assets.assetsIconsZainCash,
                   color: Colors.black,
                   width: Insets.large,
                   fit: BoxFit.fill,
                 ),
                 loading: cc.loadZainCash.value
-                    ? SizedBox(
+                    ? const SizedBox(
                   height: 24,
                   width: 24,
                   child: CircularProgressIndicator(
@@ -101,7 +124,7 @@ class _CustomRenewSubscriptionCardState
                   fit: BoxFit.fill,
                 ),
                 loading: cc.activeWithoutReedemLoading.value
-                    ? SizedBox(
+                    ? const SizedBox(
                         height: 24,
                         width: 24,
                         child: CircularProgressIndicator(

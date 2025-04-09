@@ -38,7 +38,7 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
             controller: controller,
             onComplete: (controller) async {
               if (prefs.getBool("selected_gov") == null) {
-                Get.offAll(SelectGovPage());
+                Get.offAll(const SelectGovPage());
               } else {
                 if (prefs.getString('token') == null) {
                   Get.offAll(() => const LoginPage(),

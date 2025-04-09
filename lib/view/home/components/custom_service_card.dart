@@ -32,7 +32,7 @@ class CustomServiceCard extends StatelessWidget {
                   horizontal: Insets.small, vertical: Insets.exSmall),
               decoration: BoxDecoration(
                 color: isDisabled == true
-                    ? Color.fromARGB(255, 224, 220, 220)
+                    ? const Color.fromARGB(255, 224, 220, 220)
                     : context.theme.colorScheme.surface.withOpacity(0.5),
                 border: Border.all(
                   color: context.theme.colorScheme.surface,

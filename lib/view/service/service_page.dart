@@ -54,7 +54,7 @@ class _ServicePageState extends State<ServicePage> {
           SizedBox(height: Insets.small),
           CustomServiceCard(
             onTap: () {
-              Get.to(() => MapPage(), transition: Transition.fadeIn);
+              Get.to(() => const MapPage(), transition: Transition.fadeIn);
             },
             servicePage: true,
             icon: Assets.assetsIconsMapPin,
@@ -96,7 +96,7 @@ class _ServicePageState extends State<ServicePage> {
             icon: Assets.assetsIconsWifiX,
             title: 'الصيانة'.tr,
             onTap: () {
-              Get.to(SupportPage(
+              Get.to(const SupportPage(
                 isRepare: true,
               ));
             },

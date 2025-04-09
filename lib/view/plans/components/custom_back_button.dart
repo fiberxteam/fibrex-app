@@ -26,7 +26,7 @@ class _CustomBackButtonState extends State<CustomBackButton> {
         height: 45,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(100),
-          border: Border.all(color: Color(0xFFEBEBEB)),
+          border: Border.all(color: const Color(0xFFEBEBEB)),
           color: Colors.white,
         ),
         child: Directionality(

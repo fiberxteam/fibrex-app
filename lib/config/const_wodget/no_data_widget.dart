@@ -30,7 +30,7 @@ class NoDataWidget extends StatelessWidget {
             Text(
               details!,
               style: Theme.of(context).textTheme.titleMedium!.copyWith(
-                  color: Color(0xFF7C758A), fontWeight: FontWeight.normal),
+                  color: const Color(0xFF7C758A), fontWeight: FontWeight.normal),
             ),
           if (refresh != null)
             TextButton(
